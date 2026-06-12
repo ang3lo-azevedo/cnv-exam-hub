@@ -173,10 +173,7 @@ function initExam() {
 
             contentHtml = `
                 <div class="formulation">${htmlText}</div>
-                <div class="explanation-box" id="exp-${q.number}" style="display:none; margin-top: 15px; padding: 10px; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 4px;">
-                    <strong>Correct Answer(s):</strong> ${q.fill_in_blanks.join(', ')}
-                    ${q.note ? `<br><br><strong>Note:</strong> ${q.note}` : ''}
-                </div>
+
             `;
         } else {
             const isMulti = q.is_multi;
@@ -208,13 +205,11 @@ function initExam() {
                     <span id="flag-text-${q.number}">Flag question</span>
                 </div>
             </div>
-            <div class="content">
-                ${contentHtml}
-                <div id="exp-${q.number}" class="explanation-box" style="display:none; background-color: #FFFBEB; padding: 15px; border-left: 4px solid #FDE68A; margin-top: 15px;">
-                    <strong>Correct answer:</strong><br>
-                    ${q.explanation || q.correct_ids.join(', ')}
-                    ${q.note ? `<br><br><strong>Note:</strong> ${q.note}` : ''}
+            <div class="content-wrapper" style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
+                <div class="content">
+                    ${contentHtml}
                 </div>
+                <div id="exp-${q.number}" class="explanation-box" style="display:none; padding: 15px; border-radius: 4px; font-size: 0.95rem;"></div>
             </div>
         `;
         questionsContainer.appendChild(card);
@@ -421,7 +416,6 @@ function submitExam(isAutoRestore = false) {
         const card = document.getElementById(`q-${q.number}`);
         const navBtn = document.getElementById(`nav-${q.number}`);
         const expBox = document.getElementById(`exp-${q.number}`);
-        if (expBox) expBox.style.display = 'block';
 
         if (q.is_open_text) {
             document.getElementById(`text-${q.number}`).disabled = true;
