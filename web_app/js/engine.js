@@ -435,6 +435,10 @@ function submitExam(isAutoRestore = false) {
     clearInterval(timerInterval);
     document.getElementById('submit-btn').disabled = true;
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const examId = urlParams.get('id');
+    localStorage.setItem(`exam_${examId}_completed`, 'true');
+
     let totalMarks = 0;
     let hasOpenText = false;
 
