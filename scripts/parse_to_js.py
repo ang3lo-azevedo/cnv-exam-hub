@@ -158,7 +158,7 @@ def parse_moodle(content, input_file):
         marks_text = "Marked out of 1.00"
         version = None
         
-        m_marks = re.search(r'^\s*(Not graded|Marked out of (\d+\.\d+))\s+(v\d+)', q_body)
+        m_marks = re.search(r'^\s*(Not graded|Marked out of (\d+\.\d+))(?:\s+(v\d+))?', q_body)
         if m_marks:
             if m_marks.group(1) == 'Not graded':
                 marks = 0.0
@@ -166,8 +166,8 @@ def parse_moodle(content, input_file):
             else:
                 marks = float(m_marks.group(2))
                 marks_text = f"Marked out of {m_marks.group(2)}"
-            version = m_marks.group(3)
-            m_latest = re.search(r'^\s*(Not graded|Marked out of \d+\.\d+)\s+v\d+\s*\(latest\)', q_body)
+            version = m_marks.group(3) if m_marks.group(3) else None
+            m_latest = re.search(r'^\s*(Not graded|Marked out of \d+\.\d+)(?:\s+v\d+\s*\(latest\))?', q_body)
             if m_latest:
                 q_body = q_body[m_latest.end():].strip()
             else:
@@ -191,7 +191,7 @@ def parse_moodle(content, input_file):
                 q_body = q_body[:correct_match.start()]
         
         # Open text (Solution sketch)
-        sol_match = re.search(r'Solution sketch:(.*)', q_body, flags=re.DOTALL)
+        sol_match = re.search(r'\*?\*?Solution sketch:\*?\*?\s*(.*)', q_body, flags=re.DOTALL | re.IGNORECASE)
         if sol_match:
             raw_sketch = sol_match.group(1).strip().replace('***', '').strip()
             if raw_sketch.startswith('**'):
@@ -322,8 +322,12 @@ if __name__ == '__main__':
     exam_title = title_match.group(1).strip() if title_match else "CNV Exam"
     exam_title = exam_title.replace('#', '').replace('*', '').strip()
 
-    # Normalize multiline Moodle headers to single line
-    content = re.sub(r'\*\*(Question \d+)\*\*\s*\n\s*(Not answered|Correct|Incorrect|Partially correct)\s*\n\s*(Not graded|Marked out of \d+\.\d+)\s*\n\s*(v\d+(?:\s*\(latest\))?)', r'\n\1 \2 \3 \4', content)
+    # Normalize multiline Moodle headers to single line (handles optional version tag)
+    content = re.sub(
+        r'\*\*(Question \d+)\*\*\s*\n\s*(Not answered|Correct|Incorrect|Partially correct)\s*\n\s*(Not graded|Marked out of \d+\.\d+)(?:\s*\n\s*(v\d+(?:\s*\(latest\))?))?',
+        lambda m: f"\n{m.group(1)} {m.group(2)} {m.group(3)}" + (f" {m.group(4)}" if m.group(4) else ""),
+        content
+    )
 
     if re.search(r'\nQuestion \d+ Not answered', content):
         questions = parse_moodle(content, input_file)
