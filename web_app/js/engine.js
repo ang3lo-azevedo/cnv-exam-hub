@@ -1,6 +1,6 @@
 // engine.js expects window.examData and window.examConfig to be populated by the dynamically loaded exam data script.
 
-let userAnswers = {}; 
+let userAnswers = {};
 let flaggedQuestions = {};
 let timerInterval;
 let timeLeft = 0;
@@ -14,7 +14,7 @@ function showQuestion(index) {
     if (index < 0 || index >= totalQuestions) return;
 
     document.querySelectorAll('.que').forEach(q => q.style.display = 'none');
-    
+
     const q = window.examData[index];
     const card = document.getElementById(`q-${q.number}`);
     if (card) card.style.display = 'flex';
@@ -30,13 +30,13 @@ function showQuestion(index) {
     }
 
     currentQuestionIndex = index;
-    
+
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
-    
+
     if (prevBtn) prevBtn.style.visibility = index === 0 ? 'hidden' : 'visible';
     if (nextBtn) nextBtn.style.visibility = index === totalQuestions - 1 ? 'hidden' : 'visible';
-    
+
     window.scrollTo(0, 0);
 }
 
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initExam() {
     const questionsContainer = document.getElementById('questions-container');
     const navGrid = document.getElementById('nav-grid');
-    
+
     questionsContainer.innerHTML = '';
     navGrid.innerHTML = '';
 
@@ -102,7 +102,7 @@ function initExam() {
     const marksPerQ = (20 / validQuestions.length).toFixed(2);
 
     window.examData.forEach((q, idx) => {
-        if(!q.is_open_text && (!q.options || q.options.length === 0) && (!q.fill_in_blanks || q.fill_in_blanks.length === 0)) return;
+        if (!q.is_open_text && (!q.options || q.options.length === 0) && (!q.fill_in_blanks || q.fill_in_blanks.length === 0)) return;
 
         if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
             userAnswers[q.number] = new Array(q.fill_in_blanks.length).fill('');
@@ -125,31 +125,14 @@ function initExam() {
         const card = document.createElement('div');
         card.className = 'que';
         card.id = `q-${q.number}`;
-        
+
         let statusText = isSubmitted ? 'Reviewed' : 'Not yet answered';
         const qMarks = q.marks !== undefined ? q.marks : (q.is_open_text ? 0 : 1.0);
         const marksText = q.marks_text || (q.is_open_text ? 'Not graded' : `Marked out of ${qMarks.toFixed(2)}`);
         const versionHtml = q.version ? `<div class="version-badge-container"><span class="version-badge">${q.version} (latest)</span></div>` : '';
-        
+
         let contentHtml = '';
         let formattedText = q.text.replace(/<strong>\((.*?)\)<\/strong>/g, '<strong><em>($1)</em></strong>');
-        if (q.number === 1) {
-            const linesToUnderline = [
-                "Please fill in your identification in the draft sheet you were provided. Return it at the end of the exam after completely closing your submission.",
-                "In the draft sheet and in this question you must insert your exam code given to you by the person watching the exam. You exam is not valid without the exam code.",
-                "The exam is without consultation (no other windows or apps beside the one where the exam is being done). Otherwise, exam is annulled.",
-                "The exam has a time limit of 80 minutes. You can only leave after submitting your exam and only after 45 minutes. We take the best grade of the two exams.",
-                "There will be no further information about the exam questions (*dúvidas acerca do enunciado*) provided during the exam, besides the question text itself.",
-                "Answer the questions given the context in the question."
-            ];
-            linesToUnderline.forEach(line => {
-                formattedText = formattedText.replace(line, `<u>${line}</u>`);
-            });
-            formattedText = formattedText.replace(
-                "Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments",
-                "<em>Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments</em>"
-            );
-        }
 
         if (q.is_open_text) {
             if (q.number === 1) {
@@ -178,15 +161,15 @@ function initExam() {
             let blankIndex = 0;
             let allOptions = [...new Set([...q.fill_in_blanks, ...(q.distractors || [])])].sort();
             let selectOptionsHtml = `<option value="">-- Select --</option>`;
-            allOptions.forEach(opt => {
-                selectOptionsHtml += `<option value="${opt.replace(/"/g, '&quot;')}">${opt}</option>`;
+            allOptions.forEach(o => {
+                selectOptionsHtml += `<option value="${o}">${o}</option>`;
             });
 
-            while(htmlText.includes('\\_\\_\\_\\_')) {
-                let selectElement = `<select class="blank-input" onchange="handleBlankInput(${q.number}, ${blankIndex}, this.value)">${selectOptionsHtml}</select>`;
-                htmlText = htmlText.replace('\\_\\_\\_\\_', selectElement);
+            htmlText = htmlText.replace(/\[\.\.\.\]|\[dropdown\]/g, match => {
+                const s = `<select class="blank-input" name="q-${q.number}-${blankIndex}" onchange="handleBlankInput(${q.number}, ${blankIndex}, this.value)">${selectOptionsHtml}</select>`;
                 blankIndex++;
-            }
+                return s;
+            });
 
             contentHtml = `
                 <div class="formulation">${htmlText}</div>
@@ -199,7 +182,7 @@ function initExam() {
             const isMulti = q.is_multi;
             const inputType = isMulti ? 'checkbox' : 'radio';
             const selectPrompt = isMulti ? 'Select one or more:' : 'Select one:';
-            
+
             contentHtml = `
                 <div class="formulation">${formattedText}</div>
                 <div class="select-prompt">${selectPrompt}</div>
@@ -258,18 +241,18 @@ function restoreState() {
             for (let qNum in parsed) {
                 userAnswers[qNum] = parsed[qNum];
             }
-        } catch(e){}
+        } catch (e) { }
     }
-    
+
     const savedFlags = localStorage.getItem(`exam_${examId}_flags`);
     if (savedFlags) {
         try {
             flaggedQuestions = JSON.parse(savedFlags);
-        } catch(e){}
+        } catch (e) { }
     }
 
     window.examData.forEach(q => {
-        if(!userAnswers[q.number]) return;
+        if (!userAnswers[q.number]) return;
         const uAns = userAnswers[q.number];
         const navBtn = document.getElementById(`nav-${q.number}`);
         let hasAnswer = false;
@@ -298,7 +281,7 @@ function restoreState() {
         }
 
         if (hasAnswer && navBtn) navBtn.classList.add('answered');
-        
+
         updateFlagUI(q.number);
     });
 
@@ -308,7 +291,7 @@ function restoreState() {
     }
 }
 
-window.toggleFlag = function(qNumber) {
+window.toggleFlag = function (qNumber) {
     if (isSubmitted && !isSelfGradingPhase) return;
     flaggedQuestions[qNumber] = !flaggedQuestions[qNumber];
     saveState();
@@ -320,9 +303,9 @@ function updateFlagUI(qNumber) {
     const icon = document.getElementById(`flag-icon-${qNumber}`);
     const text = document.getElementById(`flag-text-${qNumber}`);
     const navBtn = document.getElementById(`nav-${qNumber}`);
-    
+
     if (!icon || !text || !navBtn) return;
-    
+
     if (isFlagged) {
         icon.style.color = 'var(--danger)';
         text.textContent = 'Remove flag';
@@ -334,7 +317,7 @@ function updateFlagUI(qNumber) {
     }
 }
 
-window.handleOpenText = function(qNumber, value) {
+window.handleOpenText = function (qNumber, value) {
     if (isSubmitted) return;
     userAnswers[qNumber] = value.trim();
     const navBtn = document.getElementById(`nav-${qNumber}`);
@@ -346,10 +329,10 @@ window.handleOpenText = function(qNumber, value) {
     saveState();
 };
 
-window.handleBlankInput = function(qNumber, index, value) {
+window.handleBlankInput = function (qNumber, index, value) {
     if (isSubmitted) return;
     userAnswers[qNumber][index] = value.trim();
-    
+
     const navBtn = document.getElementById(`nav-${qNumber}`);
     const answeredCount = userAnswers[qNumber].filter(v => v !== '').length;
     if (answeredCount > 0) {
@@ -360,7 +343,7 @@ window.handleBlankInput = function(qNumber, index, value) {
     saveState();
 };
 
-window.handleSelection = function(qNumber, optId, isMulti) {
+window.handleSelection = function (qNumber, optId, isMulti) {
     if (isSubmitted) return;
 
     if (isMulti) {
@@ -377,7 +360,7 @@ window.handleSelection = function(qNumber, optId, isMulti) {
     const card = document.getElementById(`q-${qNumber}`);
     const rows = card.querySelectorAll('.option-row');
     rows.forEach(r => r.classList.remove('selected'));
-    
+
     userAnswers[qNumber].forEach(id => {
         document.getElementById(`row-${qNumber}-${id}`).classList.add('selected');
     });
@@ -422,10 +405,10 @@ function submitExam(isAutoRestore = false) {
         finalizeExam();
         return;
     }
-    
+
     if (isSubmitted) return;
     if (!isAutoRestore && !confirm("Are you sure you want to submit the exam?")) return;
-    
+
     isSubmitted = true;
     clearInterval(timerInterval);
     document.getElementById('submit-btn').disabled = true;
@@ -454,11 +437,11 @@ function submitExam(isAutoRestore = false) {
             let correctBlanks = 0;
             const inputs = card.querySelectorAll('.blank-input');
             const qMarks = q.marks !== undefined ? q.marks : 1.0;
-            
+
             q.fill_in_blanks.forEach((correctText, idx) => {
                 const inputEl = inputs[idx];
                 if (inputEl) inputEl.disabled = true;
-                
+
                 if (uAns[idx] && uAns[idx].toLowerCase() === correctText.toLowerCase()) {
                     correctBlanks++;
                     if (inputEl) {
@@ -474,7 +457,7 @@ function submitExam(isAutoRestore = false) {
                     }
                 }
             });
-            
+
             let markForQ = (correctBlanks / q.fill_in_blanks.length) * qMarks;
             totalMarks += markForQ;
             if (correctBlanks === q.fill_in_blanks.length) navBtn.classList.add('correct');
@@ -485,7 +468,7 @@ function submitExam(isAutoRestore = false) {
             const isMulti = q.is_multi;
             q.options.forEach(opt => {
                 const row = document.getElementById(`row-${q.number}-${opt.id}`);
-                row.querySelector('input').disabled = true; 
+                row.querySelector('input').disabled = true;
                 if (q.correct_ids.includes(opt.id)) row.classList.add('correct-ans');
                 if (uAns.includes(opt.id) && !q.correct_ids.includes(opt.id)) row.classList.add('incorrect-ans');
             });
@@ -511,7 +494,7 @@ function submitExam(isAutoRestore = false) {
                     correctCount = 1;
                 } else if (uAns.length > 0 && uAns[0] !== '') {
                     hasIncorrect = true;
-                    if(q.options.length > 1) {
+                    if (q.options.length > 1) {
                         score -= (1.0 / (q.options.length - 1)) * maxPoints;
                     }
                 }
@@ -539,10 +522,10 @@ function submitExam(isAutoRestore = false) {
 
 function finalizeExam() {
     if (!confirm("Are you ready to finalize your grades?")) return;
-    
+
     let totalMarks = partialObjectiveMarks;
     const validQuestions = window.examData.filter(q => q.is_open_text || (q.options && q.options.length > 0) || (q.fill_in_blanks && q.fill_in_blanks.length > 0));
-    
+
     validQuestions.forEach(q => {
         if (q.is_open_text && q.number !== 1) {
             const gradeInput = document.getElementById(`grade-${q.number}`);
@@ -552,7 +535,7 @@ function finalizeExam() {
             document.getElementById(`nav-${q.number}`).classList.add('correct'); // mark as finalized
         }
     });
-    
+
     document.getElementById('submit-btn').disabled = true;
     showFinalModal(totalMarks);
 }
@@ -569,7 +552,7 @@ function showFinalModal(totalMarks) {
     window.examData.forEach(q => {
         maxPossibleMarks += q.marks !== undefined ? q.marks : (q.is_open_text ? 0 : 1.0);
     });
-    
+
     // Scale to 20
     let finalScore = maxPossibleMarks > 0 ? (totalMarks / maxPossibleMarks) * 20 : 0;
     document.getElementById('final-score').textContent = finalScore.toFixed(2);
