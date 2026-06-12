@@ -165,7 +165,7 @@ function initExam() {
                 selectOptionsHtml += `<option value="${o}">${o}</option>`;
             });
 
-            htmlText = htmlText.replace(/\[\.\.\.\]|\[dropdown\]/g, match => {
+            htmlText = htmlText.replace(/\[\.\.\.\]|\[dropdown\]|\[\s*\]/g, match => {
                 const s = `<select class="blank-input" name="q-${q.number}-${blankIndex}" onchange="handleBlankInput(${q.number}, ${blankIndex}, this.value)">${selectOptionsHtml}</select>`;
                 blankIndex++;
                 return s;
