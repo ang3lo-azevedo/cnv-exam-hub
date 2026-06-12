@@ -443,7 +443,7 @@ function submitExam(isAutoRestore = false) {
     let hasOpenText = false;
 
     window.examData.forEach(q => {
-        const uAns = userAnswers[q.number];
+        const uAns = userAnswers[q.number] || [];
         const card = document.getElementById(`q-${q.number}`);
         const navBtn = document.getElementById(`nav-${q.number}`);
         const expBox = document.getElementById(`exp-${q.number}`);
