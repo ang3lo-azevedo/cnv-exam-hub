@@ -157,24 +157,45 @@ function initExam() {
                 `;
             }
         } else if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
+            const isDragDrop = q.text.toLowerCase().includes('drag-and-drop');
             let htmlText = formattedText;
             let blankIndex = 0;
             let allOptions = [...new Set([...q.fill_in_blanks, ...(q.distractors || [])])].sort();
-            let selectOptionsHtml = `<option value="">-- Select --</option>`;
-            allOptions.forEach(o => {
-                selectOptionsHtml += `<option value="${o}">${o}</option>`;
-            });
 
-            htmlText = htmlText.replace(/\[\.\.\.\]|\[dropdown\]|\[\s*\]/g, match => {
-                const s = `<select class="blank-input" name="q-${q.number}-${blankIndex}" onchange="handleBlankInput(${q.number}, ${blankIndex}, this.value)">${selectOptionsHtml}</select>`;
-                blankIndex++;
-                return s;
-            });
+            if (isDragDrop) {
+                htmlText = htmlText.replace(/\[\.\.\.\]|\[dropdown\]|\[\s*\]/g, match => {
+                    const s = `<div class="drop-zone empty-zone" data-qnum="${q.number}" data-bindex="${blankIndex}" ondragover="allowDrop(event)" ondragleave="dragLeave(event)" ondrop="dropInZone(event, ${q.number}, ${blankIndex})"></div>`;
+                    blankIndex++;
+                    return s;
+                });
 
-            contentHtml = `
-                <div class="formulation">${htmlText}</div>
+                let poolHtml = `<div class="options-pool" id="pool-${q.number}" ondragover="allowDrop(event)" ondrop="dropInPool(event, ${q.number})">`;
+                allOptions.forEach((o, idx) => {
+                    const safeVal = o.replace(/"/g, '&quot;');
+                    poolHtml += `<div class="draggable-item" draggable="true" id="drag-${q.number}-${idx}" data-val="${safeVal}" ondragstart="dragStart(event, ${q.number})">${o}</div>`;
+                });
+                poolHtml += `</div>`;
 
-            `;
+                contentHtml = `
+                    <div class="formulation">${htmlText}</div>
+                    ${poolHtml}
+                `;
+            } else {
+                let selectOptionsHtml = `<option value="">-- Select --</option>`;
+                allOptions.forEach(o => {
+                    selectOptionsHtml += `<option value="${o}">${o}</option>`;
+                });
+
+                htmlText = htmlText.replace(/\[\.\.\.\]|\[dropdown\]|\[\s*\]/g, match => {
+                    const s = `<select class="blank-input" name="q-${q.number}-${blankIndex}" onchange="handleBlankInput(${q.number}, ${blankIndex}, this.value)">${selectOptionsHtml}</select>`;
+                    blankIndex++;
+                    return s;
+                });
+
+                contentHtml = `
+                    <div class="formulation">${htmlText}</div>
+                `;
+            }
         } else {
             const isMulti = q.is_multi;
             const inputType = isMulti ? 'checkbox' : 'radio';
@@ -258,11 +279,38 @@ function restoreState() {
             if (uAns && uAns.length > 0) hasAnswer = true;
         } else if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
             const card = document.getElementById(`q-${q.number}`);
-            const selects = card.querySelectorAll('.blank-input');
-            uAns.forEach((val, idx) => {
-                if (selects[idx]) selects[idx].value = val;
-                if (val !== '') hasAnswer = true;
-            });
+            const isDragDrop = q.text.toLowerCase().includes('drag-and-drop');
+            if (isDragDrop) {
+                uAns.forEach((val, idx) => {
+                    if (val !== '') {
+                        const pool = document.getElementById(`pool-${q.number}`);
+                        if (pool) {
+                            let itemToMove = null;
+                            for (let i=0; i<pool.children.length; i++) {
+                                if (pool.children[i].getAttribute('data-val') === val) {
+                                    itemToMove = pool.children[i];
+                                    break;
+                                }
+                            }
+                            if (itemToMove) {
+                                const zones = card.querySelectorAll('.drop-zone');
+                                const targetZone = Array.from(zones).find(z => parseInt(z.getAttribute('data-bindex')) === idx);
+                                if (targetZone) {
+                                    targetZone.appendChild(itemToMove);
+                                    targetZone.classList.remove('empty-zone');
+                                    hasAnswer = true;
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                const selects = card.querySelectorAll('.blank-input');
+                uAns.forEach((val, idx) => {
+                    if (selects[idx]) selects[idx].value = val;
+                    if (val !== '') hasAnswer = true;
+                });
+            }
         } else {
             uAns.forEach(optId => {
                 const row = document.getElementById(`row-${q.number}-${optId}`);
@@ -460,28 +508,60 @@ function submitExam(isAutoRestore = false) {
         } else if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
             card.classList.add('reviewed');
             let correctBlanks = 0;
-            const inputs = card.querySelectorAll('.blank-input');
             const qMarks = q.marks !== undefined ? q.marks : 1.0;
+            const isDragDrop = q.text.toLowerCase().includes('drag-and-drop');
 
-            q.fill_in_blanks.forEach((correctText, idx) => {
-                const inputEl = inputs[idx];
-                if (inputEl) inputEl.disabled = true;
-
-                if (uAns[idx] && uAns[idx].toLowerCase() === correctText.toLowerCase()) {
-                    correctBlanks++;
-                    if (inputEl) {
-                        inputEl.classList.add('correct-input');
-                        inputEl.style.borderColor = 'var(--success)';
-                        inputEl.style.backgroundColor = '#ECFDF5';
+            if (isDragDrop) {
+                const zones = card.querySelectorAll('.drop-zone');
+                q.fill_in_blanks.forEach((correctText, idx) => {
+                    const zone = Array.from(zones).find(z => parseInt(z.getAttribute('data-bindex')) === idx);
+                    if (zone && zone.children.length > 0) {
+                        zone.children[0].setAttribute('draggable', 'false');
+                        zone.children[0].style.cursor = 'default';
                     }
-                } else {
-                    if (inputEl) {
-                        inputEl.classList.add('incorrect-input');
-                        inputEl.style.borderColor = 'var(--danger)';
-                        inputEl.style.backgroundColor = '#FEF2F2';
+                    if (uAns[idx] && uAns[idx].toLowerCase() === correctText.toLowerCase()) {
+                        correctBlanks++;
+                        if (zone) {
+                            zone.style.borderColor = 'var(--success)';
+                            zone.style.backgroundColor = '#ECFDF5';
+                        }
+                    } else {
+                        if (zone) {
+                            zone.style.borderColor = 'var(--danger)';
+                            zone.style.backgroundColor = '#FEF2F2';
+                        }
                     }
+                });
+                
+                const pool = document.getElementById(`pool-${q.number}`);
+                if (pool) {
+                    Array.from(pool.children).forEach(child => {
+                        child.setAttribute('draggable', 'false');
+                        child.style.cursor = 'default';
+                    });
                 }
-            });
+            } else {
+                const inputs = card.querySelectorAll('.blank-input');
+                q.fill_in_blanks.forEach((correctText, idx) => {
+                    const inputEl = inputs[idx];
+                    if (inputEl) inputEl.disabled = true;
+
+                    if (uAns[idx] && uAns[idx].toLowerCase() === correctText.toLowerCase()) {
+                        correctBlanks++;
+                        if (inputEl) {
+                            inputEl.classList.add('correct-input');
+                            inputEl.style.borderColor = 'var(--success)';
+                            inputEl.style.backgroundColor = '#ECFDF5';
+                        }
+                    } else {
+                        if (inputEl) {
+                            inputEl.classList.add('incorrect-input');
+                            inputEl.style.borderColor = 'var(--danger)';
+                            inputEl.style.backgroundColor = '#FEF2F2';
+                        }
+                    }
+                });
+            }
 
             let markForQ = (correctBlanks / q.fill_in_blanks.length) * qMarks;
             totalMarks += markForQ;
@@ -626,4 +706,93 @@ function showFinalModal(totalMarks) {
     document.getElementById('final-score').textContent = finalScore.toFixed(2);
     document.getElementById('score-details').innerHTML = `Final evaluation recorded.`;
     document.getElementById('evaluation-modal').classList.remove('hidden');
+}
+
+window.dragStart = function(ev, qNumber) {
+    if (isSubmitted) {
+        ev.preventDefault();
+        return;
+    }
+    ev.dataTransfer.setData("text/plain", ev.target.id);
+    ev.dataTransfer.effectAllowed = "move";
+};
+
+window.allowDrop = function(ev) {
+    if (isSubmitted) return;
+    ev.preventDefault();
+    if (ev.currentTarget.classList.contains('drop-zone')) {
+        ev.currentTarget.classList.add('drag-over');
+    }
+};
+
+window.dragLeave = function(ev) {
+    if (ev.currentTarget.classList.contains('drop-zone')) {
+        ev.currentTarget.classList.remove('drag-over');
+    }
+};
+
+window.dropInZone = function(ev, qNumber, blankIndex) {
+    if (isSubmitted) return;
+    ev.preventDefault();
+    const zone = ev.currentTarget;
+    zone.classList.remove('drag-over');
+    
+    const dragId = ev.dataTransfer.getData("text/plain");
+    const dragEl = document.getElementById(dragId);
+    
+    if (!dragEl) return;
+    
+    if (zone.children.length > 0) {
+        const existingItem = zone.children[0];
+        document.getElementById(`pool-${qNumber}`).appendChild(existingItem);
+    }
+    
+    const parent = dragEl.parentElement;
+    if (parent && parent.classList.contains('drop-zone') && parent !== zone) {
+        parent.classList.add('empty-zone');
+        const bIndex = parseInt(parent.getAttribute('data-bindex'));
+        updateDragAnswer(qNumber, bIndex, '');
+    }
+
+    zone.appendChild(dragEl);
+    zone.classList.remove('empty-zone');
+    
+    const val = dragEl.getAttribute('data-val');
+    updateDragAnswer(qNumber, blankIndex, val);
+};
+
+window.dropInPool = function(ev, qNumber) {
+    if (isSubmitted) return;
+    ev.preventDefault();
+    const pool = ev.currentTarget;
+    
+    const dragId = ev.dataTransfer.getData("text/plain");
+    const dragEl = document.getElementById(dragId);
+    
+    if (!dragEl) return;
+    
+    const parent = dragEl.parentElement;
+    if (!parent) return;
+
+    pool.appendChild(dragEl);
+    
+    if (parent.classList.contains('drop-zone')) {
+        parent.classList.add('empty-zone');
+        const bIndex = parseInt(parent.getAttribute('data-bindex'));
+        updateDragAnswer(qNumber, bIndex, '');
+    }
+};
+
+function updateDragAnswer(qNumber, blankIndex, value) {
+    if (!userAnswers[qNumber]) {
+        const q = window.examData.find(x => x.number === qNumber);
+        userAnswers[qNumber] = new Array(q.fill_in_blanks.length).fill('');
+    }
+    userAnswers[qNumber][blankIndex] = value;
+    saveState();
+    
+    const isFull = userAnswers[qNumber].every(v => v !== '');
+    const navBtn = document.getElementById(`nav-${qNumber}`);
+    if (isFull) navBtn.classList.add('answered');
+    else navBtn.classList.remove('answered');
 }
