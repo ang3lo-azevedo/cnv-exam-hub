@@ -500,7 +500,7 @@ function submitExam(isAutoRestore = false) {
             else navBtn.classList.add('incorrect');
         }
 
-        if (expBox && q.number !== 1) {
+        if (expBox && q.number !== 1 && !q.is_open_text) {
             expBox.style.display = 'block';
             let isCorrect = navBtn.classList.contains('correct');
             let isPartial = navBtn.classList.contains('partial');
