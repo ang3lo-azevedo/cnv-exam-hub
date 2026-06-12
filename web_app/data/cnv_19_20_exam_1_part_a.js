@@ -6,7 +6,7 @@ window.examConfig = {
 window.examData = [
   {
     "number": 1,
-    "text": "In the context of Cloud Computing, identify the available deployment models for a cloud.\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "In the context of Cloud Computing, identify the available deployment models for a cloud.\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -41,7 +41,7 @@ window.examData = [
   },
   {
     "number": 2,
-    "text": "Considering emulation by interpretation with decode-and-dispatch, there are a number of specific features to D&D that hinder its performance when compared to other interpretation-based approaches. What are the causes for this inefficiency?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Considering emulation by interpretation with decode-and-dispatch, there are a number of specific features to D&D that hinder its performance when compared to other interpretation-based approaches. What are the causes for this inefficiency?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -76,7 +76,7 @@ window.examData = [
   },
   {
     "number": 3,
-    "text": "In the context of binary translation, consider a scenario where the execution of the code is dominated by long running functions, each one performing extensive testing (e.g., if-then-else-like code) and calculations (e.g., additions and multiplications) on the parameters/arguments they receive.\nWhat is the approach to developing optimizations that would provide the highest returns when taking into account potential performance improvements and development overhead?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "In the context of binary translation, consider a scenario where the execution of the code is dominated by long running functions, each one performing extensive testing (e.g., if-then-else-like code) and calculations (e.g., additions and multiplications) on the parameters/arguments they receive.\nWhat is the approach to developing optimizations that would provide the highest returns when taking into account potential performance improvements and development overhead?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -110,7 +110,7 @@ window.examData = [
   },
   {
     "number": 4,
-    "text": "What mappings of page addresses are employed in Memory Virtualization carried out by system VMs?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "What mappings of page addresses are employed in Memory Virtualization carried out by system VMs?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -145,7 +145,7 @@ window.examData = [
   },
   {
     "number": 5,
-    "text": "When trying to determine whether a given ISA (Instruction Set Architecture) is efficiently virtualizable (according to Popek and Goldberg), what are the conditions (from the following) that must hold true for that to happen?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "When trying to determine whether a given ISA (Instruction Set Architecture) is efficiently virtualizable (according to Popek and Goldberg), what are the conditions (from the following) that must hold true for that to happen?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -180,7 +180,7 @@ window.examData = [
   },
   {
     "number": 6,
-    "text": "When optimizing Memory Virtualization by employing shadow page tables, what information does the Virtual Machine Monitor (VMM) need to maintain?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "When optimizing Memory Virtualization by employing shadow page tables, what information does the Virtual Machine Monitor (VMM) need to maintain?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -214,7 +214,7 @@ window.examData = [
   },
   {
     "number": 7,
-    "text": "An AWS instance of a virtual server needs to communicate with other VMs and possibly with the outside world. For that purpose, what type of addresses are assigned to each individual AWS instance?\n\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "An AWS instance of a virtual server needs to communicate with other VMs and possibly with the outside world. For that purpose, what type of addresses are assigned to each individual AWS instance?\n\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -259,7 +259,7 @@ window.examData = [
   },
   {
     "number": 9,
-    "text": "In an Infrastructure-as-a-Service deployment (e.g., a web application over Amazon EC2 as in the CNV project), what are the key factors that must be taken into account when calculating the grace period assigned to a newly launched instance (VM) in an AutoScale Group?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "In an Infrastructure-as-a-Service deployment (e.g., a web application over Amazon EC2 as in the CNV project), what are the key factors that must be taken into account when calculating the grace period assigned to a newly launched instance (VM) in an AutoScale Group?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -293,7 +293,7 @@ window.examData = [
   },
   {
     "number": 10,
-    "text": "What sequence of byte-code could be used to illustrate the retrieval the value of an integer field inside an instance object being accessed by code inside an instance method of the corresponding class (i.e., the <em>this</em> object)?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "What sequence of byte-code could be used to illustrate the retrieval the value of an integer field inside an instance object being accessed by code inside an instance method of the corresponding class (i.e., the <em>this</em> object)?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -361,7 +361,7 @@ window.examData = [
   },
   {
     "number": 12,
-    "text": "Consider the algorithm <em>copying GC</em> in how it organizes the heap, how it identifies and preserves reachable (live) objects, and detects and reclaims garbage objects to free up memory for the application.\nWhat are the key specific features of <em>copying GC</em>, when compared to other algorithms?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "Consider the algorithm <em>copying GC</em> in how it organizes the heap, how it identifies and preserves reachable (live) objects, and detects and reclaims garbage objects to free up memory for the application.\nWhat are the key specific features of <em>copying GC</em>, when compared to other algorithms?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -395,7 +395,7 @@ window.examData = [
   },
   {
     "number": 13,
-    "text": "Checking array bounds in array accesses must be performed dynamically by the Java VM when executing bytecodes. This is a source of significant overhead as it requires checking array index against array length/size in every access. Check the following excerpt of Java code receiving an array <em>buffer</em> of size/length 1000:\n\n```java\nint calc (int buffer [] ){\n  int total = 0;\n  for (int i=0;i<100;i++) {\n    total += buffer[i];\n  }\n  return total;\n}\n```\n\nConsider that array bound checking optimizations were enabled.\nState how many (an integer number) of these checks the Java VM would be able to avoid/bypass?\n\n<strong><em>(No penalty for wrong answer.)</em></strong>\n\n<strong>Answer:</strong> 100 (no element access inside the loop needs to be checked against array bounds since the array is found to be greater that 100 elements).\n\n\u25c4 CNV-19-20-Exam-1-Part-A (hidden)",
+    "text": "Checking array bounds in array accesses must be performed dynamically by the Java VM when executing bytecodes. This is a source of significant overhead as it requires checking array index against array length/size in every access. Check the following excerpt of Java code receiving an array <em>buffer</em> of size/length 1000:\n\n```java\nint calc (int buffer [] ){\n  int total = 0;\n  for (int i=0;i<100;i++) {\n    total += buffer[i];\n  }\n  return total;\n}\n```\n\nConsider that array bound checking optimizations were enabled.\nState how many (an integer number) of these checks the Java VM would be able to avoid/bypass?\n\n<em>(No penalty for wrong answer.)</em>\n\n<strong>Answer:</strong> 100 (no element access inside the loop needs to be checked against array bounds since the array is found to be greater that 100 elements).\n\n\u25c4 CNV-19-20-Exam-1-Part-A (hidden)",
     "options": [],
     "is_multi": false,
     "correct_ids": [],

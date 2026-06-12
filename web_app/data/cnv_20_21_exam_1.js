@@ -19,11 +19,11 @@ window.examData = [
   },
   {
     "number": 2,
-    "text": "When deploying an application on the Google App Engine (GAE) PaaS, how does the GAE achieve scalability, i.e. by adhering to what specific behavior?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "When deploying an application on the Google App Engine (GAE) PaaS, how does the GAE achieve scalability, i.e. by adhering to what specific behavior?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "b",
@@ -54,7 +54,7 @@ window.examData = [
   },
   {
     "number": 3,
-    "text": "The Constant Pool is a component of class files as described in the Java VM specification.\nThe Constant Pool brings a number of advantages, such as:\n<strong><em>(select the option that best fits the question)</em></strong>",
+    "text": "The Constant Pool is a component of class files as described in the Java VM specification.\nThe Constant Pool brings a number of advantages, such as:\n<em>(select the option that best fits the question)</em>",
     "options": [
       {
         "id": "a",
@@ -66,7 +66,7 @@ window.examData = [
       },
       {
         "id": "c",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "d",
@@ -89,7 +89,7 @@ window.examData = [
   },
   {
     "number": 4,
-    "text": "In a cloud data center facility where the total energy delivered to computing equipment is 1250 kW, from an overall consumption of 2500 kW, what is the PUE (power usage effectiveness) of this facility?\n<strong><em>(select the option that best fits the question).</em></strong>\n\nSelect one:",
+    "text": "In a cloud data center facility where the total energy delivered to computing equipment is 1250 kW, from an overall consumption of 2500 kW, what is the PUE (power usage effectiveness) of this facility?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -97,7 +97,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "c",
@@ -123,7 +123,7 @@ window.examData = [
   },
   {
     "number": 5,
-    "text": "Regarding the cloud storage Dynamo from Amazon, identify a specific key design decision.\n<strong><em>(select the option that best fits the question).</em></strong>\n\nSelect one:",
+    "text": "Regarding the cloud storage Dynamo from Amazon, identify a specific key design decision.\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -131,7 +131,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "c",
@@ -157,7 +157,7 @@ window.examData = [
   },
   {
     "number": 6,
-    "text": "Consider a generic MapReduce approach to addressing WordCount as seen in the lectures, e.g., to count the frequency (number of times occurring ) of each word within the full content of a variable (possibly very large) set of variable-sized simple text files.\nConsider that in one execution the whole of the input consists of the following three files with one line each (content after filename):\n<u>File A.txt:</u> \nabc xyz 123\n<u>File B.txt:</u> \nabc abc 456\n<u>File C.txt:</u>\nxyz wgf 987\n\nHow is this job's execution going to be carried out, according to Hadoop's architecture?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Consider a generic MapReduce approach to addressing WordCount as seen in the lectures, e.g., to count the frequency (number of times occurring ) of each word within the full content of a variable (possibly very large) set of variable-sized simple text files.\nConsider that in one execution the whole of the input consists of the following three files with one line each (content after filename):\n<u>File A.txt:</u> \nabc xyz 123\n<u>File B.txt:</u> \nabc abc 456\n<u>File C.txt:</u>\nxyz wgf 987\n\nHow is this job's execution going to be carried out, according to Hadoop's architecture?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -177,7 +177,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       }
     ],
     "is_multi": true,
@@ -193,11 +193,11 @@ window.examData = [
   },
   {
     "number": 7,
-    "text": "When deploying instances in Amazon Web Services (AWS), the user can make selections based on geographical and fault-tolerance criteria.\nWhat are they?\n<strong><em>(select the option that best fits the question)</em></strong>",
+    "text": "When deploying instances in Amazon Web Services (AWS), the user can make selections based on geographical and fault-tolerance criteria.\nWhat are they?\n<em>(select the option that best fits the question)</em>",
     "options": [
       {
         "id": "a",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "b",
@@ -227,7 +227,7 @@ window.examData = [
   },
   {
     "number": 8,
-    "text": "Consider the algorithm Generational GC in how it organizes the heap, how it identifies and preserves reachable (live) objects, and detects and reclaims garbage objects to free up memory for the application.\nWhat are the key specific feature(s) of this GC algorithm when compared to other algorithms?\n<strong><em>(select the option that best fits the question)</em></strong>",
+    "text": "Consider the algorithm Generational GC in how it organizes the heap, how it identifies and preserves reachable (live) objects, and detects and reclaims garbage objects to free up memory for the application.\nWhat are the key specific feature(s) of this GC algorithm when compared to other algorithms?\n<em>(select the option that best fits the question)</em>",
     "options": [
       {
         "id": "a",
@@ -243,7 +243,7 @@ window.examData = [
       },
       {
         "id": "d",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "e",
@@ -262,7 +262,7 @@ window.examData = [
   },
   {
     "number": 9,
-    "text": "In the context of the operation of a chillerless data center such as DeepGreen, what is the logical sequence of actions that is carried out in order to perform cooling with little energy consumption and environmental impact.\n\n<strong><em>(Drag-and-Drop the small sentences to their appropriate place)</em></strong>\n\nAction 1:  [ ]\nAction 2:  [ ]\nAction 3:  [ ]\nAction 4:  [ ]\nAction 5:  [ ]\n\nOptions to drag:\n- The heat exchangers chill the internal chilled water loop and take the rejected heat back into return pipes.\n- The lake water is filtrated and pumped through two redundant pipes to the DeepGreen datacenter.\n- The intake pipe pulls 6\u00baC cold water from a depth of 60m from Lake Walensee.\n- The hot return air is strictly separated and moved back to the computer room air handling units.\n- The heated return lake water is pumped back at 14\u00baC and injected into Lake Walensee at a depth of 30m.",
+    "text": "In the context of the operation of a chillerless data center such as DeepGreen, what is the logical sequence of actions that is carried out in order to perform cooling with little energy consumption and environmental impact.\n\n<em>(Drag-and-Drop the small sentences to their appropriate place)</em>\n\nAction 1:  [ ]\nAction 2:  [ ]\nAction 3:  [ ]\nAction 4:  [ ]\nAction 5:  [ ]\n\nOptions to drag:\n- The heat exchangers chill the internal chilled water loop and take the rejected heat back into return pipes.\n- The lake water is filtrated and pumped through two redundant pipes to the DeepGreen datacenter.\n- The intake pipe pulls 6\u00baC cold water from a depth of 60m from Lake Walensee.\n- The hot return air is strictly separated and moved back to the computer room air handling units.\n- The heated return lake water is pumped back at 14\u00baC and injected into Lake Walensee at a depth of 30m.",
     "options": [],
     "is_multi": false,
     "correct_ids": [],
@@ -279,7 +279,7 @@ window.examData = [
   },
   {
     "number": 10,
-    "text": "In BigTable, the master is a single process that performs top-level coordination for the entire cluster.\nAlthough this may potentially incur in a bottleneck, BigTable frees the master from substancial coordination effort because of an important design decision. \nWhich one is more relevant?\n<strong><em>(select the option that best fits the question)</em></strong>",
+    "text": "In BigTable, the master is a single process that performs top-level coordination for the entire cluster.\nAlthough this may potentially incur in a bottleneck, BigTable frees the master from substancial coordination effort because of an important design decision. \nWhich one is more relevant?\n<em>(select the option that best fits the question)</em>",
     "options": [
       {
         "id": "a",
@@ -299,7 +299,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       }
     ],
     "is_multi": false,
@@ -313,11 +313,11 @@ window.examData = [
   },
   {
     "number": 11,
-    "text": "Consider an Infrastructure-as-a-Service deployment, in order to seamless extend computing resources for a small start-up company, in a real-life scenario employing replicated m front-ends and n replicated back-ends. When redirecting requests to the web application among a number of virtual servers, what situation can happen in the case of scaling and/or failures?\n<strong><em>(select the option that best fits the question).</em></strong>\n\nSelect one:",
+    "text": "Consider an Infrastructure-as-a-Service deployment, in order to seamless extend computing resources for a small start-up company, in a real-life scenario employing replicated m front-ends and n replicated back-ends. When redirecting requests to the web application among a number of virtual servers, what situation can happen in the case of scaling and/or failures?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "b",
@@ -347,7 +347,7 @@ window.examData = [
   },
   {
     "number": 12,
-    "text": "In the context of the conditions for ISA virtualizability, consider an hypotetical ISA including the following exemplificative instructions as described:\n- Inst_A : this instruction can only be executed in system mode, otherwise traps.\n- Inst_B : this instruction retrieves the global wide state of hardware resources.\n- Inst_C : this instruction allows to take control of the CPU scheduling timer.\n- Inst_D : this instruction performs arithmetic multiplication of two registers.\nConsidering only what you can conservatively infer from the presented information about instructions Inst_A, Inst_B, Inst_C, Inst_D, identify which of the following sentences is/are corrrect.\n<strong><em>(select all the correct options)</em></strong>",
+    "text": "In the context of the conditions for ISA virtualizability, consider an hypotetical ISA including the following exemplificative instructions as described:\n- Inst_A : this instruction can only be executed in system mode, otherwise traps.\n- Inst_B : this instruction retrieves the global wide state of hardware resources.\n- Inst_C : this instruction allows to take control of the CPU scheduling timer.\n- Inst_D : this instruction performs arithmetic multiplication of two registers.\nConsidering only what you can conservatively infer from the presented information about instructions Inst_A, Inst_B, Inst_C, Inst_D, identify which of the following sentences is/are corrrect.\n<em>(select all the correct options)</em>",
     "options": [
       {
         "id": "a",
@@ -363,7 +363,7 @@ window.examData = [
       },
       {
         "id": "d",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "e",
@@ -383,7 +383,7 @@ window.examData = [
   },
   {
     "number": 13,
-    "text": "In AWS, programmers can invoke AWS CloudWatch cloud monitoring services in order to assess the resource usage of their instances across a dimension such as [dropdown].\nThe list of data-points returned by AWS CloudWatch is the [dropdown] returned.\nThese data-points can reflect maximum, minimum, average, etc. values or other [dropdown] applied to the monitoring data gathered.\nAll values returned are expressed according to a given [dropdown].\n\n<strong><em>(no penalty for wrong answers)</em></strong>",
+    "text": "In AWS, programmers can invoke AWS CloudWatch cloud monitoring services in order to assess the resource usage of their instances across a dimension such as [dropdown].\nThe list of data-points returned by AWS CloudWatch is the [dropdown] returned.\nThese data-points can reflect maximum, minimum, average, etc. values or other [dropdown] applied to the monitoring data gathered.\nAll values returned are expressed according to a given [dropdown].\n\n<em>(no penalty for wrong answers)</em>",
     "options": [],
     "is_multi": false,
     "correct_ids": [],
@@ -394,23 +394,23 @@ window.examData = [
       "unit"
     ],
     "distractors": [
-      "ResourceGroup",
-      "value",
+      "dimension",
       "InstanceID",
       "log",
       "average",
-      "dimension"
+      "value",
+      "ResourceGroup"
     ],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00"
   },
   {
     "number": 14,
-    "text": "Despite the many advantages Cloud Computing brings, it also entails some potential fragilities according to the \"Above the Clouds\" paper.\nGive examples of such potential fragilities identified.\n<strong><em>(select all the correct options)</em></strong>",
+    "text": "Despite the many advantages Cloud Computing brings, it also entails some potential fragilities according to the \"Above the Clouds\" paper.\nGive examples of such potential fragilities identified.\n<em>(select all the correct options)</em>",
     "options": [
       {
         "id": "a",
-        "text": "<strong><strong><strong>No response (no penalty if this is only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if this is only option answered).</strong></strong>"
       },
       {
         "id": "b",
@@ -455,7 +455,7 @@ window.examData = [
   },
   {
     "number": 16,
-    "text": "In the context of emulation by interpretation, how do indirect threaded interpretation (indirect threading) and direct threaded interpretation (direct threading) compare?\n<strong><em>(select all the correct options)</em></strong>",
+    "text": "In the context of emulation by interpretation, how do indirect threaded interpretation (indirect threading) and direct threaded interpretation (direct threading) compare?\n<em>(select all the correct options)</em>",
     "options": [
       {
         "id": "a",
@@ -467,7 +467,7 @@ window.examData = [
       },
       {
         "id": "c",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "d",
@@ -491,7 +491,7 @@ window.examData = [
   },
   {
     "number": 17,
-    "text": "System VMs can be employed following a classic (Type-1) or a hosted VM (Type-2) approach.\nHow does this dicotomy influence System VMs deployment concerning the rest of software stack in execution?\n<strong><em>(select all the correct options)</em></strong>",
+    "text": "System VMs can be employed following a classic (Type-1) or a hosted VM (Type-2) approach.\nHow does this dicotomy influence System VMs deployment concerning the rest of software stack in execution?\n<em>(select all the correct options)</em>",
     "options": [
       {
         "id": "a",
@@ -511,7 +511,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       }
     ],
     "is_multi": true,
@@ -527,7 +527,7 @@ window.examData = [
   },
   {
     "number": 18,
-    "text": "The Superfriend social network wants to email <em>all users with more than 25 friends</em> telling them <em>how many other Superfriend users have the same number of friends (rank) as them</em> (e.g. \u201cCongratulations Joe, 200 other Superfriend users have 56 friends just like you.\u201d). \nThe email messages will be produced by a MapReduce application that will be input a text list of all users and their respective friends\u2019 contact info. \nEach line in that input file has the following format and that you can iterate and access as a list or array in the pseudocode: \n<username>, <name>, <age>, <user_email>, <friend_1>, <friend_1_email>, <friend_2>, <friend_2_email>,..., <friend_n>,<friend_n_email> \nAssume the standard signature for the <strong>mapper</strong>: List<k2,v2> map(int, string) and <strong>reducer</strong>:  List<k3, v3> reduce(k2, List<v2>) functions, where map has the default MapReduce input (cursor/line number and text line content) and k2, v2, k3 and v3 can all be replaced with types of your choice.  \n\nWrite the pseudocode for a MapReduce application, with a single map and a single reduce method.\n\nThe final output of the reduce function shoud produce the required information for each case when appropriate:\n- the email address of Superfriend user that should be e-mailed, and \n- the number of friends with the same rank.\n<strong><em>(if you need, you can briefly state any assumptions at the end of the answer after the pseudocode)</em></strong>",
+    "text": "The Superfriend social network wants to email <em>all users with more than 25 friends</em> telling them <em>how many other Superfriend users have the same number of friends (rank) as them</em> (e.g. \u201cCongratulations Joe, 200 other Superfriend users have 56 friends just like you.\u201d). \nThe email messages will be produced by a MapReduce application that will be input a text list of all users and their respective friends\u2019 contact info. \nEach line in that input file has the following format and that you can iterate and access as a list or array in the pseudocode: \n<username>, <name>, <age>, <user_email>, <friend_1>, <friend_1_email>, <friend_2>, <friend_2_email>,..., <friend_n>,<friend_n_email> \nAssume the standard signature for the <strong>mapper</strong>: List<k2,v2> map(int, string) and <strong>reducer</strong>:  List<k3, v3> reduce(k2, List<v2>) functions, where map has the default MapReduce input (cursor/line number and text line content) and k2, v2, k3 and v3 can all be replaced with types of your choice.  \n\nWrite the pseudocode for a MapReduce application, with a single map and a single reduce method.\n\nThe final output of the reduce function shoud produce the required information for each case when appropriate:\n- the email address of Superfriend user that should be e-mailed, and \n- the number of friends with the same rank.\n<em>(if you need, you can briefly state any assumptions at the end of the answer after the pseudocode)</em>",
     "options": [],
     "is_multi": false,
     "correct_ids": [],
@@ -536,11 +536,11 @@ window.examData = [
     "marks": 2.0,
     "marks_text": "Marked out of 2.00",
     "is_open_text": true,
-    "solution_sketch": "Mapper:**\n\u2022 The first element of the solution is determining the **key** for the mapper and reducer.\nIt should be the number of friends (rank) each user has so that all users with the same number of friends will be processed in the same reducer function.\n\u2022 The **count** can be calculated based on the size of the list (divided by two minus 4), accounting solely each friend once (e.g., with its email).\n\u2022 This also allows efficient **filtering at the Mapper** (avoiding sending to the reducer information about users with rank <= 25).\n\u2022 **Mapper outputs** tuples with the form (rank, user-email, *emails-of-friends[]*).\n\u2022 Outputting user-email allows later emailing the congratulatory message to each user stating how many users have the same rank.\n\u2022 *(Outputting emails-of-friends, i.e., the emails of all friends of a user, or to be simpler, just (re)-forwarding the complete data in the user-info line as it is done in PageRank, allows later to know how many of the friends, of each user, have the same rank).*\n**Reducer:**\n\u2022 At the reducer function, the **key** is the number of friends (rank), and each of the values carries the information mapped for a specific user of that rank (user-email, *emails-of-friends[]*).\n\u2022 With this information, aggregating info about all users with a given rank, it is immediately possible to **count the number of tuples** in the reducer arguments.\n\u2022 This **count and user-email** allows **emailing to each user the congratulatory** message stating how many users have the same rank.\n\u2022 *For each tuple, insert into a local variable hashtable/associative-array a tuple with the user-email as key and the emails-of-friends[] as value.*\n\u2022 *Once completed, for each of the hashtable/associate-array elements, iterate the emails-of-friends[] value and add one for each email that also belongs to the hashtable/associate-array. This allows stating how many of each user\u2019s friends share the same rank as him/her.*\n**Note:** *Based on your interpretations provided, an efficient implementation that is able to email the congratulatory message will get full marks, with the reasoning to determine the number of friends with the same rank considered when assessing errors or inefficiencies.*"
+    "solution_sketch": "Mapper:<em></em>\n\u2022 The first element of the solution is determining the <strong>key</strong> for the mapper and reducer.\nIt should be the number of friends (rank) each user has so that all users with the same number of friends will be processed in the same reducer function.\n\u2022 The <strong>count</strong> can be calculated based on the size of the list (divided by two minus 4), accounting solely each friend once (e.g., with its email).\n\u2022 This also allows efficient <strong>filtering at the Mapper</strong> (avoiding sending to the reducer information about users with rank <= 25).\n\u2022 <strong>Mapper outputs</strong> tuples with the form (rank, user-email, <em>emails-of-friends[]</em>).\n\u2022 Outputting user-email allows later emailing the congratulatory message to each user stating how many users have the same rank.\n\u2022 <em>(Outputting emails-of-friends, i.e., the emails of all friends of a user, or to be simpler, just (re)-forwarding the complete data in the user-info line as it is done in PageRank, allows later to know how many of the friends, of each user, have the same rank).</em>\n<strong>Reducer:</strong>\n\u2022 At the reducer function, the <strong>key</strong> is the number of friends (rank), and each of the values carries the information mapped for a specific user of that rank (user-email, <em>emails-of-friends[]</em>).\n\u2022 With this information, aggregating info about all users with a given rank, it is immediately possible to <strong>count the number of tuples</strong> in the reducer arguments.\n\u2022 This <strong>count and user-email</strong> allows <strong>emailing to each user the congratulatory</strong> message stating how many users have the same rank.\n\u2022 <em>For each tuple, insert into a local variable hashtable/associative-array a tuple with the user-email as key and the emails-of-friends[] as value.</em>\n\u2022 <em>Once completed, for each of the hashtable/associate-array elements, iterate the emails-of-friends[] value and add one for each email that also belongs to the hashtable/associate-array. This allows stating how many of each user\u2019s friends share the same rank as him/her.</em>\n<strong>Note:</strong> <em>Based on your interpretations provided, an efficient implementation that is able to email the congratulatory message will get full marks, with the reasoning to determine the number of friends with the same rank considered when assessing errors or inefficiencies.</em>"
   },
   {
     "number": 19,
-    "text": "Method inlining is a key and frequently employed optimization to achieve high-performance emulation in Java.\nTaking into consideration how method inlining can be implemented and when it should be activated, identify the correct sentence(s).\n<strong><em>(select all the correct options)</em></strong>",
+    "text": "Method inlining is a key and frequently employed optimization to achieve high-performance emulation in Java.\nTaking into consideration how method inlining can be implemented and when it should be activated, identify the correct sentence(s).\n<em>(select all the correct options)</em>",
     "options": [
       {
         "id": "a",
@@ -560,7 +560,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       }
     ],
     "is_multi": true,
@@ -575,11 +575,11 @@ window.examData = [
   },
   {
     "number": 20,
-    "text": "Consider a stream processing scenario where messages published in a forum (e.g. twitts, posts) are continuously monitored in order to detect the topics that are trending (e.g., Top-100 ranking of references in messages), considering the number of times they are referenced across messages over time.\nAnalyse how the window and event handling of Flink and Spark Streaming may contribute to detect the potentially trending topics in a timely manner (e.g. so that users may be advised of a potential emerging trending topic, and increase their chances of publishing a message on it as soon as it starts trending).\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Consider a stream processing scenario where messages published in a forum (e.g. twitts, posts) are continuously monitored in order to detect the topics that are trending (e.g., Top-100 ranking of references in messages), considering the number of times they are referenced across messages over time.\nAnalyse how the window and event handling of Flink and Spark Streaming may contribute to detect the potentially trending topics in a timely manner (e.g. so that users may be advised of a potential emerging trending topic, and increase their chances of publishing a message on it as soon as it starts trending).\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "b",
@@ -611,7 +611,7 @@ window.examData = [
   },
   {
     "number": 21,
-    "text": "What sequence of byte-code could be used to better illustrate the retrieval of the second element of a local variable f (that is an array of integers) inside a method.\n<strong><em>(select the option that best fits the question)</em></strong>",
+    "text": "What sequence of byte-code could be used to better illustrate the retrieval of the second element of a local variable f (that is an array of integers) inside a method.\n<em>(select the option that best fits the question)</em>",
     "options": [
       {
         "id": "a",
@@ -619,7 +619,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "c",
@@ -646,11 +646,11 @@ window.examData = [
   },
   {
     "number": 22,
-    "text": "During the execution of a MapReduce job, what stage/phase is able to process as input all the tuples, produced across the entire cluster, that share the same key.\n<strong><em>(select the option that best fits the question).</em></strong>\n\nSelect one:",
+    "text": "During the execution of a MapReduce job, what stage/phase is able to process as input all the tuples, produced across the entire cluster, that share the same key.\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "b",
@@ -680,11 +680,11 @@ window.examData = [
   },
   {
     "number": 23,
-    "text": "A Google App Engine application can be comprised of instances operating according to two types, depending on how they execute.\nWhat are they?\n<strong><em>(select the option that best fits the question).</em></strong>\n\nSelect one:",
+    "text": "A Google App Engine application can be comprised of instances operating according to two types, depending on how they execute.\nWhat are they?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "b",
@@ -714,7 +714,7 @@ window.examData = [
   },
   {
     "number": 24,
-    "text": "Compared to Insfrastructure-as-a-Service (IaaS), Function-as-a-Service (FaaS) is able to offer:\n<strong><em>(select all the correct options)</em></strong>",
+    "text": "Compared to Insfrastructure-as-a-Service (IaaS), Function-as-a-Service (FaaS) is able to offer:\n<em>(select all the correct options)</em>",
     "options": [
       {
         "id": "a",
@@ -730,7 +730,7 @@ window.examData = [
       },
       {
         "id": "d",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "e",
@@ -749,7 +749,7 @@ window.examData = [
   },
   {
     "number": 25,
-    "text": "When comparing Spark against MapReduce, identify Spark's advantageous features over MapReduce?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "When comparing Spark against MapReduce, identify Spark's advantageous features over MapReduce?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -769,7 +769,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       }
     ],
     "is_multi": true,

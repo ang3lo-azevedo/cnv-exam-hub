@@ -6,7 +6,7 @@ window.examConfig = {
 window.examData = [
   {
     "number": 1,
-    "text": "<strong>Identification and Rules:</strong>\n<strong><u>Please fill in your identification in the draft sheet you were provided. Return it at the end of the exam after completely closing your submission.</u></strong>\n<strong><u>In the draft sheet and in this question you must insert your exam code given to you by the person watching the exam. You exam is not valid without the exam code.</u></strong>\n<strong><u>The exam is without consultation (no other windows or apps beside the one where the exam is being done). Otherwise, exam is annulled.</u></strong>\n<u>The exam has a time limit of 80 minutes. You can only leave after submitting your exam and only after 45 minutes. We take the best grade of the two exams.</u>\n<u>There will be no further information about the exam questions (<em>d\u00favidas acerca do enunciado</em>) provided during the exam, besides the question text itself.</u>\n<u>Answer the questions given the context in the question.</u>\nThere are 24 actual questions in total in the exam, all graded with the same weight except the Map-Reduce problem that has a weight twice a normal (all others) question (1 mark -> 0.8 in 1-20 scale).\nE.g. for a final grade of 8/20 (\"valores\") you need to sum up 10 marks, for a final grade of 15/20 (\"valores\") you need to sum up 18.75 marks. For a grade of 20/20 (\"valores\"), you need to sum up the 25 complete marks.\n<strong><em>(<em>Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments</em>).</em></strong>\nGood work.\nLV.\n\n<strong>Note:</strong>\n- Questions are presented in randomized order. Make sure you visit all of them. They cover different difficulty levels.\n- In all questions where a wrong choice may lead to penalty there is an option, e.g. \"<em>No response (no penalty if only option answered)</em>\".\n- When you must select only one option, an incorrect choice leads to a penalty (1/number-of-incorrect-or-not-fully-correct-choices), e.g., -33% in question with 4 options.\n- In questions where you can select multiple options, the correct and incorrect options are graded in a way that selecting all of them leads to zero score, there is never a penalty (in the special case of 1 right and 1 wrong selected, I will manually assign half the score of one correct option).",
+    "text": "<strong>Identification and Rules:</strong>\n<strong><u>Please fill in your identification in the draft sheet you were provided. Return it at the end of the exam after completely closing your submission.</u></strong>\n<strong><u>In the draft sheet and in this question you must insert your exam code given to you by the person watching the exam. You exam is not valid without the exam code.</u></strong>\n<strong><u>The exam is without consultation (no other windows or apps beside the one where the exam is being done). Otherwise, exam is annulled.</u></strong>\n<u>The exam has a time limit of 80 minutes. You can only leave after submitting your exam and only after 45 minutes. We take the best grade of the two exams.</u>\n<u>There will be no further information about the exam questions (<em>d\u00favidas acerca do enunciado</em>) provided during the exam, besides the question text itself.</u>\n<u>Answer the questions given the context in the question.</u>\nThere are 24 actual questions in total in the exam, all graded with the same weight except the Map-Reduce problem that has a weight twice a normal (all others) question (1 mark -> 0.8 in 1-20 scale).\nE.g. for a final grade of 8/20 (\"valores\") you need to sum up 10 marks, for a final grade of 15/20 (\"valores\") you need to sum up 18.75 marks. For a grade of 20/20 (\"valores\"), you need to sum up the 25 complete marks.\n<em>(<em>Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments</em>).</em>\nGood work.\nLV.\n\n<strong>Note:</strong>\n- Questions are presented in randomized order. Make sure you visit all of them. They cover different difficulty levels.\n- In all questions where a wrong choice may lead to penalty there is an option, e.g. \"<em>No response (no penalty if only option answered)</em>\".\n- When you must select only one option, an incorrect choice leads to a penalty (1/number-of-incorrect-or-not-fully-correct-choices), e.g., -33% in question with 4 options.\n- In questions where you can select multiple options, the correct and incorrect options are graded in a way that selecting all of them leads to zero score, there is never a penalty (in the special case of 1 right and 1 wrong selected, I will manually assign half the score of one correct option).",
     "options": [],
     "is_multi": false,
     "correct_ids": [],
@@ -20,7 +20,7 @@ window.examData = [
   },
   {
     "number": 2,
-    "text": "In the context of Cloud Computing, identify the available deployment models for a cloud.\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "In the context of Cloud Computing, identify the available deployment models for a cloud.\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -52,7 +52,7 @@ window.examData = [
   },
   {
     "number": 3,
-    "text": "In the context of binary translation, during emulation, the Emulation Manager (EM) performs look-ups using a Map Table to determine what code to emulate or execute next.\nIdentify the values that are involved in this look-up.\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "In the context of binary translation, during emulation, the Emulation Manager (EM) performs look-ups using a Map Table to determine what code to emulate or execute next.\nIdentify the values that are involved in this look-up.\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -84,7 +84,7 @@ window.examData = [
   },
   {
     "number": 4,
-    "text": "In processor virtualization (System VMs), Theorem 1 addresses ( [dropdown] ) VMM construction.\nFrom that theorem we can conclude the following:\n- the set of privileged instructions for that computer needs to be ( [dropdown] ) the set of sensitive instructions.\n- there can be any number of ( [dropdown] ) instructions.\n- there must not be any ( [dropdown] ) instructions.\n<strong><em>(no penalty for wrong answers).</em></strong>",
+    "text": "In processor virtualization (System VMs), Theorem 1 addresses ( [dropdown] ) VMM construction.\nFrom that theorem we can conclude the following:\n- the set of privileged instructions for that computer needs to be ( [dropdown] ) the set of sensitive instructions.\n- there can be any number of ( [dropdown] ) instructions.\n- there must not be any ( [dropdown] ) instructions.\n<em>(no penalty for wrong answers).</em>",
     "options": [],
     "is_multi": false,
     "correct_ids": [],
@@ -95,12 +95,12 @@ window.examData = [
       "critical"
     ],
     "distractors": [
-      "equal to or a subset of",
-      "inefficient",
-      "virtual",
       "non-critical",
+      "equal to or a subset of",
       "user-level",
-      "dangerous"
+      "virtual",
+      "dangerous",
+      "inefficient"
     ],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00",
@@ -108,7 +108,7 @@ window.examData = [
   },
   {
     "number": 5,
-    "text": "What mappings of page addresses are employed in Memory Virtualization carried out by system VMs?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "What mappings of page addresses are employed in Memory Virtualization carried out by system VMs?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -140,11 +140,11 @@ window.examData = [
   },
   {
     "number": 6,
-    "text": "When deploying instances in Amazon Web Services (AWS), the user can make selections based on geographical and fault-tolerance criteria.\nWhat are they?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "When deploying instances in Amazon Web Services (AWS), the user can make selections based on geographical and fault-tolerance criteria.\nWhat are they?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "b",
@@ -175,7 +175,7 @@ window.examData = [
   },
   {
     "number": 7,
-    "text": "When deploying workloads in the cloud, there is a sharing of responsibilities between the user and the cloud service provider (CSP), in the context of a service-level agreement (SLA).\nWhat is the correct assessment, when a given problem arises, considering the sharing of responsibilities is used to determine who (user, CSP) should correct the situation?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "When deploying workloads in the cloud, there is a sharing of responsibilities between the user and the cloud service provider (CSP), in the context of a service-level agreement (SLA).\nWhat is the correct assessment, when a given problem arises, considering the sharing of responsibilities is used to determine who (user, CSP) should correct the situation?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -191,7 +191,7 @@ window.examData = [
       },
       {
         "id": "d",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "e",
@@ -210,7 +210,7 @@ window.examData = [
   },
   {
     "number": 8,
-    "text": "Nova Scheduler is the component in OpenStack that is responsible for launching instances (virtual servers) and deciding in what physical machines (hosts, nodes) they should be launched.\nThe built-in scheduler is the Filter Scheduler. It is parametrizable and operates in phases: i) gathering state of all compute nodes; ii) finding suitable hosts; iii) choosing the best nodes.\nConsider a scenario where the developer wants to launch a VM instance that requires:\n- 4 VCPUs and\n- 4 GB of memory\nFurthermore, he/she wants to:\n- employ a balancing policy (i.e. attempt at making the new VM instance to run on one of the least loaded nodes, so as to balance the load overall).\n- give priority to free memory over available CPU when selecting hosts.\nHow can the custom filters and weights of this algorithm be parametrized/configured in order to achieve these goals ?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "Nova Scheduler is the component in OpenStack that is responsible for launching instances (virtual servers) and deciding in what physical machines (hosts, nodes) they should be launched.\nThe built-in scheduler is the Filter Scheduler. It is parametrizable and operates in phases: i) gathering state of all compute nodes; ii) finding suitable hosts; iii) choosing the best nodes.\nConsider a scenario where the developer wants to launch a VM instance that requires:\n- 4 VCPUs and\n- 4 GB of memory\nFurthermore, he/she wants to:\n- employ a balancing policy (i.e. attempt at making the new VM instance to run on one of the least loaded nodes, so as to balance the load overall).\n- give priority to free memory over available CPU when selecting hosts.\nHow can the custom filters and weights of this algorithm be parametrized/configured in order to achieve these goals ?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -226,7 +226,7 @@ window.examData = [
       },
       {
         "id": "d",
-        "text": "<strong><strong><strong>No response (no penalty)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty).</strong></strong>"
       },
       {
         "id": "e",
@@ -245,7 +245,7 @@ window.examData = [
   },
   {
     "number": 9,
-    "text": "The interaction of AWS instances with other AWS instances and with the outside world needs to be monitored and allowed only when that is intended by the application developers/administrators.\nHow is this carried out in AWS?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "The interaction of AWS instances with other AWS instances and with the outside world needs to be monitored and allowed only when that is intended by the application developers/administrators.\nHow is this carried out in AWS?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -277,7 +277,7 @@ window.examData = [
   },
   {
     "number": 10,
-    "text": "What sequence of byte-code could illustrate the invocation of an instance method (receiving two integer arguments) on the current object's context ?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "What sequence of byte-code could illustrate the invocation of an instance method (receiving two integer arguments) on the current object's context ?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -285,7 +285,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "c",
@@ -313,7 +313,7 @@ window.examData = [
   },
   {
     "number": 11,
-    "text": "Consider the typical deployment of the algorithm Generational GC in how it organizes the heap, how it identifies and preserves reachable (live) objects, and detects and reclaims garbage objects to free up memory for the application.\nWhat are the key specific feature(s) of this GC algorithm when compared to other algorithms?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "Consider the typical deployment of the algorithm Generational GC in how it organizes the heap, how it identifies and preserves reachable (live) objects, and detects and reclaims garbage objects to free up memory for the application.\nWhat are the key specific feature(s) of this GC algorithm when compared to other algorithms?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -333,7 +333,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       }
     ],
     "is_multi": false,
@@ -359,11 +359,11 @@ window.examData = [
     "marks_text": "Marked out of 1.00",
     "version": "v3",
     "is_open_text": true,
-    "solution_sketch": "\u2022 Average cost of animation each marine animal = normal path without any attempt to optimize.\n    \u25e6 Retrieving method's address + pass arguments and call method + executing method\n    \u25e6 5 + 5 + 4 = 14 instructions.\n*(There is no check of object's class in the slow path as the class method table is going to be looked up anyway, there is no test against any specific value).*\n\u2022 Average cost with method in-lining = 90% fast path + 10% slow path\n    \u25e6 Fast path = check object's type and if it is sardine, execute method in-lined code directly\n    \u25e6 1 + 4 = 5 instructions, i.e. the explicit test against type 'sardines' plus the execution of the in-lined code (no need for method look-up or argument passing or method calling)\n    \u25e6 Slow path = once failed the check on the object's type (that is always done to try to execute the fast path), invoke the method in the usual way, with lookup and arguments passing and method calling (knowing it is not the 'sardine' type but any other one).\n    \u25e6 1 + 5 + 5 + 4 = 15 instructions\n    \u25e6 Average cost = 90% * 5 + 10% * 15 = 4.5 + 1.5 = 6.0\n\u2022 Speedup = slow path / fast path\n    \u25e6 14 / 6.0 = 2.33 speedup, or\n    \u25e6 ( 6 / 14 ) = 57.14% of reduction in instructions executed.\n<em>- (no need to provide results of calculations, just present the calculation procedure clearly/explicitly).</em>"
+    "solution_sketch": "\u2022 Average cost of animation each marine animal = normal path without any attempt to optimize.\n    \u25e6 Retrieving method's address + pass arguments and call method + executing method\n    \u25e6 5 + 5 + 4 = 14 instructions.\n<em>(There is no check of object's class in the slow path as the class method table is going to be looked up anyway, there is no test against any specific value).</em>\n\u2022 Average cost with method in-lining = 90% fast path + 10% slow path\n    \u25e6 Fast path = check object's type and if it is sardine, execute method in-lined code directly\n    \u25e6 1 + 4 = 5 instructions, i.e. the explicit test against type 'sardines' plus the execution of the in-lined code (no need for method look-up or argument passing or method calling)\n    \u25e6 Slow path = once failed the check on the object's type (that is always done to try to execute the fast path), invoke the method in the usual way, with lookup and arguments passing and method calling (knowing it is not the 'sardine' type but any other one).\n    \u25e6 1 + 5 + 5 + 4 = 15 instructions\n    \u25e6 Average cost = 90% * 5 + 10% * 15 = 4.5 + 1.5 = 6.0\n\u2022 Speedup = slow path / fast path\n    \u25e6 14 / 6.0 = 2.33 speedup, or\n    \u25e6 ( 6 / 14 ) = 57.14% of reduction in instructions executed.\n<em>- (no need to provide results of calculations, just present the calculation procedure clearly/explicitly).</em>"
   },
   {
     "number": 13,
-    "text": "In the context of the message life-cycle in Google Pub/Sub, what is the sequence of steps that best reflects what stakes place for all messages?\n<strong><em>(Drag-and-Drop the small sentences to their appropriate place)</em></strong>\n\nAction 1: [ ]\nAction 2: [ ]\nAction 3: [ ]\nAction 4: [ ]\nAction 5: [ ]",
+    "text": "In the context of the message life-cycle in Google Pub/Sub, what is the sequence of steps that best reflects what stakes place for all messages?\n<em>(Drag-and-Drop the small sentences to their appropriate place)</em>\n\nAction 1: [ ]\nAction 2: [ ]\nAction 3: [ ]\nAction 4: [ ]\nAction 5: [ ]",
     "options": [],
     "is_multi": false,
     "correct_ids": [],
@@ -382,7 +382,7 @@ window.examData = [
   },
   {
     "number": 14,
-    "text": "When deploying an application on the Google App Engine (GAE) PaaS, how does the GAE achieve scalability, i.e. by adhering to what specific behavior?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "When deploying an application on the Google App Engine (GAE) PaaS, how does the GAE achieve scalability, i.e. by adhering to what specific behavior?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -390,7 +390,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "c",
@@ -418,7 +418,7 @@ window.examData = [
   },
   {
     "number": 15,
-    "text": "Function-as-a-Service (FaaS) aims to improve on the delivery model provided by Infrastructure-as-a-Service (IaaS).\nOne such example is AWS Lambda that follows a specific pricing model.\nIdentify the specific aspects that are considered when charging the user for the actual resource utilization of a function over a given period of time, when compared to AWS EC2.\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Function-as-a-Service (FaaS) aims to improve on the delivery model provided by Infrastructure-as-a-Service (IaaS).\nOne such example is AWS Lambda that follows a specific pricing model.\nIdentify the specific aspects that are considered when charging the user for the actual resource utilization of a function over a given period of time, when compared to AWS EC2.\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -450,7 +450,7 @@ window.examData = [
   },
   {
     "number": 16,
-    "text": "Function-as-a-Service (FaaS) brings to programmers significant advantages.\nNonetheless, cold starts resulting from VM/container and runtime startup introduce significant latency penalties in short invocations.\nWhat approaches can the providers implement to address cold starts and make them less frequent?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Function-as-a-Service (FaaS) brings to programmers significant advantages.\nNonetheless, cold starts resulting from VM/container and runtime startup introduce significant latency penalties in short invocations.\nWhat approaches can the providers implement to address cold starts and make them less frequent?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -483,7 +483,7 @@ window.examData = [
   },
   {
     "number": 17,
-    "text": "The architecture of the Google File System/Hadoop File System (GFS/HDFS) is tuned/optimized for specific operation scenarios.\nFrom the following, what is the type of operation that GFS/HDFS was specially designed to support?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "The architecture of the Google File System/Hadoop File System (GFS/HDFS) is tuned/optimized for specific operation scenarios.\nFrom the following, what is the type of operation that GFS/HDFS was specially designed to support?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -491,7 +491,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "c",
@@ -519,7 +519,7 @@ window.examData = [
   },
   {
     "number": 18,
-    "text": "In BigTable, the master is a single process that performs top-level coordination for the entire cluster.\nAlthough this may potentially incur in a bottleneck, BigTable frees the master from substantial coordination effort because of an important design decision.\nWhich one is the most relevant?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "In BigTable, the master is a single process that performs top-level coordination for the entire cluster.\nAlthough this may potentially incur in a bottleneck, BigTable frees the master from substantial coordination effort because of an important design decision.\nWhich one is the most relevant?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -527,7 +527,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "c",
@@ -554,7 +554,7 @@ window.examData = [
   },
   {
     "number": 19,
-    "text": "Considering the cloud storage Dynamo from Amazon, identify a specific key design decision, adopted by Dynamo creators.\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "Considering the cloud storage Dynamo from Amazon, identify a specific key design decision, adopted by Dynamo creators.\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -562,7 +562,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "c",
@@ -589,7 +589,7 @@ window.examData = [
   },
   {
     "number": 20,
-    "text": "In the context of a MapReduce deployment in Hadoop, what is the default size of a <em>split</em> (the unit of input data given to a Mapper process) ?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "In the context of a MapReduce deployment in Hadoop, what is the default size of a <em>split</em> (the unit of input data given to a Mapper process) ?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -609,7 +609,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       }
     ],
     "is_multi": false,
@@ -624,7 +624,7 @@ window.examData = [
   },
   {
     "number": 21,
-    "text": "During the execution of a MapReduce job, what stage/phase performs sorting before providing results to following stages/phases?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "During the execution of a MapReduce job, what stage/phase performs sorting before providing results to following stages/phases?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -644,7 +644,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "<strong><strong><strong>No response (no penalty)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty).</strong></strong>"
       }
     ],
     "is_multi": false,
@@ -659,7 +659,7 @@ window.examData = [
   },
   {
     "number": 22,
-    "text": "A supervising authority is in charge of monitoring pollution generated in road sections across a region (based on the traffic and estimated CO2 emissions). Consider that only vehicles with combustion engines actually generate CO2 emissions, in this scenario.\n\nFor instance, the supervising authority wants to determine whether a specific road section should be subject to traffic reduction measures if the pollution generated by the traffic is considered excessive, while taking into account any specific environmental regulations applied to the road section.\n\n<u>In general, the authority wants to detect normal road sections where the generated pollution is considered very high, and regulated road sections (in vulnerable areas) where the pollution is considered high.</u>\n\n<u>Therefore, a road section is subject to be eligible to traffic reduction measures when:</u>\n<u>- it is a normal road and the total emissions from traffic are above 50000.</u>\n<u>- it is a regulated road and the total emissions from traffic are above 1000.</u>\n\nThe input consists of two text files.\n\nIn the first one, <strong>roads.txt</strong>, each line stores the information of one road section:\n<roadID>, <length_kms>, <type>\nwhere type may be NORMAL or REGULATED, according to road section environmental vulnerability.\n\nThe second one, <strong>trips.txt</strong>, contains all the trips for the period under analysis. Each line stores one complete trip, alongside with the information about the vehicle that was used.\n<carID>, <engine>, <power_kw>, <roadID_1>, ..., <roadID_N>\nwhere engine may be ELECTRIC or COMBUSTION, and power_kw is the engine power.\n\nFor simplicity, consider that the emissions generated by a vehicle travelling in each road section, when appropriate, are the product/multiplication of the engine power (power_kw) and the road section length (length_kms).\n\nAssume the standard signature for the <strong>mapper</strong>: List<k2,v2> map(string, int, string) and <strong>reducer</strong>: List<k3, v3> reduce(k2, List<v2>) functions, where map has input (filename, cursor/line number, and text line content) and k2, v2, k3 and v3 can all be replaced with types of your choice.\n\n<strong>Write the pseudocode for a MapReduce application, with a single map and a single reduce method.</strong>\n\n<u>The final output of the reduce function should produce, if adequate, a single record for each road section where the supervising authority should analyze further traffic reduction, identifying the road section, the emissions limit, and the actual total emissions for that road section.</u>\n\n<strong><em>(if you need, you can briefly state any assumptions at the end of the answer after the pseudocode).</em></strong>",
+    "text": "A supervising authority is in charge of monitoring pollution generated in road sections across a region (based on the traffic and estimated CO2 emissions). Consider that only vehicles with combustion engines actually generate CO2 emissions, in this scenario.\n\nFor instance, the supervising authority wants to determine whether a specific road section should be subject to traffic reduction measures if the pollution generated by the traffic is considered excessive, while taking into account any specific environmental regulations applied to the road section.\n\n<u>In general, the authority wants to detect normal road sections where the generated pollution is considered very high, and regulated road sections (in vulnerable areas) where the pollution is considered high.</u>\n\n<u>Therefore, a road section is subject to be eligible to traffic reduction measures when:</u>\n<u>- it is a normal road and the total emissions from traffic are above 50000.</u>\n<u>- it is a regulated road and the total emissions from traffic are above 1000.</u>\n\nThe input consists of two text files.\n\nIn the first one, <strong>roads.txt</strong>, each line stores the information of one road section:\n<roadID>, <length_kms>, <type>\nwhere type may be NORMAL or REGULATED, according to road section environmental vulnerability.\n\nThe second one, <strong>trips.txt</strong>, contains all the trips for the period under analysis. Each line stores one complete trip, alongside with the information about the vehicle that was used.\n<carID>, <engine>, <power_kw>, <roadID_1>, ..., <roadID_N>\nwhere engine may be ELECTRIC or COMBUSTION, and power_kw is the engine power.\n\nFor simplicity, consider that the emissions generated by a vehicle travelling in each road section, when appropriate, are the product/multiplication of the engine power (power_kw) and the road section length (length_kms).\n\nAssume the standard signature for the <strong>mapper</strong>: List<k2,v2> map(string, int, string) and <strong>reducer</strong>: List<k3, v3> reduce(k2, List<v2>) functions, where map has input (filename, cursor/line number, and text line content) and k2, v2, k3 and v3 can all be replaced with types of your choice.\n\n<strong>Write the pseudocode for a MapReduce application, with a single map and a single reduce method.</strong>\n\n<u>The final output of the reduce function should produce, if adequate, a single record for each road section where the supervising authority should analyze further traffic reduction, identifying the road section, the emissions limit, and the actual total emissions for that road section.</u>\n\n<em>(if you need, you can briefly state any assumptions at the end of the answer after the pseudocode).</em>",
     "options": [],
     "is_multi": false,
     "correct_ids": [],
@@ -669,11 +669,11 @@ window.examData = [
     "marks_text": "Marked out of 2.00",
     "version": "v17",
     "is_open_text": true,
-    "solution_sketch": "Mapper:**\n\u2022 The first element of the solution is determining the key for the mapper and reducer.\n\u2022 It should be the route section IDs (roadID) in each of the files as it is the only one that allows to cross-reference the information about each road in the two files (in essence, a join between the relevant information in two tables).\n<em>(This allows the reduce function to receive and process all tuples sharing (i.e. concerning) the same section regardless of their additional information or file provenance.*\n*Only this will allow summing the powers of cars that drove through each road section, to calculate the total emissions based on total power and each specific road section length, and finally to determine (based on each road type emissions limit) whether a specific record for further analysis of the road should be emitted.*\n*Mappers cannot access external information besides function input. Mappers cannot process the entirety of the two files and keep temporary information about all of them, as this is un-scalable and unfeasible. There is no other way for the reducer to retrieve information regarding a given road or trip besides the arguments of the reduce function receives, i.e., no access to external storage, global hash-table with info of all roads, trips, etc.).*\nThe mapper will emit two types of tuples (that can be lists with a discriminating field/element), as it is also done in PageRank emitting page rank fragments, and list of page links, using URL as key:\n\u2022 i) once for each road section, outputting the road specific information of length and type;\n\u2022 ii) zero, one, or many for each road section transversed during each trip, using each roadID as the key, outputting the power of the car that performed the trip if, and only if, it is not an electric car (that do not have emissions).\n\n**Mapper (path i) \u2013 roads.txt database) \u2013**\n<u>- When the file argument is roads.txt:</u> *(this means we are reading from the roads database and we can get this from the key in the mapper)</em>\n\u2022 Mapper should output with key routeID and include length and type of road explicitly in the tuple so that it enables the reducer to interpret it correctly, in any circumstances, without resorting to special cases where only one of the fields can make sense.\n\u2022 E.g.\n```\n      if (file is roads.txt) {\n            output(line[0], (ROADS, line[1], line[2]);\n      }\n```\n**Mapper (path ii) \u2013 trips.txt database) \u2013**\n<u>- When the file argument is trips.txt:</u> <em>(this means we are reading from the trips database.)</em>\n\u2022 Mapper should iterate the route IDs in the line/list (i.e., line[3] -> line[line.length-1]) and output, for each one, the routeID and the power of the car that transversed the road section, only if it is not electric. Once again, it must record explicitly the type of the tuple so that it enables the reducer to interpret it correctly:\n```\n      else if (file is trips.txt) {\n            if (line[1]==COMBUSTION){\n                  for (i= 3; i < line.length; i++) {\n                        output(line[i], TRIPS, line[2];\n                  }\n            }\n      }\n```\n\n**Reducer:**\n\u2022 At the reducer function, the key is the roadID, and the tuples carry the type information in the first field (v[0]) about ROADS or TRIPS, so that they can processed accordingly. Each execution of the reducer function processes all records with a given roadID outputted by the mappers, and only those.\n\u2022 the road section should be further analyzed if the total emissions are above the limit for the road type.\n```\n      int regulated = 0;\n      float length = 0;\n      float total_power = 0;\n      float total_emissions = 0;\n      foreach (v in values) {\n            if (v[0] == ROADS {\n                  length = v[1];\n                  regulated = v[2];\n            } else {\n                  total_power += v[1];\n            }\n      }\n      total_emissions = total_power * length;\n      if (regulated == REGULATED && total_emissions > 1000)\n            output( key, 1000, total_emissions);\n      else if (regulated == NORMAL && total_emissions > 50000)\n            output( key, 50000, total_emissions);\n```\n\n**Note:** *There is only one map and reduce function. The map can receive splits with (sets of) lines from any of the two giant files. I considered your interpretations when deciding about each file, or simply having a code path to handle \u201cfile1\u201d and another code path to handle \u201cfile2\u201d, etc.*\nTypical errors:\n\u2022 wrong key selection.\n\u2022 incorrect filtering of data (not at the mapper)\n\u2022 assuming roads and trips are present both in all tuples.\n\u2022 accessing files or external information in the reduce function.\n\u2022 wrong decision criteria in conditions/ifs.\n\u2022 Iterating over input files in mapper repeatedly/recursively or iterating tuple in reducer more than once.\n\u2022 too generic code or English text."
+    "solution_sketch": "Mapper:<em></em>\n\u2022 The first element of the solution is determining the key for the mapper and reducer.\n\u2022 It should be the route section IDs (roadID) in each of the files as it is the only one that allows to cross-reference the information about each road in the two files (in essence, a join between the relevant information in two tables).\n<em>(This allows the reduce function to receive and process all tuples sharing (i.e. concerning) the same section regardless of their additional information or file provenance.*\n<em>Only this will allow summing the powers of cars that drove through each road section, to calculate the total emissions based on total power and each specific road section length, and finally to determine (based on each road type emissions limit) whether a specific record for further analysis of the road should be emitted.</em>\n<em>Mappers cannot access external information besides function input. Mappers cannot process the entirety of the two files and keep temporary information about all of them, as this is un-scalable and unfeasible. There is no other way for the reducer to retrieve information regarding a given road or trip besides the arguments of the reduce function receives, i.e., no access to external storage, global hash-table with info of all roads, trips, etc.).</em>\nThe mapper will emit two types of tuples (that can be lists with a discriminating field/element), as it is also done in PageRank emitting page rank fragments, and list of page links, using URL as key:\n\u2022 i) once for each road section, outputting the road specific information of length and type;\n\u2022 ii) zero, one, or many for each road section transversed during each trip, using each roadID as the key, outputting the power of the car that performed the trip if, and only if, it is not an electric car (that do not have emissions).\n\n<strong>Mapper (path i) \u2013 roads.txt database) \u2013</strong>\n<u>- When the file argument is roads.txt:</u> <em>(this means we are reading from the roads database and we can get this from the key in the mapper)</em>\n\u2022 Mapper should output with key routeID and include length and type of road explicitly in the tuple so that it enables the reducer to interpret it correctly, in any circumstances, without resorting to special cases where only one of the fields can make sense.\n\u2022 E.g.\n```\n      if (file is roads.txt) {\n            output(line[0], (ROADS, line[1], line[2]);\n      }\n```\n<strong>Mapper (path ii) \u2013 trips.txt database) \u2013</strong>\n<u>- When the file argument is trips.txt:</u> <em>(this means we are reading from the trips database.)</em>\n\u2022 Mapper should iterate the route IDs in the line/list (i.e., line[3] -> line[line.length-1]) and output, for each one, the routeID and the power of the car that transversed the road section, only if it is not electric. Once again, it must record explicitly the type of the tuple so that it enables the reducer to interpret it correctly:\n```\n      else if (file is trips.txt) {\n            if (line[1]==COMBUSTION){\n                  for (i= 3; i < line.length; i++) {\n                        output(line[i], TRIPS, line[2];\n                  }\n            }\n      }\n```\n\n<strong>Reducer:</strong>\n\u2022 At the reducer function, the key is the roadID, and the tuples carry the type information in the first field (v[0]) about ROADS or TRIPS, so that they can processed accordingly. Each execution of the reducer function processes all records with a given roadID outputted by the mappers, and only those.\n\u2022 the road section should be further analyzed if the total emissions are above the limit for the road type.\n```\n      int regulated = 0;\n      float length = 0;\n      float total_power = 0;\n      float total_emissions = 0;\n      foreach (v in values) {\n            if (v[0] == ROADS {\n                  length = v[1];\n                  regulated = v[2];\n            } else {\n                  total_power += v[1];\n            }\n      }\n      total_emissions = total_power * length;\n      if (regulated == REGULATED && total_emissions > 1000)\n            output( key, 1000, total_emissions);\n      else if (regulated == NORMAL && total_emissions > 50000)\n            output( key, 50000, total_emissions);\n```\n\n<strong>Note:</strong> *There is only one map and reduce function. The map can receive splits with (sets of) lines from any of the two giant files. I considered your interpretations when deciding about each file, or simply having a code path to handle \u201cfile1\u201d and another code path to handle \u201cfile2\u201d, etc.</em>\nTypical errors:\n\u2022 wrong key selection.\n\u2022 incorrect filtering of data (not at the mapper)\n\u2022 assuming roads and trips are present both in all tuples.\n\u2022 accessing files or external information in the reduce function.\n\u2022 wrong decision criteria in conditions/ifs.\n\u2022 Iterating over input files in mapper repeatedly/recursively or iterating tuple in reducer more than once.\n\u2022 too generic code or English text."
   },
   {
     "number": 23,
-    "text": "When comparing Spark against MapReduce, identify Spark's features that are specifically advantageous when compared to MapReduce?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "When comparing Spark against MapReduce, identify Spark's features that are specifically advantageous when compared to MapReduce?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -705,7 +705,7 @@ window.examData = [
   },
   {
     "number": 24,
-    "text": "Consider a stream processing scenario where messages published in a forum (e.g. tweets, posts) are continuously monitored in order to detect the topics that are trending (e.g., Top-100 ranking of references in messages), considering the number of times they are referenced across messages over time.\n\nAnalyze how the window and event handling of Flink and Spark Streaming may contribute to detect the potentially trending topics in a timely manner (so that users may be advised quickly of a potential emerging trending topic, and increase their chances of publishing a message on it as soon as it starts trending).\n\nHow could developers detect potentially trending topics in a timely manner as they emerge?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Consider a stream processing scenario where messages published in a forum (e.g. tweets, posts) are continuously monitored in order to detect the topics that are trending (e.g., Top-100 ranking of references in messages), considering the number of times they are referenced across messages over time.\n\nAnalyze how the window and event handling of Flink and Spark Streaming may contribute to detect the potentially trending topics in a timely manner (so that users may be advised quickly of a potential emerging trending topic, and increase their chances of publishing a message on it as soon as it starts trending).\n\nHow could developers detect potentially trending topics in a timely manner as they emerge?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -737,7 +737,7 @@ window.examData = [
   },
   {
     "number": 25,
-    "text": "In a cloud data center facility the total energy consumption is 2400 kW and the energy delivered to computing equipment is 1200 kW.\nWhat is the PUE (power usage effectiveness) of this facility?\n\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "In a cloud data center facility the total energy consumption is 2400 kW and the energy delivered to computing equipment is 1200 kW.\nWhat is the PUE (power usage effectiveness) of this facility?\n\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -745,7 +745,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
+        "text": "<strong><strong>No response (no penalty if only option answered).</strong></strong>"
       },
       {
         "id": "c",

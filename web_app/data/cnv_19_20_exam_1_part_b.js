@@ -6,7 +6,7 @@ window.examConfig = {
 window.examData = [
   {
     "number": 1,
-    "text": "Migration of VMs in VMotion (live migration) is carried out while attempting to minimize the amount of time the VM may be unresponsive (i.e., while neither running at the current host nor running at the intended destination host). This operation takes place by phases. What ordering of the following actions best reflects how live migration operates?\n\n<strong><em>(Drag-and-Drop the small sentences to their appropriate place)</em></strong>\n\nPhase 1: [ ]\nPhase 2: [ ]\nPhase 3: [ ]\nPhase 4: [ ]\nPhase 5: [ ]\n\n<strong>[A]</strong> Capture stable VM state.\n<strong>[B]</strong> Copy complete contents of VM memory.\n<strong>[C]</strong> Suspend VM execution.\n<strong>[D]</strong> Copy incremental VM capsule.\n<strong>[E]</strong> Activate VM on host.",
+    "text": "Migration of VMs in VMotion (live migration) is carried out while attempting to minimize the amount of time the VM may be unresponsive (i.e., while neither running at the current host nor running at the intended destination host). This operation takes place by phases. What ordering of the following actions best reflects how live migration operates?\n\n<em>(Drag-and-Drop the small sentences to their appropriate place)</em>\n\nPhase 1: [ ]\nPhase 2: [ ]\nPhase 3: [ ]\nPhase 4: [ ]\nPhase 5: [ ]\n\n<strong>[A]</strong> Capture stable VM state.\n<strong>[B]</strong> Copy complete contents of VM memory.\n<strong>[C]</strong> Suspend VM execution.\n<strong>[D]</strong> Copy incremental VM capsule.\n<strong>[E]</strong> Activate VM on host.",
     "options": [],
     "is_multi": false,
     "correct_ids": [],
@@ -23,7 +23,7 @@ window.examData = [
   },
   {
     "number": 2,
-    "text": "In a cloud data center facility where the total energy consumed is 2500 kW and the energy delivered to computing equipment is 2000 kW, what is the PUE (power usage effectiveness) of this facility?\n\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "In a cloud data center facility where the total energy consumed is 2500 kW and the energy delivered to computing equipment is 2000 kW, what is the PUE (power usage effectiveness) of this facility?\n\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -57,7 +57,7 @@ window.examData = [
   },
   {
     "number": 3,
-    "text": "During the execution of a MapReduce job, what stage/phase needs to perform sorting before providing results to following stages/phases?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "During the execution of a MapReduce job, what stage/phase needs to perform sorting before providing results to following stages/phases?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -91,7 +91,7 @@ window.examData = [
   },
   {
     "number": 4,
-    "text": "A smart city set up a simple monitoring system do detect hot-spots of traffic congestion across the city and period of the day, e.g. to allow identifying locations with over 1000 cars passing from 8h00-8h01 (or any other minute interval) over the days, to accurately identify all the typical periods of heavy traffic.\n\nThe input consists of a text file where each line stores one record regarding each tracked car (all fields are stored as strings).\n\nThe camera logs database contains:-\n(cameraID, locationID, day-of-month, month, hour-of-day, minute, second, license-plate, speed).\n\nFor this problem, what would be an adequate choice of key k for the tuples to be outputted as intermediate result (output (k, v)) by the mappers while processing each line record?\n\nAssume concat is an auxiliary function that concatenates strings with separator \"/\" between them.\n\n<strong><em>(select the option that best fits the question).</em></strong>\n<strong><em>(No penalty for wrong answer.)</em></strong>",
+    "text": "A smart city set up a simple monitoring system do detect hot-spots of traffic congestion across the city and period of the day, e.g. to allow identifying locations with over 1000 cars passing from 8h00-8h01 (or any other minute interval) over the days, to accurately identify all the typical periods of heavy traffic.\n\nThe input consists of a text file where each line stores one record regarding each tracked car (all fields are stored as strings).\n\nThe camera logs database contains:-\n(cameraID, locationID, day-of-month, month, hour-of-day, minute, second, license-plate, speed).\n\nFor this problem, what would be an adequate choice of key k for the tuples to be outputted as intermediate result (output (k, v)) by the mappers while processing each line record?\n\nAssume concat is an auxiliary function that concatenates strings with separator \"/\" between them.\n\n<em>(select the option that best fits the question).</em>\n<em>(No penalty for wrong answer.)</em>",
     "options": [
       {
         "id": "a",
@@ -121,7 +121,7 @@ window.examData = [
   },
   {
     "number": 5,
-    "text": "Partitioners in MapReduce partition the intermediate data before being submitted to the reducers. They can be operated by default or customized by application code.\nWhat do partitioners determine or can influence?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Partitioners in MapReduce partition the intermediate data before being submitted to the reducers. They can be operated by default or customized by application code.\nWhat do partitioners determine or can influence?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -156,7 +156,7 @@ window.examData = [
   },
   {
     "number": 6,
-    "text": "An Azure application can be comprised of instances of what roles?\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "An Azure application can be comprised of instances of what roles?\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -190,7 +190,7 @@ window.examData = [
   },
   {
     "number": 7,
-    "text": "When deploying an application on the Google App Engine (GAE) PaaS, programmers have their lives made easier because the GAE takes care of (i.e., manages) the following items of the deployment:\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "When deploying an application on the Google App Engine (GAE) PaaS, programmers have their lives made easier because the GAE takes care of (i.e., manages) the following items of the deployment:\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -224,7 +224,7 @@ window.examData = [
   },
   {
     "number": 8,
-    "text": "Applications running on top of cloud deployments can be integrated by means of using message queues. What approaches can message queues enable?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Applications running on top of cloud deployments can be integrated by means of using message queues. What approaches can message queues enable?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -259,7 +259,7 @@ window.examData = [
   },
   {
     "number": 9,
-    "text": "Regarding the cloud storage Dynamo from Amazon, identify a specific key design decision.\n<strong><em>(select the option that best fits the question).</em></strong>",
+    "text": "Regarding the cloud storage Dynamo from Amazon, identify a specific key design decision.\n<em>(select the option that best fits the question).</em>",
     "options": [
       {
         "id": "a",
@@ -293,7 +293,7 @@ window.examData = [
   },
   {
     "number": 10,
-    "text": "Consider a cloud deployed web application uses cloud storage to store data about an online book store (e.g., book info, book categories, book quantities at stores, users' orders).\nAnalyse a simplified scenario where application code processes orders by adding each ordered book to the entity representing the order, and subtracting units of the ordered books from quantities at stores. For correctness, all these operations should be enclosed in a transaction.\nIn this scenario, what guarantees can the application expect from typical cloud storage systems such as BigTable, Percolator, and Datastore?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Consider a cloud deployed web application uses cloud storage to store data about an online book store (e.g., book info, book categories, book quantities at stores, users' orders).\nAnalyse a simplified scenario where application code processes orders by adding each ordered book to the entity representing the order, and subtracting units of the ordered books from quantities at stores. For correctness, all these operations should be enclosed in a transaction.\nIn this scenario, what guarantees can the application expect from typical cloud storage systems such as BigTable, Percolator, and Datastore?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -327,7 +327,7 @@ window.examData = [
   },
   {
     "number": 11,
-    "text": "Resilient distributed datasets (RDDs) are a core contribution of Spark. What are the features of RDDs that enable them to provide fault-tolerance to jobs executing on Spark?\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Resilient distributed datasets (RDDs) are a core contribution of Spark. What are the features of RDDs that enable them to provide fault-tolerance to jobs executing on Spark?\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
@@ -362,7 +362,7 @@ window.examData = [
   },
   {
     "number": 12,
-    "text": "Consider a stream processing scenario where all street crossings and traffic lights have sensors/cameras tracking cars' license plate and speed, to assess traffic intensity and detect bottlenecks near real-time during day.\nAnalyse how the window and event handling of Flink and Spark Streaming may contribute to obtain adequate results in the presence of inevitable communication failures from sensors/cameras, wireless networks, etc. before the data reaches the servers.\n\n<strong><em>(select all the correct options).</em></strong>",
+    "text": "Consider a stream processing scenario where all street crossings and traffic lights have sensors/cameras tracking cars' license plate and speed, to assess traffic intensity and detect bottlenecks near real-time during day.\nAnalyse how the window and event handling of Flink and Spark Streaming may contribute to obtain adequate results in the presence of inevitable communication failures from sensors/cameras, wireless networks, etc. before the data reaches the servers.\n\n<em>(select all the correct options).</em>",
     "options": [
       {
         "id": "a",
