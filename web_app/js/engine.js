@@ -40,6 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('close-modal-btn').addEventListener('click', () => {
         document.getElementById('evaluation-modal').classList.add('hidden');
     });
+
+    const retakeBtn = document.getElementById('retake-btn');
+    if (retakeBtn) {
+        retakeBtn.addEventListener('click', () => {
+            if (confirm("Are you sure you want to completely erase your progress and retake the exam?")) {
+                localStorage.removeItem(`exam_${examId}_answers`);
+                localStorage.removeItem(`exam_${examId}_completed`);
+                localStorage.removeItem(`exam_${examId}_score`);
+                localStorage.removeItem(`exam_${examId}_timeLeft`);
+                window.location.reload();
+            }
+        });
+    }
 });
 
 function initExam() {
