@@ -11,9 +11,6 @@ def parse_markdown(content, input_file):
         if not section.startswith('## Question'):
             continue
 
-        if 'Identification and Rules' in section:
-            continue
-
         m_num = re.search(r'## Question (\d+)', section)
         if not m_num:
             continue
@@ -54,9 +51,9 @@ def parse_markdown(content, input_file):
 
         q_text = q_text_part.strip()
 
-        is_open_text = '**Solution sketch:**' in section
+        is_open_text = '**Solution sketch:**' in section or q_num == 1
         solution_sketch = None
-        if is_open_text:
+        if '**Solution sketch:**' in section:
             solution_sketch = section.split('**Solution sketch:**')[1].strip()
 
         correct_ids = []
@@ -160,6 +157,8 @@ def parse_moodle(content, input_file):
                 options.append({'id': current_id, 'text': current_text.replace('\n', ' ')})
                 
         is_multi = 'select all the correct options' in q_body.lower() or 'select one or more' in q_body.lower()
+        if q_num == 1:
+            is_open_text = True
         q_text = q_body.strip()
         q_text = re.sub(r'Marked out of \d+\.\d+ v\d+ \(latest\)', '', q_text).strip()
         q_text = re.sub(r'Select one or more:\s*$', '', q_text).strip()

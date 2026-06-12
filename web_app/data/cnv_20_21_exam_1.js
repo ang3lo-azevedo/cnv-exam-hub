@@ -5,6 +5,18 @@ window.examConfig = {
 
 window.examData = [
   {
+    "number": 1,
+    "text": "\u2014 Identification and Rules\n\nIn this question you must insert your given exam code. You exam is not valid without the exam code.\n\nThe exam has a time limit of 80 minutes. You can only leave after submitting your exam and only after 45 minutes. We take the best grade of the two exams.\n\nThere will be no further information about the exam questions (*d\u00favidas acerca do enunciado*) provided during the exam, besides the question text itself.\n\nAnswer the questions given the context in the question.\n\n*(Only if strictly needed, you can also insert here any other notes regarding the answering of some question).*\n\nGood work.\n\nLV.",
+    "options": [],
+    "is_multi": false,
+    "correct_ids": [],
+    "fill_in_blanks": [],
+    "distractors": [],
+    "note": "- Questions are presented in randomized order.\n- In all questions where wrong choice may lead to penalty there is an option (no response/no penalty).\n- When there is only one correct choice, incorrect choice leads to penalty (1/number-of-incorrect-choices).\n- In questions where there are multiple correct and incorrect options, the correct and incorrect options are graded in a way that selecting all of them leads to zero points.",
+    "is_open_text": true,
+    "solution_sketch": null
+  },
+  {
     "number": 2,
     "text": "When deploying an application on the Google App Engine (GAE) PaaS, how does the GAE achieve scalability, i.e. by adhering to what specific behavior?\n\n<strong>(select all the correct options)</strong>",
     "options": [
@@ -353,12 +365,12 @@ window.examData = [
       "unit"
     ],
     "distractors": [
-      "average",
-      "value",
-      "dimension",
-      "log",
       "ResourceGroup",
-      "InstanceID"
+      "log",
+      "value",
+      "InstanceID",
+      "average",
+      "dimension"
     ]
   },
   {

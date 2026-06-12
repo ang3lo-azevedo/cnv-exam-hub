@@ -11,7 +11,9 @@ window.examData = [
     "is_multi": false,
     "correct_ids": [],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "is_open_text": true,
+    "solution_sketch": null
   },
   {
     "number": 2,
@@ -83,12 +85,12 @@ window.examData = [
       "critical"
     ],
     "distractors": [
-      "equal to or a subset of",
-      "virtual",
-      "non-critical",
       "inefficient",
+      "virtual",
+      "dangerous",
       "user-level",
-      "dangerous"
+      "non-critical",
+      "equal to or a subset of"
     ]
   },
   {
