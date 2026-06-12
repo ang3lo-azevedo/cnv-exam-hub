@@ -102,15 +102,15 @@ def parse_markdown(content, input_file):
                 "Answer the questions given the context in the question."
             ]
             for line in lines_to_underline:
-                # Re-add ** if they were bolded, but wrap the inside in <u>
-                # Actually just doing a plain replace on the text string works.
-                # If the string has ** around it, replace the inner string.
                 q_text = q_text.replace(line, f"<u>{line}</u>")
             
             q_text = q_text.replace(
                 "Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments",
                 "<em>Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments</em>"
             )
+
+        # Convert markdown bold to HTML
+        q_text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', q_text, flags=re.DOTALL)
 
         q_obj = {
             'number': q_num,
@@ -247,6 +247,9 @@ def parse_moodle(content, input_file):
                 "Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments",
                 "<em>Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments</em>"
             )
+
+        # Convert markdown bold to HTML
+        q_text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', q_text, flags=re.DOTALL)
 
         q_obj = {
             'number': q_num,
