@@ -148,6 +148,65 @@ function initExam() {
         `;
         questionsContainer.appendChild(card);
     });
+
+    restoreState();
+}
+
+function saveState() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const examId = urlParams.get('id');
+    localStorage.setItem(`exam_${examId}_answers`, JSON.stringify(userAnswers));
+}
+
+function restoreState() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const examId = urlParams.get('id');
+    const saved = localStorage.getItem(`exam_${examId}_answers`);
+    if (saved) {
+        try {
+            const parsed = JSON.parse(saved);
+            for (let qNum in parsed) {
+                userAnswers[qNum] = parsed[qNum];
+            }
+        } catch(e){}
+    }
+
+    window.examData.forEach(q => {
+        if(!userAnswers[q.number]) return;
+        const uAns = userAnswers[q.number];
+        const navBtn = document.getElementById(`nav-${q.number}`);
+        let hasAnswer = false;
+
+        if (q.is_open_text) {
+            const ta = document.getElementById(`text-${q.number}`);
+            if (ta) ta.value = uAns;
+            if (uAns && uAns.length > 0) hasAnswer = true;
+        } else if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
+            const card = document.getElementById(`q-${q.number}`);
+            const selects = card.querySelectorAll('.blank-input');
+            uAns.forEach((val, idx) => {
+                if (selects[idx]) selects[idx].value = val;
+                if (val !== '') hasAnswer = true;
+            });
+        } else {
+            uAns.forEach(optId => {
+                const row = document.getElementById(`row-${q.number}-${optId}`);
+                if (row) {
+                    row.classList.add('selected');
+                    const input = row.querySelector('input');
+                    if (input) input.checked = true;
+                }
+            });
+            if (uAns.length > 0) hasAnswer = true;
+        }
+
+        if (hasAnswer && navBtn) navBtn.classList.add('answered');
+    });
+
+    const isCompleted = localStorage.getItem(`exam_${examId}_completed`) === 'true';
+    if (isCompleted) {
+        submitExam(true);
+    }
 }
 
 window.handleOpenText = function(qNumber, value) {
@@ -159,6 +218,7 @@ window.handleOpenText = function(qNumber, value) {
     } else {
         navBtn.classList.remove('answered');
     }
+    saveState();
 };
 
 window.handleBlankInput = function(qNumber, index, value) {
@@ -172,6 +232,7 @@ window.handleBlankInput = function(qNumber, index, value) {
     } else {
         navBtn.classList.remove('answered');
     }
+    saveState();
 };
 
 window.handleSelection = function(qNumber, optId, isMulti) {
@@ -202,6 +263,7 @@ window.handleSelection = function(qNumber, optId, isMulti) {
     } else {
         navBtn.classList.remove('answered');
     }
+    saveState();
 };
 
 function startTimer() {
@@ -219,14 +281,14 @@ function startTimer() {
     }, 1000);
 }
 
-function submitExam() {
+function submitExam(isAutoRestore = false) {
     if (isSelfGradingPhase) {
         finalizeExam();
         return;
     }
     
     if (isSubmitted) return;
-    if (!confirm("Are you sure you want to submit the exam?")) return;
+    if (!isAutoRestore && !confirm("Are you sure you want to submit the exam?")) return;
     
     isSubmitted = true;
     clearInterval(timerInterval);
@@ -342,7 +404,7 @@ function submitExam() {
         const btn = document.getElementById('submit-btn');
         btn.textContent = "Finalize Grades";
         btn.disabled = false;
-        alert("Objective questions graded. Please review the solution sketches for the open text questions, grade yourself, and click 'Finalize Grades'.");
+        if (!isAutoRestore) alert("Objective questions graded. Please review the solution sketches for the open text questions, grade yourself, and click 'Finalize Grades'.");
     } else {
         showFinalModal(totalMarks);
     }
@@ -369,6 +431,11 @@ function finalizeExam() {
 }
 
 function showFinalModal(totalMarks) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const examId = urlParams.get('id');
+    localStorage.setItem(`exam_${examId}_completed`, 'true');
+    localStorage.setItem(`exam_${examId}_score`, totalMarks.toFixed(2));
+
     const maxMarks = 20;
     totalMarks = Math.max(0, Math.min(maxMarks, totalMarks));
     document.getElementById('final-score').textContent = totalMarks.toFixed(2);
