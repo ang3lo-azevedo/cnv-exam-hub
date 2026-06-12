@@ -109,8 +109,12 @@ def parse_markdown(content, input_file):
                 "<em>Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments</em>"
             )
 
+        # Remove *** separators
+        q_text = q_text.replace('***', '').strip()
         # Convert markdown bold to HTML
         q_text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', q_text, flags=re.DOTALL)
+        # Convert markdown italics to HTML
+        q_text = re.sub(r'\*(.*?)\*', r'<em>\1</em>', q_text, flags=re.DOTALL)
 
         q_obj = {
             'number': q_num,
@@ -248,8 +252,12 @@ def parse_moodle(content, input_file):
                 "<em>Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments</em>"
             )
 
+        # Remove *** separators
+        q_text = q_text.replace('***', '').strip()
         # Convert markdown bold to HTML
         q_text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', q_text, flags=re.DOTALL)
+        # Convert markdown italics to HTML
+        q_text = re.sub(r'\*(.*?)\*', r'<em>\1</em>', q_text, flags=re.DOTALL)
 
         q_obj = {
             'number': q_num,
@@ -287,7 +295,7 @@ if __name__ == '__main__':
 
     title_match = re.search(r'^#?\s*(.*Exam.*)', content, flags=re.IGNORECASE | re.MULTILINE)
     exam_title = title_match.group(1).strip() if title_match else "CNV Exam"
-    exam_title = exam_title.replace('#', '').strip()
+    exam_title = exam_title.replace('#', '').replace('*', '').strip()
 
     # Normalize multiline Moodle headers to single line
     content = re.sub(r'\*\*(Question \d+)\*\*\s*\n\s*(Not answered|Correct|Incorrect|Partially correct)\s*\n\s*(Not graded|Marked out of \d+\.\d+)\s*\n\s*(v\d+(?:\s*\(latest\))?)', r'\n\1 \2 \3 \4', content)
