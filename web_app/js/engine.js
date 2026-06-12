@@ -4,9 +4,10 @@ let userAnswers = {};
 let timerInterval;
 let timeLeft = 0;
 let isSubmitted = false;
+let isSelfGradingPhase = false;
+let partialObjectiveMarks = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Determine which exam to load from URL params
     const urlParams = new URLSearchParams(window.location.search);
     const examId = urlParams.get('id');
 
@@ -15,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Dynamically load the exam data
     const script = document.createElement('script');
     script.src = `data/${examId}.js`;
     script.onload = () => {
@@ -47,15 +47,19 @@ function initExam() {
     questionsContainer.innerHTML = '';
     navGrid.innerHTML = '';
 
-    const validQuestions = window.examData.filter(q => (q.options && q.options.length > 0) || (q.fill_in_blanks && q.fill_in_blanks.length > 0));
+    const validQuestions = window.examData.filter(q => q.is_open_text || (q.options && q.options.length > 0) || (q.fill_in_blanks && q.fill_in_blanks.length > 0));
     const marksPerQ = (20 / validQuestions.length).toFixed(2);
 
-    window.examData.forEach((q, index) => {
-        if((!q.options || q.options.length === 0) && (!q.fill_in_blanks || q.fill_in_blanks.length === 0)) return;
+    window.examData.forEach((q) => {
+        if(!q.is_open_text && (!q.options || q.options.length === 0) && (!q.fill_in_blanks || q.fill_in_blanks.length === 0)) return;
 
-        userAnswers[q.number] = q.fill_in_blanks && q.fill_in_blanks.length > 0 
-            ? new Array(q.fill_in_blanks.length).fill('') 
-            : [];
+        if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
+            userAnswers[q.number] = new Array(q.fill_in_blanks.length).fill('');
+        } else if (q.is_open_text) {
+            userAnswers[q.number] = '';
+        } else {
+            userAnswers[q.number] = [];
+        }
 
         // Nav Item
         const navBtn = document.createElement('a');
@@ -65,69 +69,97 @@ function initExam() {
         navBtn.textContent = q.number;
         navGrid.appendChild(navBtn);
 
-        // Question Card
+        // Moodle Question layout
         const card = document.createElement('div');
-        card.className = 'question-card';
+        card.className = 'que';
         card.id = `q-${q.number}`;
+        
+        let contentHtml = '';
+        let statusText = 'Not yet answered';
 
-        if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
+        if (q.is_open_text) {
+            contentHtml = `
+                <div class="formulation">${q.text}</div>
+                <div class="answer">
+                    <textarea class="open-text-area" id="text-${q.number}" placeholder="Enter your answer here..." oninput="handleOpenText(${q.number}, this.value)"></textarea>
+                </div>
+                <div class="self-grade-panel" id="self-grade-${q.number}" style="display:none;">
+                    <h4>Solution Sketch</h4>
+                    <div class="solution-sketch">${q.solution_sketch}</div>
+                    <label><strong>Grade yourself out of ${marksPerQ}:</strong></label>
+                    <input type="number" class="grade-input" id="grade-${q.number}" min="0" max="${marksPerQ}" step="0.01" value="0">
+                </div>
+            `;
+            statusText = 'Open text';
+        } else if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
             let htmlText = q.text;
             let blankIndex = 0;
-            
-            // Create the options HTML from the correct answers + distractors (shuffled/sorted)
             let allOptions = [...new Set([...q.fill_in_blanks, ...(q.distractors || [])])].sort();
-            let selectOptionsHtml = `<option value="">-- Select --</option>`;
+            let selectOptionsHtml = \`<option value="">-- Select --</option>\`;
             allOptions.forEach(opt => {
-                selectOptionsHtml += `<option value="${opt.replace(/"/g, '&quot;')}">${opt}</option>`;
+                selectOptionsHtml += \`<option value="\${opt.replace(/"/g, '&quot;')}">\${opt}</option>\`;
             });
 
             while(htmlText.includes('\\_\\_\\_\\_')) {
-                let selectElement = `<select class="blank-input" onchange="handleBlankInput(${q.number}, ${blankIndex}, this.value)">${selectOptionsHtml}</select>`;
+                let selectElement = \`<select class="blank-input" onchange="handleBlankInput(\${q.number}, \${blankIndex}, this.value)">\${selectOptionsHtml}</select>\`;
                 htmlText = htmlText.replace('\\_\\_\\_\\_', selectElement);
                 blankIndex++;
             }
 
-            card.innerHTML = `
-                <div class="question-header">
-                    <div class="question-number">Question ${q.number} <span style="font-size: 0.9rem; color: var(--text-light); font-weight: normal; margin-left: 8px;">(${marksPerQ} marks)</span></div>
-                    <div class="question-status">Fill in the blanks</div>
-                </div>
-                <div class="question-text" style="white-space: pre-wrap; line-height: 2;">${htmlText}</div>
+            contentHtml = `
+                <div class="formulation">${htmlText}</div>
                 <div class="explanation-box" id="exp-${q.number}">
                     <strong>Correct Answer(s):</strong> ${q.fill_in_blanks.join(', ')}
                 </div>
             `;
-            questionsContainer.appendChild(card);
-            return;
+            statusText = 'Fill in the blanks';
+        } else {
+            const isMulti = q.is_multi;
+            const inputType = isMulti ? 'checkbox' : 'radio';
+            let optionsHtml = q.options.map(opt => `
+                <label class="option-row" id="row-${q.number}-${opt.id}">
+                    <input type="${inputType}" name="q-${q.number}" value="${opt.id}" onchange="handleSelection(${q.number}, '${opt.id}', ${isMulti})">
+                    <div class="option-label"><strong>${opt.id}.</strong> ${opt.text}</div>
+                </label>
+            `).join('');
+
+            contentHtml = `
+                <div class="formulation">${q.text}</div>
+                <div class="answer">
+                    ${optionsHtml}
+                </div>
+                <div class="explanation-box" id="exp-${q.number}">
+                    <strong>Correct Answer(s):</strong> ${q.explanation || q.correct_ids.join(', ')}
+                </div>
+            `;
+            statusText = isMulti ? 'Select one or more' : 'Select one';
         }
 
-        const isMulti = q.is_multi;
-        const inputType = isMulti ? 'checkbox' : 'radio';
-
-        let optionsHtml = q.options.map(opt => `
-            <label class="option-row" id="row-${q.number}-${opt.id}">
-                <input type="${inputType}" name="q-${q.number}" value="${opt.id}" onchange="handleSelection(${q.number}, '${opt.id}', ${isMulti})">
-                <div class="option-label"><strong>${opt.id}.</strong> ${opt.text}</div>
-            </label>
-        `).join('');
-
         card.innerHTML = `
-            <div class="question-header">
-                <div class="question-number">Question ${q.number} <span style="font-size: 0.9rem; color: var(--text-light); font-weight: normal; margin-left: 8px;">(${marksPerQ} marks)</span></div>
-                <div class="question-status">${isMulti ? 'Select one or more' : 'Select one'}</div>
+            <div class="info">
+                <div class="question-number">Question ${q.number}</div>
+                <div class="state" id="state-${q.number}">${statusText}</div>
+                <div class="grade">Marked out of ${marksPerQ}</div>
+                <div class="flag">&#9873; Flag question</div>
             </div>
-            <div class="question-text">${q.text}</div>
-            <div class="options-container">
-                ${optionsHtml}
-            </div>
-            <div class="explanation-box" id="exp-${q.number}">
-                <strong>Correct Answer(s):</strong> ${q.explanation || q.correct_ids.join(', ')}
+            <div class="content">
+                ${contentHtml}
             </div>
         `;
-        
         questionsContainer.appendChild(card);
     });
 }
+
+window.handleOpenText = function(qNumber, value) {
+    if (isSubmitted) return;
+    userAnswers[qNumber] = value.trim();
+    const navBtn = document.getElementById(`nav-${qNumber}`);
+    if (userAnswers[qNumber].length > 0) {
+        navBtn.classList.add('answered');
+    } else {
+        navBtn.classList.remove('answered');
+    }
+};
 
 window.handleBlankInput = function(qNumber, index, value) {
     if (isSubmitted) return;
@@ -188,6 +220,11 @@ function startTimer() {
 }
 
 function submitExam() {
+    if (isSelfGradingPhase) {
+        finalizeExam();
+        return;
+    }
+    
     if (isSubmitted) return;
     if (!confirm("Are you sure you want to submit the exam?")) return;
     
@@ -196,24 +233,26 @@ function submitExam() {
     document.getElementById('submit-btn').disabled = true;
 
     let totalMarks = 0;
-    const questionsToGrade = window.examData.filter(q => (q.options && q.options.length > 0) || (q.fill_in_blanks && q.fill_in_blanks.length > 0));
-    const maxMarks = 20;
-    const weightPerQuestion = maxMarks / questionsToGrade.length;
+    const validQuestions = window.examData.filter(q => q.is_open_text || (q.options && q.options.length > 0) || (q.fill_in_blanks && q.fill_in_blanks.length > 0));
+    const marksPerQ = 20 / validQuestions.length;
 
     let correctCount = 0;
     let partialCount = 0;
     let incorrectCount = 0;
+    let hasOpenText = false;
 
-    questionsToGrade.forEach(q => {
-        const uAns = userAnswers[q.number] || [];
-        const cAns = q.correct_ids;
-        let markForQ = 0;
-
-        const navBtn = document.getElementById(`nav-${q.number}`);
+    validQuestions.forEach(q => {
+        const uAns = userAnswers[q.number];
         const card = document.getElementById(`q-${q.number}`);
-        card.classList.add('reviewed');
+        const navBtn = document.getElementById(`nav-${q.number}`);
 
-        if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
+        if (q.is_open_text) {
+            hasOpenText = true;
+            document.getElementById(`text-${q.number}`).disabled = true;
+            document.getElementById(`self-grade-${q.number}`).style.display = 'block';
+            navBtn.classList.add('partial'); // Needs review
+        } else if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
+            card.classList.add('reviewed');
             let correctBlanks = 0;
             const inputs = card.querySelectorAll('.blank-input');
             
@@ -237,83 +276,102 @@ function submitExam() {
                 }
             });
             
+            let markForQ = 0;
             if (correctBlanks === q.fill_in_blanks.length) {
-                markForQ = weightPerQuestion;
+                markForQ = marksPerQ;
                 navBtn.classList.add('correct');
                 correctCount++;
             } else if (correctBlanks > 0) {
-                markForQ = (correctBlanks / q.fill_in_blanks.length) * weightPerQuestion;
+                markForQ = (correctBlanks / q.fill_in_blanks.length) * marksPerQ;
                 navBtn.classList.add('partial');
                 partialCount++;
             } else {
                 navBtn.classList.add('incorrect');
                 incorrectCount++;
             }
+            totalMarks += markForQ;
         } else {
-            q.options.forEach(opt => {
-            const row = document.getElementById(`row-${q.number}-${opt.id}`);
-            row.querySelector('input').disabled = true; 
+            card.classList.add('reviewed');
+            const cAns = q.correct_ids;
+            let markForQ = 0;
             
-            if (cAns.includes(opt.id)) {
-                row.classList.add('correct-ans');
-            }
-            if (uAns.includes(opt.id) && !cAns.includes(opt.id)) {
-                row.classList.add('incorrect-ans');
-            }
-        });
+            q.options.forEach(opt => {
+                const row = document.getElementById(`row-${q.number}-${opt.id}`);
+                row.querySelector('input').disabled = true; 
+                if (cAns.includes(opt.id)) row.classList.add('correct-ans');
+                if (uAns.includes(opt.id) && !cAns.includes(opt.id)) row.classList.add('incorrect-ans');
+            });
 
-        if (q.is_multi) {
-            if (uAns.length === 0 || uAns.length === q.options.length) {
-                navBtn.classList.add('incorrect');
-                incorrectCount++;
+            if (q.is_multi) {
+                if (uAns.length === 0 || uAns.length === q.options.length) {
+                    navBtn.classList.add('incorrect');
+                    incorrectCount++;
+                } else {
+                    let correctSelected = uAns.filter(id => cAns.includes(id)).length;
+                    let wrongSelected = uAns.filter(id => !cAns.includes(id)).length;
+                    let scoreRatio = (correctSelected / cAns.length) - (wrongSelected / (q.options.length - cAns.length));
+                    scoreRatio = Math.max(0, Math.min(1, scoreRatio)); 
+                    markForQ = scoreRatio * marksPerQ;
+                    if (scoreRatio === 1) { navBtn.classList.add('correct'); correctCount++; }
+                    else if (scoreRatio > 0) { navBtn.classList.add('partial'); partialCount++; }
+                    else { navBtn.classList.add('incorrect'); incorrectCount++; }
+                }
             } else {
-                let correctSelected = uAns.filter(id => cAns.includes(id)).length;
-                let wrongSelected = uAns.filter(id => !cAns.includes(id)).length;
-                
-                let scoreRatio = (correctSelected / cAns.length) - (wrongSelected / (q.options.length - cAns.length));
-                scoreRatio = Math.max(0, Math.min(1, scoreRatio)); 
-                
-                markForQ = scoreRatio * weightPerQuestion;
-
-                if (scoreRatio === 1) {
+                if (uAns.length === 0) {
+                    navBtn.classList.add('incorrect');
+                    incorrectCount++;
+                } else if (uAns[0] === cAns[0]) {
+                    markForQ = marksPerQ;
                     navBtn.classList.add('correct');
                     correctCount++;
-                } else if (scoreRatio > 0) {
-                    navBtn.classList.add('partial');
-                    partialCount++;
                 } else {
+                    const penaltyRatio = 1 / (q.options.length - 1);
+                    markForQ = - (penaltyRatio * marksPerQ);
                     navBtn.classList.add('incorrect');
                     incorrectCount++;
                 }
             }
-        } else {
-            if (uAns.length === 0) {
-                navBtn.classList.add('incorrect');
-                incorrectCount++;
-            } else if (uAns[0] === cAns[0]) {
-                markForQ = weightPerQuestion;
-                navBtn.classList.add('correct');
-                correctCount++;
-            } else {
-                const penaltyRatio = 1 / (q.options.length - 1);
-                markForQ = - (penaltyRatio * weightPerQuestion);
-                navBtn.classList.add('incorrect');
-                incorrectCount++;
-            }
+            totalMarks += markForQ;
         }
-        }
-        
-        totalMarks += markForQ;
     });
 
+    partialObjectiveMarks = totalMarks;
+
+    if (hasOpenText) {
+        isSelfGradingPhase = true;
+        const btn = document.getElementById('submit-btn');
+        btn.textContent = "Finalize Grades";
+        btn.disabled = false;
+        alert("Objective questions graded. Please review the solution sketches for the open text questions, grade yourself, and click 'Finalize Grades'.");
+    } else {
+        showFinalModal(totalMarks);
+    }
+}
+
+function finalizeExam() {
+    if (!confirm("Are you ready to finalize your grades?")) return;
+    
+    let totalMarks = partialObjectiveMarks;
+    const validQuestions = window.examData.filter(q => q.is_open_text || (q.options && q.options.length > 0) || (q.fill_in_blanks && q.fill_in_blanks.length > 0));
+    
+    validQuestions.forEach(q => {
+        if (q.is_open_text) {
+            const gradeInput = document.getElementById(`grade-${q.number}`);
+            const grade = parseFloat(gradeInput.value) || 0;
+            totalMarks += grade;
+            gradeInput.disabled = true;
+            document.getElementById(`nav-${q.number}`).classList.add('correct'); // mark as finalized
+        }
+    });
+    
+    document.getElementById('submit-btn').disabled = true;
+    showFinalModal(totalMarks);
+}
+
+function showFinalModal(totalMarks) {
+    const maxMarks = 20;
     totalMarks = Math.max(0, Math.min(maxMarks, totalMarks));
-
     document.getElementById('final-score').textContent = totalMarks.toFixed(2);
-    document.getElementById('score-details').innerHTML = `
-        <strong>${correctCount}</strong> Fully Correct <br>
-        <strong>${partialCount}</strong> Partially Correct <br>
-        <strong>${incorrectCount}</strong> Incorrect/Blank
-    `;
-
+    document.getElementById('score-details').innerHTML = `Final evaluation recorded.`;
     document.getElementById('evaluation-modal').classList.remove('hidden');
 }

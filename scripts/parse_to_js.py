@@ -56,13 +56,19 @@ for section in sections:
             correct_answers_text = m_correct.group(1).strip()
     
     # Extract clean question text
-    q_text_part = re.split(r'\*\*Correct answer', section)[0]
+    q_text_part = re.split(r'\*\*Correct answer|\*\*Solution sketch:', section)[0]
     q_text_part = re.sub(r'^## Question \d+\s*', '', q_text_part)
     q_text_part = re.sub(r'^- [a-e]\. .*', '', q_text_part, flags=re.MULTILINE)
     q_text_part = re.sub(r'\*\((.*?)\)\*', r'<strong>(\1)</strong>', q_text_part) # make *(...)* bold
     q_text = q_text_part.strip()
+    
+    is_open_text = '**Solution sketch:**' in section
+    solution_sketch = None
+    if is_open_text:
+        solution_sketch = section.split('**Solution sketch:**')[1].strip()
         
     correct_ids = []
+    fill_in_blanks = []
     for opt in options:
         clean_opt = opt['text'].replace('.', '').strip()
         if clean_opt in correct_answers_text.replace('.', ''):
@@ -92,27 +98,33 @@ for section in sections:
             
             distractors = list(set(distractors))
 
-    questions.append({
+    q_obj = {
         'number': q_num,
         'text': q_text,
-        'is_multi': is_multi,
         'options': options,
+        'is_multi': is_multi,
         'correct_ids': correct_ids,
         'fill_in_blanks': fill_in_blanks,
-        'distractors': distractors,
-        'explanation': correct_answers_text
-    })
+        'distractors': distractors
+    }
+    
+    if is_open_text:
+        q_obj['is_open_text'] = True
+        q_obj['solution_sketch'] = solution_sketch
+        
+    questions.append(q_obj)
 
-js_output = f"""
+# Create a valid Javascript file
+js_content = f"""
 window.examConfig = {{
     title: "{exam_title}",
     timeLimit: 80
 }};
 
-window.examData = {json.dumps(questions, indent=4)};
+window.examData = {json.dumps(questions, indent=2)};
 """
 
 with open(output_file, 'w', encoding='utf-8') as f:
-    f.write(js_output)
+    f.write(js_content)
 
 print(f"Created {output_file}")

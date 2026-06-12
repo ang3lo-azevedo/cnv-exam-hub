@@ -1,15 +1,12 @@
 :root {
-    --bg-color: #f4f6f9;
-    --card-bg: #ffffff;
-    --text-main: #333333;
-    --text-light: #666666;
-    --primary: #4F46E5;
-    --primary-hover: #4338CA;
+    --moodle-body-bg: #f2f2f2;
+    --moodle-gray: #f8f9fa;
+    --moodle-border: #ced4da;
+    --moodle-text: #212529;
+    --moodle-blue: #0f6cbf;
+    --moodle-light-blue: #eef3f5;
     --success: #10B981;
     --danger: #EF4444;
-    --border-color: #e5e7eb;
-    --sidebar-bg: #ffffff;
-    --nav-btn-bg: #f3f4f6;
 }
 
 * {
@@ -19,247 +16,230 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--moodle-body-bg);
+    color: var(--moodle-text);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
 .navbar {
-    position: sticky;
-    top: 0;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
+    background-color: white;
+    border-bottom: 1px solid var(--moodle-border);
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    z-index: 100;
 }
 
 .navbar h1 {
     font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-main);
+    font-weight: 400;
 }
 
 .timer-container {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: bold;
     color: var(--danger);
-    background: #FEF2F2;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    border: 1px solid #FEE2E2;
+    border: 1px solid var(--danger);
+    padding: 5px 10px;
+    background: #fff;
 }
 
 .layout {
     display: flex;
     flex: 1;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1400px;
+    margin: 20px auto;
     width: 100%;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 20px;
+    padding: 0 20px;
 }
 
 .sidebar {
-    width: 250px;
-    background: var(--sidebar-bg);
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    width: 280px;
+    background: white;
+    padding: 15px;
+    border: 1px solid var(--moodle-border);
     align-self: flex-start;
-    position: sticky;
-    top: 100px;
 }
 
 .sidebar h3 {
     font-size: 1rem;
-    margin-bottom: 1rem;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--moodle-border);
+    padding-bottom: 10px;
+    font-weight: bold;
 }
 
 .nav-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 20px;
 }
 
 .nav-item {
-    width: 100%;
-    aspect-ratio: 1;
+    width: 30px;
+    height: 40px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    background: var(--nav-btn-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-size: 0.875rem;
-    font-weight: 500;
+    padding-top: 5px;
+    background: white;
+    border: 1px solid var(--moodle-border);
+    border-bottom: 15px solid var(--moodle-border);
+    font-size: 0.8rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s ease;
     text-decoration: none;
-    color: var(--text-main);
+    color: var(--moodle-text);
 }
 
 .nav-item:hover {
-    background: #E5E7EB;
+    background: #e9ecef;
 }
 
 .nav-item.answered {
-    background: var(--text-main);
-    color: white;
-    border-color: var(--text-main);
+    border-bottom-color: var(--moodle-text);
 }
 
 .nav-item.correct {
-    background: var(--success);
-    color: white;
-    border-color: var(--success);
+    border-bottom-color: var(--success);
 }
 
 .nav-item.incorrect {
-    background: var(--danger);
-    color: white;
-    border-color: var(--danger);
+    border-bottom-color: var(--danger);
 }
 
 .nav-item.partial {
-    background: #F59E0B;
-    color: white;
-    border-color: #F59E0B;
+    border-bottom-color: #F59E0B;
 }
 
 .submit-btn {
     width: 100%;
-    padding: 0.75rem;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
+    padding: 8px;
+    background: var(--moodle-gray);
+    color: var(--moodle-text);
+    border: 1px solid var(--moodle-border);
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: background 0.2s ease;
 }
 
 .submit-btn:hover {
-    background: var(--primary-hover);
+    background: #e2e6ea;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.que {
+    display: flex;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.info {
+    width: 110px;
+    flex-shrink: 0;
+    background-color: var(--moodle-gray);
+    border: 1px solid var(--moodle-border);
+    padding: 10px;
+    font-size: 0.85rem;
+    color: #495057;
+}
+
+.info .question-number {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--danger);
+    margin-bottom: 5px;
+}
+
+.info .state {
+    margin-bottom: 5px;
+}
+
+.info .grade {
+    margin-bottom: 15px;
+}
+
+.info .flag {
+    color: var(--moodle-blue);
+    cursor: pointer;
 }
 
 .content {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    background-color: var(--moodle-light-blue);
+    padding: 15px;
 }
 
-.question-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    border: 1px solid var(--border-color);
-    scroll-margin-top: 100px;
-}
-
-.question-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.question-number {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--primary);
-}
-
-.question-status {
-    font-size: 0.875rem;
-    color: var(--text-light);
-}
-
-.question-text {
+.formulation {
     font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
     white-space: pre-wrap;
 }
 
-.options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+.answer {
+    margin-top: 15px;
 }
 
 .option-row {
     display: flex;
-    align-items: flex-start;
-    padding: 0.75rem 1rem;
-    background: #F9FAFB;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.option-row:hover {
-    background: #F3F4F6;
-    border-color: #D1D5DB;
-}
-
-.option-row.selected {
-    background: #EFF6FF;
-    border-color: #BFDBFE;
+    align-items: baseline;
+    margin-bottom: 8px;
 }
 
 .option-row input {
-    margin-top: 0.25rem;
-    margin-right: 1rem;
-    cursor: pointer;
+    margin-right: 10px;
 }
 
 .option-label {
-    flex: 1;
-    cursor: pointer;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
-/* Review Mode Styles */
-.option-row.correct-ans {
-    background: #ECFDF5;
-    border-color: var(--success);
+.open-text-area {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    border: 1px solid var(--moodle-border);
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
 }
 
-.option-row.incorrect-ans {
-    background: #FEF2F2;
-    border-color: var(--danger);
+.self-grade-panel {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 4px;
 }
 
-.explanation-box {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background: #FFFBEB;
-    border: 1px solid #FDE68A;
-    border-radius: 8px;
-    color: #92400E;
-    font-size: 0.9rem;
-    display: none;
+.self-grade-panel h4 {
+    color: #856404;
+    margin-bottom: 10px;
 }
 
-.question-card.reviewed .explanation-box {
-    display: block;
+.solution-sketch {
+    background: white;
+    padding: 15px;
+    border: 1px solid #ffeeba;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 0.95rem;
+}
+
+.grade-input {
+    width: 80px;
+    padding: 5px;
+    margin: 0 5px;
+    border: 1px solid #ced4da;
 }
 
 /* Modal */
@@ -270,7 +250,6 @@ body {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -283,64 +262,29 @@ body {
 
 .modal-content {
     background: white;
-    padding: 3rem;
-    border-radius: 16px;
-    text-align: center;
-    max-width: 400px;
+    padding: 30px;
+    border: 1px solid var(--moodle-border);
+    max-width: 500px;
     width: 100%;
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 .score-display {
-    margin: 2rem 0;
-    font-size: 1.5rem;
-    color: var(--text-light);
+    margin: 20px 0;
+    font-size: 1.2rem;
 }
 
 .score-number {
-    font-size: 4rem;
-    font-weight: 700;
-    color: var(--primary);
-}
-
-.score-details {
-    margin-bottom: 2rem;
-    font-size: 1rem;
-    color: var(--text-light);
-    line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-    .layout {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        position: static;
-    }
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--moodle-blue);
 }
 
 .blank-input {
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    padding: 0.2rem 0.5rem;
-    font-family: inherit;
-    font-size: 1rem;
-    margin: 0 0.25rem;
-    color: var(--primary);
-    font-weight: 500;
-    transition: border-color 0.2s;
-    background-color: #F9FAFB;
-    width: 200px;
-}
-.blank-input:focus {
-    outline: none;
-    border-color: var(--primary);
-    background-color: #ffffff;
-}
-.blank-input.correct-input {
-    color: var(--success);
-}
-.blank-input.incorrect-input {
-    color: var(--danger);
+    border: 1px solid #767676;
+    padding: 2px 5px;
+    margin: 0 5px;
+    font-size: 0.95rem;
+    width: auto;
+    min-width: 150px;
 }
