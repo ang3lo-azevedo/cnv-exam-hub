@@ -60,6 +60,13 @@ for section in sections:
     q_text_part = re.sub(r'^## Question \d+\s*', '', q_text_part)
     q_text_part = re.sub(r'^- [a-e]\. .*', '', q_text_part, flags=re.MULTILINE)
     q_text_part = re.sub(r'\*\((.*?)\)\*', r'<strong>(\1)</strong>', q_text_part) # make *(...)* bold
+    
+    note_text = None
+    m_note = re.search(r'\*\*Note:\*\*(.*?)$', q_text_part, flags=re.DOTALL)
+    if m_note:
+        note_text = m_note.group(1).strip()
+        q_text_part = q_text_part.replace(m_note.group(0), '')
+        
     q_text = q_text_part.strip()
     
     is_open_text = '**Solution sketch:**' in section
@@ -107,6 +114,9 @@ for section in sections:
         'fill_in_blanks': fill_in_blanks,
         'distractors': distractors
     }
+    
+    if note_text:
+        q_obj['note'] = note_text
     
     if is_open_text:
         q_obj['is_open_text'] = True

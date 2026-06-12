@@ -124,8 +124,9 @@ function initExam() {
 
             contentHtml = `
                 <div class="formulation">${htmlText}</div>
-                <div class="explanation-box" id="exp-${q.number}" style="display:none;">
+                <div class="explanation-box" id="exp-${q.number}" style="display:none; margin-top: 15px; padding: 10px; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 4px;">
                     <strong>Correct Answer(s):</strong> ${q.fill_in_blanks.join(', ')}
+                    ${q.note ? `<br><br><strong>Note:</strong> ${q.note}` : ''}
                 </div>
             `;
             statusText = 'Fill in the blanks';
@@ -144,8 +145,9 @@ function initExam() {
                 <div class="answer">
                     ${optionsHtml}
                 </div>
-                <div class="explanation-box" id="exp-${q.number}" style="display:none;">
+                <div class="explanation-box" id="exp-${q.number}" style="display:none; margin-top: 15px; padding: 10px; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 4px;">
                     <strong>Correct Answer(s):</strong> ${q.explanation || q.correct_ids.join(', ')}
+                    ${q.note ? `<br><br><strong>Note:</strong> ${q.note}` : ''}
                 </div>
             `;
             statusText = isMulti ? 'Select one or more' : 'Select one';
@@ -369,10 +371,14 @@ function submitExam(isAutoRestore = false) {
     let incorrectCount = 0;
     let hasOpenText = false;
 
-    validQuestions.forEach(q => {
+    window.examData.forEach(q => {
         const uAns = userAnswers[q.number];
         const card = document.getElementById(`q-${q.number}`);
         const navBtn = document.getElementById(`nav-${q.number}`);
+        
+        // Show explanation box
+        const expBox = document.getElementById(`exp-${q.number}`);
+        if (expBox) expBox.style.display = 'block';
 
         if (q.is_open_text) {
             hasOpenText = true;

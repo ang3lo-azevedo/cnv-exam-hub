@@ -76,12 +76,12 @@ window.examData = [
       "critical"
     ],
     "distractors": [
-      "dangerous",
-      "equal to or a subset of",
+      "inefficient",
       "user-level",
       "virtual",
-      "inefficient",
-      "non-critical"
+      "dangerous",
+      "non-critical",
+      "equal to or a subset of"
     ]
   },
   {

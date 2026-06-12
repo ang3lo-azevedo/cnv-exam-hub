@@ -7,7 +7,7 @@ window.examConfig = {
 window.examData = [
   {
     "number": 2,
-    "text": "When deploying an application on the Google App Engine (GAE) PaaS, how does the GAE achieve scalability, i.e. by adhering to what specific behavior?\n\n<strong>(select all the correct options)</strong>\n\n\n\n\n\n\n\n**Note:** partially correct \u2014 Requests are sent to the servers elastically created to deploy the application. (servers are elastically created but requests are sent to the servers already running the application).",
+    "text": "When deploying an application on the Google App Engine (GAE) PaaS, how does the GAE achieve scalability, i.e. by adhering to what specific behavior?\n\n<strong>(select all the correct options)</strong>",
     "options": [
       {
         "id": "a",
@@ -35,11 +35,12 @@ window.examData = [
       "d"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "note": "partially correct \u2014 Requests are sent to the servers elastically created to deploy the application. (servers are elastically created but requests are sent to the servers already running the application)."
   },
   {
     "number": 3,
-    "text": "The Constant Pool is a component of class files as described in the Java VM specification.\n\nThe Constant Pool brings a number of advantages, such as:\n\n<strong>(select the option that best fits the question)</strong>\n\n\n\n\n\n\n\n**Note:** Constant Pool creates indirection. Most constant values are not stored in the bytecode itself, therefore access/execution cannot be faster due to (as an advantage of) CP.",
+    "text": "The Constant Pool is a component of class files as described in the Java VM specification.\n\nThe Constant Pool brings a number of advantages, such as:\n\n<strong>(select the option that best fits the question)</strong>",
     "options": [
       {
         "id": "a",
@@ -67,7 +68,8 @@ window.examData = [
       "a"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "note": "Constant Pool creates indirection. Most constant values are not stored in the bytecode itself, therefore access/execution cannot be faster due to (as an advantage of) CP."
   },
   {
     "number": 4,
@@ -135,7 +137,7 @@ window.examData = [
   },
   {
     "number": 6,
-    "text": "Consider a generic MapReduce approach to addressing WordCount as seen in the lectures, e.g., to count the frequency (number of times occurring) of each word within the full content of a variable (possibly very large) set of variable-sized simple text files.\n\nConsider that in one execution the whole of the input consists of the following three files with one line each (content after filename):\n\n- File A.txt: `abc xyz 123`\n- File B.txt: `abc abc 456`\n- File C.txt: `xyz wgf 987`\n\nHow is this job's execution going to be carried out, according to Hadoop's architecture?\n\n<strong>(select all the correct options)</strong>\n\n\n\n\n\n\n\n**Note:**\n- Mapper process is run for each input split (three small files are three input splits), map function is going to be executed 3 times.\n- By default, there is only one reducer process.\n- The reducer function is called once for each distinct key produced during mapping (and given as argument all tuples sharing that same key).",
+    "text": "Consider a generic MapReduce approach to addressing WordCount as seen in the lectures, e.g., to count the frequency (number of times occurring) of each word within the full content of a variable (possibly very large) set of variable-sized simple text files.\n\nConsider that in one execution the whole of the input consists of the following three files with one line each (content after filename):\n\n- File A.txt: `abc xyz 123`\n- File B.txt: `abc abc 456`\n- File C.txt: `xyz wgf 987`\n\nHow is this job's execution going to be carried out, according to Hadoop's architecture?\n\n<strong>(select all the correct options)</strong>",
     "options": [
       {
         "id": "a",
@@ -164,7 +166,8 @@ window.examData = [
       "c"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "note": "- Mapper process is run for each input split (three small files are three input splits), map function is going to be executed 3 times.\n- By default, there is only one reducer process.\n- The reducer function is called once for each distinct key produced during mapping (and given as argument all tuples sharing that same key)."
   },
   {
     "number": 7,
@@ -200,7 +203,7 @@ window.examData = [
   },
   {
     "number": 8,
-    "text": "Consider the algorithm Generational GC in how it organizes the heap, how it identifies and preserves reachable (live) objects, and detects and reclaims garbage objects to free up memory for the application.\n\nWhat are the key specific feature(s) of this GC algorithm when compared to other algorithms?\n\n<strong>(select the option that best fits the question)</strong>\n\n\n\n\n\n\n\n**Note:** partially correct \u2014 It divides the heap in two zones and avoids multiple passes in most of the heap. (the heap is divided in two zones. most of the heap (~90%) is the mature space and is garbage collected with compacting GC that needs multiple passes over the heap when it compacts the mature space.)",
+    "text": "Consider the algorithm Generational GC in how it organizes the heap, how it identifies and preserves reachable (live) objects, and detects and reclaims garbage objects to free up memory for the application.\n\nWhat are the key specific feature(s) of this GC algorithm when compared to other algorithms?\n\n<strong>(select the option that best fits the question)</strong>",
     "options": [
       {
         "id": "a",
@@ -228,7 +231,8 @@ window.examData = [
       "a"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "note": "partially correct \u2014 It divides the heap in two zones and avoids multiple passes in most of the heap. (the heap is divided in two zones. most of the heap (~90%) is the mature space and is garbage collected with compacting GC that needs multiple passes over the heap when it compacts the mature space.)"
   },
   {
     "number": 9,
@@ -305,7 +309,7 @@ window.examData = [
   },
   {
     "number": 12,
-    "text": "In the context of the conditions for ISA virtualizability, consider a hypothetical ISA including the following exemplificative instructions as described:\n\n- Inst_A: this instruction can only be executed in system mode, otherwise traps.\n- Inst_B: this instruction retrieves the global wide state of hardware resources.\n- Inst_C: this instruction allows to take control of the CPU scheduling timer.\n- Inst_D: this instruction performs arithmetic multiplication of two registers.\n\nConsidering only what you can conservatively infer from the presented information about instructions Inst_A, Inst_B, Inst_C, Inst_D, identify which of the following sentences is/are correct.\n\n<strong>(select all the correct options)</strong>\n\n\n\n\n\n\n\n**Note:** 1 correct and 1 incorrect answer awards half the points of a correct option.",
+    "text": "In the context of the conditions for ISA virtualizability, consider a hypothetical ISA including the following exemplificative instructions as described:\n\n- Inst_A: this instruction can only be executed in system mode, otherwise traps.\n- Inst_B: this instruction retrieves the global wide state of hardware resources.\n- Inst_C: this instruction allows to take control of the CPU scheduling timer.\n- Inst_D: this instruction performs arithmetic multiplication of two registers.\n\nConsidering only what you can conservatively infer from the presented information about instructions Inst_A, Inst_B, Inst_C, Inst_D, identify which of the following sentences is/are correct.\n\n<strong>(select all the correct options)</strong>",
     "options": [
       {
         "id": "a",
@@ -334,7 +338,8 @@ window.examData = [
       "e"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "note": "1 correct and 1 incorrect answer awards half the points of a correct option."
   },
   {
     "number": 13,
@@ -350,16 +355,16 @@ window.examData = [
     ],
     "distractors": [
       "log",
-      "dimension",
-      "InstanceID",
-      "average",
       "value",
-      "ResourceGroup"
+      "ResourceGroup",
+      "dimension",
+      "average",
+      "InstanceID"
     ]
   },
   {
     "number": 14,
-    "text": "Despite the many advantages Cloud Computing brings, it also entails some potential fragilities according to the \"Above the Clouds\" paper.\n\nGive examples of such potential fragilities identified.\n\n<strong>(select all the correct options)</strong>\n\n\n\n\n\n\n\n**Note:** 1 correct and 1 incorrect answer awards half the points of a correct option.",
+    "text": "Despite the many advantages Cloud Computing brings, it also entails some potential fragilities according to the \"Above the Clouds\" paper.\n\nGive examples of such potential fragilities identified.\n\n<strong>(select all the correct options)</strong>",
     "options": [
       {
         "id": "a",
@@ -388,7 +393,8 @@ window.examData = [
       "d"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "note": "1 correct and 1 incorrect answer awards half the points of a correct option."
   },
   {
     "number": 15,
@@ -403,7 +409,7 @@ window.examData = [
   },
   {
     "number": 16,
-    "text": "In the context of emulation by interpretation, how do indirect threaded interpretation (indirect threading) and direct threaded interpretation (direct threading) compare?\n\n<strong>(select all the correct options)</strong>\n\n\n\n\n\n\n\n**Note:** 1 correct and 1 incorrect answer awards half the points of a correct option.",
+    "text": "In the context of emulation by interpretation, how do indirect threaded interpretation (indirect threading) and direct threaded interpretation (direct threading) compare?\n\n<strong>(select all the correct options)</strong>",
     "options": [
       {
         "id": "a",
@@ -432,11 +438,12 @@ window.examData = [
       "b"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "note": "1 correct and 1 incorrect answer awards half the points of a correct option."
   },
   {
     "number": 17,
-    "text": "System VMs can be employed following a classic (Type-1) or a hosted VM (Type-2) approach.\n\nHow does this dichotomy influence System VMs deployment concerning the rest of the software stack in execution?\n\n<strong>(select all the correct options)</strong>\n\n\n\n\n\n\n\n**Note:** 1 correct and 1 incorrect answer awards half the points of a correct option.",
+    "text": "System VMs can be employed following a classic (Type-1) or a hosted VM (Type-2) approach.\n\nHow does this dichotomy influence System VMs deployment concerning the rest of the software stack in execution?\n\n<strong>(select all the correct options)</strong>",
     "options": [
       {
         "id": "a",
@@ -465,7 +472,8 @@ window.examData = [
       "d"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "note": "1 correct and 1 incorrect answer awards half the points of a correct option."
   },
   {
     "number": 18,
@@ -513,7 +521,7 @@ window.examData = [
   },
   {
     "number": 20,
-    "text": "Consider a stream processing scenario where messages published in a forum (e.g. tweets, posts) are continuously monitored in order to detect the topics that are trending (e.g., Top-100 ranking of references in messages), considering the number of times they are referenced across messages over time.\n\nAnalyse how the window and event handling of Flink and Spark Streaming may contribute to detect the potentially trending topics in a timely manner (e.g. so that users may be advised of a potential emerging trending topic, and increase their chances of publishing a message on it as soon as it starts trending).\n\n<strong>(select all the correct options)</strong>\n\n\n\n\n\n\n\n**Note:** the central aspect to reflect variations in tuple counts, with significance, as soon as possible, is to have as small as possible window length.",
+    "text": "Consider a stream processing scenario where messages published in a forum (e.g. tweets, posts) are continuously monitored in order to detect the topics that are trending (e.g., Top-100 ranking of references in messages), considering the number of times they are referenced across messages over time.\n\nAnalyse how the window and event handling of Flink and Spark Streaming may contribute to detect the potentially trending topics in a timely manner (e.g. so that users may be advised of a potential emerging trending topic, and increase their chances of publishing a message on it as soon as it starts trending).\n\n<strong>(select all the correct options)</strong>",
     "options": [
       {
         "id": "a",
@@ -542,11 +550,12 @@ window.examData = [
       "d"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "note": "the central aspect to reflect variations in tuple counts, with significance, as soon as possible, is to have as small as possible window length."
   },
   {
     "number": 21,
-    "text": "What sequence of byte-code could be used to better illustrate the retrieval of the second element of a local variable f (that is an array of integers) inside a method.\n\n<strong>(select the option that best fits the question)</strong>\n\n\n\n\n\n\n\n**Note:** partially correct \u2014 aload_1; iconst_2; iaload (loads array reference in operand stack and element index but accesses another element - the second element in an array is position 1).",
+    "text": "What sequence of byte-code could be used to better illustrate the retrieval of the second element of a local variable f (that is an array of integers) inside a method.\n\n<strong>(select the option that best fits the question)</strong>",
     "options": [
       {
         "id": "a",
@@ -574,7 +583,8 @@ window.examData = [
       "a"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "note": "partially correct \u2014 aload_1; iconst_2; iaload (loads array reference in operand stack and element index but accesses another element - the second element in an array is position 1)."
   },
   {
     "number": 22,
