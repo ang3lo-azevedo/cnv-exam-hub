@@ -110,7 +110,7 @@ function initExam() {
 
             contentHtml = `
                 <div class="formulation">${htmlText}</div>
-                <div class="explanation-box" id="exp-${q.number}">
+                <div class="explanation-box" id="exp-${q.number}" style="display:none;">
                     <strong>Correct Answer(s):</strong> ${q.fill_in_blanks.join(', ')}
                 </div>
             `;
@@ -130,7 +130,7 @@ function initExam() {
                 <div class="answer">
                     ${optionsHtml}
                 </div>
-                <div class="explanation-box" id="exp-${q.number}">
+                <div class="explanation-box" id="exp-${q.number}" style="display:none;">
                     <strong>Correct Answer(s):</strong> ${q.explanation || q.correct_ids.join(', ')}
                 </div>
             `;
@@ -269,14 +269,25 @@ window.handleSelection = function(qNumber, optId, isMulti) {
 };
 
 function startTimer() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const examId = urlParams.get('id');
+    const savedTime = localStorage.getItem(`exam_${examId}_timeLeft`);
+    if (savedTime !== null) {
+        timeLeft = parseInt(savedTime, 10);
+    }
+
     const timerEl = document.getElementById('timer');
+    if (!timerEl) return;
+
     timerInterval = setInterval(() => {
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            submitExam();
+            submitExam(true);
             return;
         }
         timeLeft--;
+        localStorage.setItem(`exam_${examId}_timeLeft`, timeLeft);
+
         const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
         const s = (timeLeft % 60).toString().padStart(2, '0');
         timerEl.textContent = `${m}:${s}`;
