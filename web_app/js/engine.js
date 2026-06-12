@@ -281,8 +281,35 @@ function restoreState() {
     });
 
     const isCompleted = localStorage.getItem(`exam_${examId}_completed`) === 'true';
+    const isFinalized = localStorage.getItem(`exam_${examId}_finalized`) === 'true';
     if (isCompleted) {
         submitExam(true);
+        if (isFinalized) {
+            const savedGradesStr = localStorage.getItem(`exam_${examId}_openGrades`);
+            if (savedGradesStr) {
+                try {
+                    const savedGrades = JSON.parse(savedGradesStr);
+                    window.examData.forEach(q => {
+                        if (q.is_open_text && q.number !== 1 && savedGrades[q.number] !== undefined) {
+                            const gradeInput = document.getElementById(`grade-${q.number}`);
+                            if (gradeInput) {
+                                gradeInput.value = savedGrades[q.number];
+                                gradeInput.disabled = true;
+                            }
+                            const nb = document.getElementById(`nav-${q.number}`);
+                            if (nb) nb.classList.add('correct');
+                        }
+                    });
+                } catch(e) {}
+            }
+            const submitBtn = document.getElementById('submit-btn');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Submitted";
+            }
+            const finalScore = parseFloat(localStorage.getItem(`exam_${examId}_score`) || '0');
+            showFinalModal(finalScore);
+        }
     }
 }
 
@@ -551,17 +578,29 @@ function finalizeExam() {
     let totalMarks = partialObjectiveMarks;
     const validQuestions = window.examData.filter(q => q.is_open_text || (q.options && q.options.length > 0) || (q.fill_in_blanks && q.fill_in_blanks.length > 0));
 
+    let openTextGrades = {};
+
     validQuestions.forEach(q => {
         if (q.is_open_text && q.number !== 1) {
             const gradeInput = document.getElementById(`grade-${q.number}`);
             const grade = parseFloat(gradeInput.value) || 0;
+            openTextGrades[q.number] = grade;
             totalMarks += grade;
             gradeInput.disabled = true;
             document.getElementById(`nav-${q.number}`).classList.add('correct'); // mark as finalized
         }
     });
 
-    document.getElementById('submit-btn').disabled = true;
+    const urlParams = new URLSearchParams(window.location.search);
+    const examId = urlParams.get('id');
+    localStorage.setItem(`exam_${examId}_openGrades`, JSON.stringify(openTextGrades));
+    localStorage.setItem(`exam_${examId}_finalized`, 'true');
+
+    const submitBtn = document.getElementById('submit-btn');
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitted";
+    }
     showFinalModal(totalMarks);
 }
 
