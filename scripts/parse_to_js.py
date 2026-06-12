@@ -205,39 +205,39 @@ def parse_moodle(content, input_file):
             solution_sketch = raw_sketch
             q_body = q_body[:sol_match.start()]
             is_open_text = True
-            
+              
         options = []
-        opt_match = re.search(r'\s+a\.\s+(.*)', q_body, flags=re.DOTALL)
-        if opt_match:
-            opt_text = "a. " + opt_match.group(1)
-            q_body = q_body[:opt_match.start()]
-            parts = re.split(r'\s+([a-e]\.)\s+', opt_text)
-            current_id = 'a'
-            current_text = parts[0][3:].strip()
-            for j in range(1, len(parts), 2):
-                if current_text:
-                    current_text = re.sub(r'(No response \(no penalty.*?\)\.?)', r'<strong>\1</strong>', current_text, flags=re.IGNORECASE)
-                    current_text = re.sub(r'(No response \(no penalty.*?\))', r'<strong>\1</strong>', current_text, flags=re.IGNORECASE)
-                    options.append({'id': current_id, 'text': current_text.replace('\n', '<br>')})
-                current_id = parts[j][0]
-                current_text = parts[j+1].strip()
-            if current_text:
-                current_text = re.sub(r'(No response \(no penalty.*?\)\.?)', r'<strong>\1</strong>', current_text, flags=re.IGNORECASE)
-                current_text = re.sub(r'(No response \(no penalty.*?\))', r'<strong>\1</strong>', current_text, flags=re.IGNORECASE)
-                options.append({'id': current_id, 'text': current_text.replace('\n', '<br>')})
+        correct_ids = []
+        
+        opt_start_match = re.search(r'\n\s*(?:\[[xX ]\]\s+)?a\.\s+', q_body)
+        if opt_start_match:
+            opt_block = q_body[opt_start_match.start():]
+            q_body = q_body[:opt_start_match.start()]
+            
+            opt_pattern = re.compile(r'^\s*(?:\[([xX ])\]\s+)?([a-e])\.\s+(.*?)(?=\n\s*(?:\[[xX ]\]\s+)?[a-e]\.|\Z)', flags=re.DOTALL | re.MULTILINE)
+            for m in opt_pattern.finditer(opt_block):
+                is_correct = (m.group(1) and m.group(1).lower() == 'x')
+                opt_id = m.group(2)
+                current_text = m.group(3).strip()
                 
+                current_text = re.sub(r'(No response \(no penalty.*?\)\.?)', r'<strong>\1</strong>', current_text, flags=re.IGNORECASE)
+                options.append({'id': opt_id, 'text': current_text.replace('\n', '<br>')})
+                if is_correct:
+                    correct_ids.append(opt_id)
+
         is_multi = 'select all the correct options' in q_body.lower() or 'select one or more' in q_body.lower()
-        if q_num == 1:
+        if q_num == 1 and 'identification and rules' in q_body.lower():
             is_open_text = True
         q_text = q_body.strip()
-        q_text = re.sub(r'Marked out of \d+\.\d+ v\d+ \(latest\)', '', q_text).strip()
+        q_text = re.sub(r'Marked out of \d+\.\d+(?:\s*v\d+\s*\(latest\))?', '', q_text).strip()
         q_text = re.sub(r'Select one or more:\s*$', '', q_text).strip()
-        
-        correct_ids = []
-        for opt in options:
-            clean_opt = opt['text'].replace('.', '').replace('<br>', ' ').strip()
-            if clean_opt and clean_opt in correct_text.replace('\n', ' ').replace('.', ''):
-                correct_ids.append(opt['id'])
+        q_text = re.sub(r'Select one:\s*$', '', q_text).strip()
+
+        if not correct_ids and correct_text:
+            for opt in options:
+                clean_opt = opt['text'].replace('.', '').replace('<br>', ' ').strip()
+                if clean_opt and clean_opt in correct_text.replace('\n', ' ').replace('.', ''):
+                    correct_ids.append(opt['id'])
                 
         fill_in_blanks = []
         distractors = []
@@ -251,6 +251,12 @@ def parse_moodle(content, input_file):
                     if "autoscalinggroup" in fb.lower():
                         distractors.extend(["ResourceGroup", "log", "average", "value", "InstanceID", "dimension"])
                 distractors = list(set(distractors))
+            else:
+                # PDF drag and drop where text has Phase 1: [A], etc.
+                pdf_fill_matches = re.findall(r':\s*\[([A-Z])\]', q_text)
+                if pdf_fill_matches:
+                    fill_in_blanks = pdf_fill_matches
+                    q_text = re.sub(r'(:\s*)\[[A-Z]\]', r'\1[ ]', q_text)
 
         if int(q_num) == 1:
             lines_to_underline = [
