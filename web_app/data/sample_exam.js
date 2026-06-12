@@ -96,9 +96,9 @@ window.examData = [
     ],
     "distractors": [
       "inefficient",
+      "virtual",
       "user-level",
       "non-critical",
-      "virtual",
       "equal to or a subset of",
       "dangerous"
     ],
@@ -144,7 +144,7 @@ window.examData = [
     "options": [
       {
         "id": "a",
-        "text": "**<strong><strong>No response (no penalty if only option answered)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
       },
       {
         "id": "b",
@@ -191,7 +191,7 @@ window.examData = [
       },
       {
         "id": "d",
-        "text": "**<strong><strong>No response (no penalty if only option answered)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
       },
       {
         "id": "e",
@@ -226,7 +226,7 @@ window.examData = [
       },
       {
         "id": "d",
-        "text": "**<strong><strong>No response (no penalty)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty)</strong>.</strong></strong>"
       },
       {
         "id": "e",
@@ -285,7 +285,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "**<strong><strong>No response (no penalty if only option answered)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
       },
       {
         "id": "c",
@@ -330,7 +330,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "**<strong><strong>No response (no penalty if only option answered)</strong>.</strong>**  Your answer is incorrect. partial correct: It divides the heap in two zones and never performs multiple passes in most of the heap space. *(although less frequent, compaction of the tenured space, which occupies most of the heap space, must be carried out when there is no free memory).*"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>  Your answer is incorrect. partial correct: It divides the heap in two zones and never performs multiple passes in most of the heap space. <em>(although less frequent, compaction of the tenured space, which occupies most of the heap space, must be carried out when there is no free memory).</em>"
       }
     ],
     "is_multi": false,
@@ -385,7 +385,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "**<strong><strong>No response (no penalty if only option answered)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
       },
       {
         "id": "c",
@@ -397,7 +397,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "Application state in static variables is automatically managed.  Your answer is incorrect. partial correct: Web apps are permanently kept in memory. *(kept in memory but, not not permanently)*"
+        "text": "Application state in static variables is automatically managed.  Your answer is incorrect. partial correct: Web apps are permanently kept in memory. <em>(kept in memory but, not not permanently)</em>"
       }
     ],
     "is_multi": false,
@@ -485,7 +485,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "**<strong><strong>No response (no penalty if only option answered)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
       },
       {
         "id": "c",
@@ -497,7 +497,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "Random/direct read access to small files.  Your answer is incorrect. partial correct: Sequential overwrite access to very large files. *(not overwrite, creation of new files or appending existing files)*"
+        "text": "Random/direct read access to small files.  Your answer is incorrect. partial correct: Sequential overwrite access to very large files. <em>(not overwrite, creation of new files or appending existing files)</em>"
       }
     ],
     "is_multi": false,
@@ -520,7 +520,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "**<strong><strong>No response (no penalty if only option answered)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
       },
       {
         "id": "c",
@@ -555,7 +555,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "**<strong><strong>No response (no penalty if only option answered)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
       },
       {
         "id": "c",
@@ -602,7 +602,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "**<strong><strong>No response (no penalty if only option answered)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
       }
     ],
     "is_multi": false,
@@ -637,7 +637,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "**<strong><strong>No response (no penalty)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty)</strong>.</strong></strong>"
       }
     ],
     "is_multi": false,
@@ -738,7 +738,7 @@ window.examData = [
       },
       {
         "id": "b",
-        "text": "**<strong><strong>No response (no penalty if only option answered)</strong>.</strong>**"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
       },
       {
         "id": "c",

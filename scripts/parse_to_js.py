@@ -111,10 +111,15 @@ def parse_markdown(content, input_file):
 
         # Remove *** separators
         q_text = q_text.replace('***', '').strip()
-        # Convert markdown bold to HTML
-        q_text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', q_text, flags=re.DOTALL)
-        # Convert markdown italics to HTML
-        q_text = re.sub(r'\*(.*?)\*', r'<em>\1</em>', q_text, flags=re.DOTALL)
+        
+        def convert_md(txt):
+            txt = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', txt, flags=re.DOTALL)
+            txt = re.sub(r'\*(.*?)\*', r'<em>\1</em>', txt, flags=re.DOTALL)
+            return txt
+            
+        q_text = convert_md(q_text)
+        for opt in options:
+            opt['text'] = convert_md(opt['text'])
 
         q_obj = {
             'number': q_num,
@@ -254,10 +259,15 @@ def parse_moodle(content, input_file):
 
         # Remove *** separators
         q_text = q_text.replace('***', '').strip()
-        # Convert markdown bold to HTML
-        q_text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', q_text, flags=re.DOTALL)
-        # Convert markdown italics to HTML
-        q_text = re.sub(r'\*(.*?)\*', r'<em>\1</em>', q_text, flags=re.DOTALL)
+        
+        def convert_md(txt):
+            txt = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', txt, flags=re.DOTALL)
+            txt = re.sub(r'\*(.*?)\*', r'<em>\1</em>', txt, flags=re.DOTALL)
+            return txt
+            
+        q_text = convert_md(q_text)
+        for opt in options:
+            opt['text'] = convert_md(opt['text'])
 
         q_obj = {
             'number': q_num,
