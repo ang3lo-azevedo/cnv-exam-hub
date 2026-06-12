@@ -1,4 +1,3 @@
-
 window.examConfig = {
     title: "CNV-20-21 Exam 1",
     timeLimit: 80
@@ -354,11 +353,11 @@ window.examData = [
       "unit"
     ],
     "distractors": [
-      "log",
-      "value",
-      "ResourceGroup",
-      "dimension",
       "average",
+      "value",
+      "dimension",
+      "log",
+      "ResourceGroup",
       "InstanceID"
     ]
   },
