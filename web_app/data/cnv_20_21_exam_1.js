@@ -12,6 +12,8 @@ window.examData = [
     "correct_ids": [],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "- Questions are presented in randomized order.\n- In all questions where wrong choice may lead to penalty there is an option (no response/no penalty).\n- When there is only one correct choice, incorrect choice leads to penalty (1/number-of-incorrect-choices).\n- In questions where there are multiple correct and incorrect options, the correct and incorrect options are graded in a way that selecting all of them leads to zero points.",
     "is_open_text": true,
     "solution_sketch": null
@@ -47,6 +49,8 @@ window.examData = [
     ],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "partially correct \u2014 Requests are sent to the servers elastically created to deploy the application. (servers are elastically created but requests are sent to the servers already running the application)."
   },
   {
@@ -80,6 +84,8 @@ window.examData = [
     ],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "Constant Pool creates indirection. Most constant values are not stored in the bytecode itself, therefore access/execution cannot be faster due to (as an advantage of) CP."
   },
   {
@@ -112,7 +118,9 @@ window.examData = [
       "c"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 5,
@@ -144,7 +152,9 @@ window.examData = [
       "e"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 6,
@@ -178,6 +188,8 @@ window.examData = [
     ],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "- Mapper process is run for each input split (three small files are three input splits), map function is going to be executed 3 times.\n- By default, there is only one reducer process.\n- The reducer function is called once for each distinct key produced during mapping (and given as argument all tuples sharing that same key)."
   },
   {
@@ -210,7 +222,9 @@ window.examData = [
       "e"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 8,
@@ -243,6 +257,8 @@ window.examData = [
     ],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "partially correct \u2014 It divides the heap in two zones and avoids multiple passes in most of the heap. (the heap is divided in two zones. most of the heap (~90%) is the mature space and is garbage collected with compacting GC that needs multiple passes over the heap when it compacts the mature space.)"
   },
   {
@@ -252,7 +268,9 @@ window.examData = [
     "is_multi": false,
     "correct_ids": [],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 10,
@@ -284,7 +302,9 @@ window.examData = [
       "d"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 11,
@@ -316,7 +336,9 @@ window.examData = [
       "d"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 12,
@@ -350,6 +372,8 @@ window.examData = [
     ],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "1 correct and 1 incorrect answer awards half the points of a correct option."
   },
   {
@@ -365,13 +389,15 @@ window.examData = [
       "unit"
     ],
     "distractors": [
-      "ResourceGroup",
-      "log",
       "value",
-      "InstanceID",
       "average",
-      "dimension"
-    ]
+      "log",
+      "dimension",
+      "ResourceGroup",
+      "InstanceID"
+    ],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 14,
@@ -405,6 +431,8 @@ window.examData = [
     ],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "1 correct and 1 incorrect answer awards half the points of a correct option."
   },
   {
@@ -415,6 +443,8 @@ window.examData = [
     "correct_ids": [],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "is_open_text": true,
     "solution_sketch": "X = Total execution of loop without translation chaining: A + EM + B + EM + C + EM = 45 instructions per loop iteration.\n(EM is engaged in the backward loop edge as any other transition among blocks of translated code)\n\nY = Total execution of loop with translation chaining enabled: A + B + C = 30 instructions per loop iteration.\n(each block of translated code already contains a jump instruction at the end whose target address is replaced by the TC optimization, no more instructions are added)\n\n**Speedup = X / Y = 1.5 (i.e. 50% faster execution).**"
   },
@@ -450,6 +480,8 @@ window.examData = [
     ],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "1 correct and 1 incorrect answer awards half the points of a correct option."
   },
   {
@@ -484,6 +516,8 @@ window.examData = [
     ],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "1 correct and 1 incorrect answer awards half the points of a correct option."
   },
   {
@@ -494,6 +528,8 @@ window.examData = [
     "correct_ids": [],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 2.0,
+    "marks_text": "Marked out of 2.00",
     "is_open_text": true,
     "solution_sketch": "**Mapper:**\n- The key for the mapper and reducer should be the number of friends (rank) each user has, so that all users with the same number of friends will be processed in the same reducer function.\n- The count can be calculated based on the size of the list (divided by two minus 4), accounting solely each friend once (e.g., with its email).\n- This also allows efficient filtering at the Mapper (avoiding sending to the reducer information about users with rank <= 25).\n- Mapper outputs tuples with the form (rank, user-email, emails-of-friends[]).\n- Outputting user-email allows later emailing the congratulatory message to each user stating how many users have the same rank.\n- (Outputting emails-of-friends, i.e., the emails of all friends of a user, or to be simpler, just (re)-forwarding the complete data in the user-info line as it is done in PageRank, allows later to know how many of the friends, of each user, have the same rank).\n\n**Reducer:**\n- At the reducer function, the key is the number of friends (rank), and each of the values carries the information mapped for a specific user of that rank (user-email, emails-of-friends[]).\n- With this information, aggregating info about all users with a given rank, it is immediately possible to count the number of tuples in the reducer arguments.\n- This count and user-email allows emailing to each user the congratulatory message stating how many users have the same rank.\n- For each tuple, insert into a local variable hashtable/associative-array a tuple with the user-email as key and the emails-of-friends[] as value.\n- Once completed, for each of the hashtable/associate-array elements, iterate the emails-of-friends[] value and add one for each email that also belongs to the hashtable/associate-array. This allows stating how many of each user's friends share the same rank as him/her.\n\n**Note:** Based on your interpretations provided, an efficient implementation that is able to email the congratulatory message will get full marks, with the reasoning to determine the number of friends with the same rank considered when assessing errors or inefficiencies."
   },
@@ -528,7 +564,9 @@ window.examData = [
       "b"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 20,
@@ -562,6 +600,8 @@ window.examData = [
     ],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "the central aspect to reflect variations in tuple counts, with significance, as soon as possible, is to have as small as possible window length."
   },
   {
@@ -595,6 +635,8 @@ window.examData = [
     ],
     "fill_in_blanks": [],
     "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00",
     "note": "partially correct \u2014 aload_1; iconst_2; iaload (loads array reference in operand stack and element index but accesses another element - the second element in an array is position 1)."
   },
   {
@@ -627,7 +669,9 @@ window.examData = [
       "b"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 23,
@@ -659,7 +703,9 @@ window.examData = [
       "c"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 24,
@@ -692,7 +738,9 @@ window.examData = [
       "e"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   },
   {
     "number": 25,
@@ -725,6 +773,8 @@ window.examData = [
       "d"
     ],
     "fill_in_blanks": [],
-    "distractors": []
+    "distractors": [],
+    "marks": 1.0,
+    "marks_text": "Marked out of 1.00"
   }
 ];

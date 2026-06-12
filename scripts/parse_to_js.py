@@ -11,10 +11,18 @@ def parse_markdown(content, input_file):
         if not section.startswith('## Question'):
             continue
 
-        m_num = re.search(r'## Question (\d+)', section)
-        if not m_num:
+        m_num_full = re.search(r'## Question (\d+)(?:\s*\*\((.*?)\)\*)?', section)
+        if not m_num_full:
             continue
-        q_num = int(m_num.group(1))
+        q_num = int(m_num_full.group(1))
+
+        marks = 1.0
+        marks_text = "Marked out of 1.00"
+        if m_num_full.group(2) and 'mark' in m_num_full.group(2).lower():
+            marks_match = re.search(r'(\d+(?:\.\d+)?)', m_num_full.group(2))
+            if marks_match:
+                marks = float(marks_match.group(1))
+                marks_text = f"Marked out of {marks:.2f}"
 
         options = []
         opt_lines = re.findall(r'^- ([a-e])\. (.*)', section, flags=re.MULTILINE)
@@ -91,7 +99,9 @@ def parse_markdown(content, input_file):
             'is_multi': is_multi,
             'correct_ids': correct_ids,
             'fill_in_blanks': fill_in_blanks,
-            'distractors': distractors
+            'distractors': distractors,
+            'marks': marks,
+            'marks_text': marks_text
         }
 
         if note_text:
@@ -111,6 +121,25 @@ def parse_moodle(content, input_file):
     for i in range(1, len(sections), 2):
         q_num = int(sections[i])
         q_body = sections[i+1]
+        
+        marks = 1.0
+        marks_text = "Marked out of 1.00"
+        version = None
+        
+        m_marks = re.search(r'^\s*(Not graded|Marked out of (\d+\.\d+))\s+(v\d+)', q_body)
+        if m_marks:
+            if m_marks.group(1) == 'Not graded':
+                marks = 0.0
+                marks_text = "Not graded"
+            else:
+                marks = float(m_marks.group(2))
+                marks_text = f"Marked out of {m_marks.group(2)}"
+            version = m_marks.group(3)
+            m_latest = re.search(r'^\s*(Not graded|Marked out of \d+\.\d+)\s+v\d+\s*\(latest\)', q_body)
+            if m_latest:
+                q_body = q_body[m_latest.end():].strip()
+            else:
+                q_body = q_body[m_marks.end():].strip()
         
         note_text = None
         correct_text = ""
@@ -189,8 +218,12 @@ def parse_moodle(content, input_file):
             'is_multi': is_multi,
             'correct_ids': correct_ids,
             'fill_in_blanks': fill_in_blanks,
-            'distractors': distractors
+            'distractors': distractors,
+            'marks': marks,
+            'marks_text': marks_text
         }
+        if version:
+            q_obj['version'] = version
         if note_text:
             q_obj['note'] = note_text
         if is_open_text:
@@ -215,6 +248,9 @@ if __name__ == '__main__':
     title_match = re.search(r'^#?\s*(.*Exam.*)', content, flags=re.IGNORECASE | re.MULTILINE)
     exam_title = title_match.group(1).strip() if title_match else "CNV Exam"
     exam_title = exam_title.replace('#', '').strip()
+
+    # Normalize multiline Moodle headers to single line
+    content = re.sub(r'\*\*(Question \d+)\*\*\s*\n\s*(Not answered|Correct|Incorrect|Partially correct)\s*\n\s*(Not graded|Marked out of \d+\.\d+)\s*\n\s*(v\d+(?:\s*\(latest\))?)', r'\n\1 \2 \3 \4', content)
 
     if re.search(r'\nQuestion \d+ Not answered', content):
         questions = parse_moodle(content, input_file)

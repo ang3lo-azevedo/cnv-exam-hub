@@ -90,8 +90,12 @@ function initExam() {
         card.className = 'que';
         card.id = `q-${q.number}`;
         
+        let statusText = isSubmitted ? 'Reviewed' : 'Not yet answered';
+        const qMarks = q.marks !== undefined ? q.marks : (q.is_open_text ? 0 : 1.0);
+        const marksText = q.marks_text || (q.is_open_text ? 'Not graded' : `Marked out of ${qMarks.toFixed(2)}`);
+        const versionHtml = q.version ? `<div style="margin-bottom: 10px;">${q.version} (latest)</div>` : '';
+        
         let contentHtml = '';
-        let statusText = 'Not yet answered';
 
         if (q.is_open_text) {
             contentHtml = `
@@ -102,11 +106,10 @@ function initExam() {
                 <div class="self-grade-panel" id="self-grade-${q.number}" style="display:none;">
                     <h4>Solution Sketch</h4>
                     <div class="solution-sketch">${q.solution_sketch}</div>
-                    <label><strong>Grade yourself out of ${marksPerQ}:</strong></label>
-                    <input type="number" class="grade-input" id="grade-${q.number}" min="0" max="${marksPerQ}" step="0.01" value="0">
+                    <label><strong>Grade yourself out of ${qMarks}:</strong></label>
+                    <input type="number" class="grade-input" id="grade-${q.number}" min="0" max="${qMarks}" step="0.01" value="0">
                 </div>
             `;
-            statusText = 'Open text';
         } else if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
             let htmlText = q.text;
             let blankIndex = 0;
@@ -129,7 +132,6 @@ function initExam() {
                     ${q.note ? `<br><br><strong>Note:</strong> ${q.note}` : ''}
                 </div>
             `;
-            statusText = 'Fill in the blanks';
         } else {
             const isMulti = q.is_multi;
             const inputType = isMulti ? 'checkbox' : 'radio';
@@ -150,14 +152,14 @@ function initExam() {
                     ${q.note ? `<br><br><strong>Note:</strong> ${q.note}` : ''}
                 </div>
             `;
-            statusText = isMulti ? 'Select one or more' : 'Select one';
         }
 
         card.innerHTML = `
-            <div class="info">
-                <div class="question-number">Question <strong>${q.number}</strong></div>
-                <div class="state" id="state-${q.number}">${statusText}</div>
-                <div class="grade">Marked out of ${marksPerQ}</div>
+            <div class="info" style="background-color: var(--moodle-gray); border: 1px solid var(--moodle-border); padding: 15px; border-radius: 4px; width: 150px; flex-shrink: 0;">
+                <h3 style="color: var(--moodle-text); margin-top: 0; font-size: 1.1rem; font-weight: normal;">Question <strong style="font-size: 1.25rem;">${q.number}</strong></h3>
+                <div id="state-${q.number}" style="margin-bottom: 10px;">${statusText}</div>
+                <div style="margin-bottom: 10px;">${marksText}</div>
+                ${versionHtml}
                 <div class="flag" id="flag-${q.number}" onclick="toggleFlag(${q.number})">
                     <span id="flag-icon-${q.number}" style="color:var(--moodle-blue)">&#9873;</span>
                     <span id="flag-text-${q.number}">Flag question</span>
@@ -363,20 +365,12 @@ function submitExam(isAutoRestore = false) {
     document.getElementById('submit-btn').disabled = true;
 
     let totalMarks = 0;
-    const validQuestions = window.examData.filter(q => q.is_open_text || (q.options && q.options.length > 0) || (q.fill_in_blanks && q.fill_in_blanks.length > 0));
-    const marksPerQ = 20 / validQuestions.length;
-
-    let correctCount = 0;
-    let partialCount = 0;
-    let incorrectCount = 0;
     let hasOpenText = false;
 
     window.examData.forEach(q => {
         const uAns = userAnswers[q.number];
         const card = document.getElementById(`q-${q.number}`);
         const navBtn = document.getElementById(`nav-${q.number}`);
-        
-        // Show explanation box
         const expBox = document.getElementById(`exp-${q.number}`);
         if (expBox) expBox.style.display = 'block';
 
@@ -384,11 +378,12 @@ function submitExam(isAutoRestore = false) {
             hasOpenText = true;
             document.getElementById(`text-${q.number}`).disabled = true;
             document.getElementById(`self-grade-${q.number}`).style.display = 'block';
-            navBtn.classList.add('partial'); // Needs review
+            navBtn.classList.add('partial');
         } else if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
             card.classList.add('reviewed');
             let correctBlanks = 0;
             const inputs = card.querySelectorAll('.blank-input');
+            const qMarks = q.marks !== undefined ? q.marks : 1.0;
             
             q.fill_in_blanks.forEach((correctText, idx) => {
                 const inputEl = inputs[idx];
@@ -410,62 +405,52 @@ function submitExam(isAutoRestore = false) {
                 }
             });
             
-            let markForQ = 0;
-            if (correctBlanks === q.fill_in_blanks.length) {
-                markForQ = marksPerQ;
-                navBtn.classList.add('correct');
-                correctCount++;
-            } else if (correctBlanks > 0) {
-                markForQ = (correctBlanks / q.fill_in_blanks.length) * marksPerQ;
-                navBtn.classList.add('partial');
-                partialCount++;
-            } else {
-                navBtn.classList.add('incorrect');
-                incorrectCount++;
-            }
+            let markForQ = (correctBlanks / q.fill_in_blanks.length) * qMarks;
             totalMarks += markForQ;
+            if (correctBlanks === q.fill_in_blanks.length) navBtn.classList.add('correct');
+            else if (correctBlanks > 0) navBtn.classList.add('partial');
+            else navBtn.classList.add('incorrect');
         } else {
             card.classList.add('reviewed');
-            const cAns = q.correct_ids;
-            let markForQ = 0;
-            
+            const isMulti = q.is_multi;
             q.options.forEach(opt => {
                 const row = document.getElementById(`row-${q.number}-${opt.id}`);
                 row.querySelector('input').disabled = true; 
-                if (cAns.includes(opt.id)) row.classList.add('correct-ans');
-                if (uAns.includes(opt.id) && !cAns.includes(opt.id)) row.classList.add('incorrect-ans');
+                if (q.correct_ids.includes(opt.id)) row.classList.add('correct-ans');
+                if (uAns.includes(opt.id) && !q.correct_ids.includes(opt.id)) row.classList.add('incorrect-ans');
             });
 
-            if (q.is_multi) {
-                if (uAns.length === 0 || uAns.length === q.options.length) {
-                    navBtn.classList.add('incorrect');
-                    incorrectCount++;
-                } else {
-                    let correctSelected = uAns.filter(id => cAns.includes(id)).length;
-                    let wrongSelected = uAns.filter(id => !cAns.includes(id)).length;
-                    let scoreRatio = (correctSelected / cAns.length) - (wrongSelected / (q.options.length - cAns.length));
-                    scoreRatio = Math.max(0, Math.min(1, scoreRatio)); 
-                    markForQ = scoreRatio * marksPerQ;
-                    if (scoreRatio === 1) { navBtn.classList.add('correct'); correctCount++; }
-                    else if (scoreRatio > 0) { navBtn.classList.add('partial'); partialCount++; }
-                    else { navBtn.classList.add('incorrect'); incorrectCount++; }
-                }
+            let score = 0;
+            let maxPoints = q.marks !== undefined ? q.marks : 1.0;
+            let correctCount = 0;
+            let hasIncorrect = false;
+
+            if (isMulti) {
+                uAns.forEach(ansId => {
+                    if (q.correct_ids.includes(ansId)) {
+                        score += (1.0 / q.correct_ids.length) * maxPoints;
+                        correctCount++;
+                    } else {
+                        hasIncorrect = true;
+                        score -= (1.0 / q.correct_ids.length) * maxPoints;
+                    }
+                });
             } else {
-                if (uAns.length === 0) {
-                    navBtn.classList.add('incorrect');
-                    incorrectCount++;
-                } else if (uAns[0] === cAns[0]) {
-                    markForQ = marksPerQ;
-                    navBtn.classList.add('correct');
-                    correctCount++;
-                } else {
-                    const penaltyRatio = 1 / (q.options.length - 1);
-                    markForQ = - (penaltyRatio * marksPerQ);
-                    navBtn.classList.add('incorrect');
-                    incorrectCount++;
+                if (q.correct_ids.includes(uAns[0])) {
+                    score += maxPoints;
+                    correctCount = 1;
+                } else if (uAns.length > 0 && uAns[0] !== '') {
+                    hasIncorrect = true;
+                    if(q.options.length > 1) {
+                        score -= (1.0 / (q.options.length - 1)) * maxPoints;
+                    }
                 }
             }
-            totalMarks += markForQ;
+            score = Math.max(0, score);
+            totalMarks += score;
+            if (correctCount === q.correct_ids.length && !hasIncorrect) navBtn.classList.add('correct');
+            else if (score > 0) navBtn.classList.add('partial');
+            else navBtn.classList.add('incorrect');
         }
     });
 
@@ -510,7 +495,14 @@ function showFinalModal(totalMarks) {
 
     const maxMarks = 20;
     totalMarks = Math.max(0, Math.min(maxMarks, totalMarks));
-    document.getElementById('final-score').textContent = totalMarks.toFixed(2);
+    let maxPossibleMarks = 0;
+    window.examData.forEach(q => {
+        maxPossibleMarks += q.marks !== undefined ? q.marks : (q.is_open_text ? 0 : 1.0);
+    });
+    
+    // Scale to 20
+    let finalScore = maxPossibleMarks > 0 ? (totalMarks / maxPossibleMarks) * 20 : 0;
+    document.getElementById('final-score').textContent = finalScore.toFixed(2);
     document.getElementById('score-details').innerHTML = `Final evaluation recorded.`;
     document.getElementById('evaluation-modal').classList.remove('hidden');
 }
