@@ -4,95 +4,346 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNV Exam Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        .hub-container {
-            max-width: 800px;
-            margin: 4rem auto;
-            padding: 2rem;
+        :root {
+            --bg-dark: #070913;
+            --bg-gradient: radial-gradient(circle at top right, #111a3a 0%, #070913 60%);
+            --card-bg: rgba(20, 25, 45, 0.4);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-hover-border: rgba(56, 189, 248, 0.5);
+            --text-main: #f8fafc;
+            --text-light: #94a3b8;
+            --neon-blue: #38bdf8;
+            --neon-purple: #c084fc;
+            --gradient-text: linear-gradient(135deg, #38bdf8 0%, #c084fc 100%);
         }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-dark);
+            background-image: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Abstract glowing orbs in background */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+        body::before {
+            top: -100px;
+            left: -100px;
+            background: var(--neon-blue);
+        }
+        body::after {
+            bottom: -100px;
+            right: -100px;
+            background: var(--neon-purple);
+        }
+
+        .hub-container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            z-index: 1;
+            animation: fadeIn 0.8s ease-out;
+        }
+
         .hub-title {
             text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 3rem;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.3));
         }
+        
+        .hub-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            font-weight: 400;
+        }
+
         .exam-list {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
+
         .exam-card {
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
             text-decoration: none;
             color: var(--text-main);
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
         }
+
+        .exam-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
         .exam-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            border-color: var(--primary);
+            transform: translateY(-5px);
+            border-color: var(--card-hover-border);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.15);
         }
+
+        .exam-info {
+            z-index: 1;
+            position: relative;
+        }
+
+        .icon-container {
+            width: 48px;
+            height: 48px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .icon-container svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--neon-blue);
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
         .exam-info h2 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.3;
         }
-        .exam-info p {
+
+        .exam-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
             color: var(--text-light);
             font-size: 0.9rem;
+            font-weight: 500;
         }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .meta-item svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.7;
+        }
+
+        .exam-footer {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+            position: relative;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .start-text {
+            color: var(--neon-blue);
+            font-weight: 600;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .exam-card:hover .start-text {
+            opacity: 1;
+        }
+
         .exam-arrow {
-            color: var(--primary);
-            font-size: 1.5rem;
-            font-weight: bold;
+            color: var(--text-main);
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
+
+        .exam-card:hover .exam-arrow {
+            background: var(--neon-blue);
+            color: #000;
+            transform: translateX(4px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Delay card animations slightly */
+        .exam-card:nth-child(1) { animation: fadeIn 0.6s ease-out 0.1s backwards; }
+        .exam-card:nth-child(2) { animation: fadeIn 0.6s ease-out 0.2s backwards; }
+        .exam-card:nth-child(3) { animation: fadeIn 0.6s ease-out 0.3s backwards; }
+        .exam-card:nth-child(4) { animation: fadeIn 0.6s ease-out 0.4s backwards; }
+
     </style>
 </head>
 <body>
     <div class="hub-container">
         <h1 class="hub-title">CNV Exam Hub</h1>
+        <p class="hub-subtitle">Select a module below to begin your evaluation.</p>
         
         <div class="exam-list">
-            <!-- Link to the sample exam. The engine.js reads ?id=sample_exam and loads data/sample_exam.js -->
-            <a href="exam.html?id=sample_exam" class="exam-card">
-                <div class="exam-info">
-                    <h2>25-26 Sample Exam</h2>
-                    <p>80 minutes • 24 questions (estimated)</p>
-                </div>
-                <div class="exam-arrow">&rarr;</div>
-            </a>
             
-            <!-- Newly Added Exam -->
             <a href="exam.html?id=cnv_20_21_exam_1" class="exam-card">
                 <div class="exam-info">
-                    <h2>CNV-20-21 Exam 1</h2>
-                    <p>80 minutes • 24 questions (estimated)</p>
+                    <div class="icon-container">
+                        <svg viewBox="0 0 24 24"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+                    </div>
+                    <h2>CNV 20-21 Exam 1</h2>
+                    <div class="exam-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            80 mins
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            24 Qs
+                        </div>
+                    </div>
                 </div>
-                <div class="exam-arrow">&rarr;</div>
+                <div class="exam-footer">
+                    <span class="start-text">Start Exam</span>
+                    <div class="exam-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </div>
             </a>
-            <!-- Newly Added Exams -->
+
             <a href="exam.html?id=cnv_19_20_exam_1_part_a" class="exam-card">
                 <div class="exam-info">
-                    <h2>CNV-19-20 Exam 1 (Part A)</h2>
-                    <p>40 minutes • 13 questions</p>
+                    <div class="icon-container" style="background: rgba(192, 132, 252, 0.1); border-color: rgba(192, 132, 252, 0.2);">
+                        <svg style="stroke: var(--neon-purple);" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h2>CNV 19-20 Exam 1 (Part A)</h2>
+                    <div class="exam-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            40 mins
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            13 Qs
+                        </div>
+                    </div>
                 </div>
-                <div class="exam-arrow">&rarr;</div>
+                <div class="exam-footer">
+                    <span class="start-text" style="color: var(--neon-purple);">Start Exam</span>
+                    <div class="exam-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </div>
             </a>
+
             <a href="exam.html?id=cnv_19_20_exam_1_part_b" class="exam-card">
                 <div class="exam-info">
-                    <h2>CNV-19-20 Exam 1 (Part B)</h2>
-                    <p>40 minutes • 12 questions</p>
+                    <div class="icon-container" style="background: rgba(192, 132, 252, 0.1); border-color: rgba(192, 132, 252, 0.2);">
+                        <svg style="stroke: var(--neon-purple);" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h2>CNV 19-20 Exam 1 (Part B)</h2>
+                    <div class="exam-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            40 mins
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            12 Qs
+                        </div>
+                    </div>
                 </div>
-                <div class="exam-arrow">&rarr;</div>
+                <div class="exam-footer">
+                    <span class="start-text" style="color: var(--neon-purple);">Start Exam</span>
+                    <div class="exam-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </div>
             </a>
+
+            <a href="exam.html?id=sample_exam" class="exam-card">
+                <div class="exam-info">
+                    <div class="icon-container" style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1);">
+                        <svg style="stroke: #94a3b8;" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    </div>
+                    <h2>25-26 Sample Exam</h2>
+                    <div class="exam-meta">
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            80 mins
+                        </div>
+                        <div class="meta-item">
+                            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            24 Qs
+                        </div>
+                    </div>
+                </div>
+                <div class="exam-footer">
+                    <span class="start-text" style="color: #94a3b8;">Start Exam</span>
+                    <div class="exam-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </div>
+            </a>
+
         </div>
     </div>
 </body>
