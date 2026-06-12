@@ -1,6 +1,7 @@
 // engine.js expects window.examData and window.examConfig to be populated by the dynamically loaded exam data script.
 
 let userAnswers = {}; 
+let flaggedQuestions = {};
 let timerInterval;
 let timeLeft = 0;
 let isSubmitted = false;
@@ -155,7 +156,10 @@ function initExam() {
                 <div class="question-number">Question <strong>${q.number}</strong></div>
                 <div class="state" id="state-${q.number}">${statusText}</div>
                 <div class="grade">Marked out of ${marksPerQ}</div>
-                <div class="flag">&#9873; Flag question</div>
+                <div class="flag" id="flag-${q.number}" onclick="toggleFlag(${q.number})">
+                    <span id="flag-icon-${q.number}" style="color:var(--moodle-blue)">&#9873;</span>
+                    <span id="flag-text-${q.number}">Flag question</span>
+                </div>
             </div>
             <div class="content">
                 ${contentHtml}
@@ -171,18 +175,26 @@ function saveState() {
     const urlParams = new URLSearchParams(window.location.search);
     const examId = urlParams.get('id');
     localStorage.setItem(`exam_${examId}_answers`, JSON.stringify(userAnswers));
+    localStorage.setItem(`exam_${examId}_flags`, JSON.stringify(flaggedQuestions));
 }
 
 function restoreState() {
     const urlParams = new URLSearchParams(window.location.search);
     const examId = urlParams.get('id');
-    const saved = localStorage.getItem(`exam_${examId}_answers`);
-    if (saved) {
+    const savedAns = localStorage.getItem(`exam_${examId}_answers`);
+    if (savedAns) {
         try {
-            const parsed = JSON.parse(saved);
+            const parsed = JSON.parse(savedAns);
             for (let qNum in parsed) {
                 userAnswers[qNum] = parsed[qNum];
             }
+        } catch(e){}
+    }
+    
+    const savedFlags = localStorage.getItem(`exam_${examId}_flags`);
+    if (savedFlags) {
+        try {
+            flaggedQuestions = JSON.parse(savedFlags);
         } catch(e){}
     }
 
@@ -216,11 +228,39 @@ function restoreState() {
         }
 
         if (hasAnswer && navBtn) navBtn.classList.add('answered');
+        
+        updateFlagUI(q.number);
     });
 
     const isCompleted = localStorage.getItem(`exam_${examId}_completed`) === 'true';
     if (isCompleted) {
         submitExam(true);
+    }
+}
+
+window.toggleFlag = function(qNumber) {
+    if (isSubmitted && !isSelfGradingPhase) return;
+    flaggedQuestions[qNumber] = !flaggedQuestions[qNumber];
+    saveState();
+    updateFlagUI(qNumber);
+};
+
+function updateFlagUI(qNumber) {
+    const isFlagged = flaggedQuestions[qNumber];
+    const icon = document.getElementById(`flag-icon-${qNumber}`);
+    const text = document.getElementById(`flag-text-${qNumber}`);
+    const navBtn = document.getElementById(`nav-${qNumber}`);
+    
+    if (!icon || !text || !navBtn) return;
+    
+    if (isFlagged) {
+        icon.style.color = 'var(--danger)';
+        text.textContent = 'Remove flag';
+        navBtn.classList.add('flagged');
+    } else {
+        icon.style.color = 'var(--moodle-blue)';
+        text.textContent = 'Flag question';
+        navBtn.classList.remove('flagged');
     }
 }
 
