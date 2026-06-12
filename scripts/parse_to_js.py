@@ -340,13 +340,15 @@ if __name__ == '__main__':
     else:
         questions = parse_markdown(content, input_file)
 
-    js_content = f"""window.examConfig = {{
+    # Export JS
+    time_limit = 40 if "part" in exam_title.lower() else 80
+    output_js = f"""window.examConfig = {{
     title: "{exam_title}",
-    timeLimit: 80
+    timeLimit: {time_limit}
 }};
 
 window.examData = {json.dumps(questions, indent=2)};
 """
     with open(output_file, 'w', encoding='utf-8') as f:
-        f.write(js_content)
+        f.write(output_js)
     print(f"Created {output_file}")

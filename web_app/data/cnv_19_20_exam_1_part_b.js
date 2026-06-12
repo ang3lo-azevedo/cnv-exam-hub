@@ -1,6 +1,6 @@
 window.examConfig = {
     title: "◄ CNV-19-20-Exam-1-Part-B (hidden)",
-    timeLimit: 80
+    timeLimit: 40
 };
 
 window.examData = [
