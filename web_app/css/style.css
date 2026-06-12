@@ -227,6 +227,16 @@ body {
     line-height: 1.4;
 }
 
+.open-text-area-q1 {
+    width: 100%;
+    height: 250px;
+    background-color: #ffffff;
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+}
+
 .open-text-area {
     width: 100%;
     height: 200px;
