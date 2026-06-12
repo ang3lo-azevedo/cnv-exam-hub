@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Exam...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <h1 id="exam-title">Loading Exam...</h1>
+        </div>
+        <div class="timer-container">
+            Time left: <span id="timer">00:00</span>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <h3>Exam Navigation</h3>
+            <div id="nav-grid" class="nav-grid">
+                <!-- Navigation buttons will be injected here -->
+            </div>
+            <button id="submit-btn" class="submit-btn">Finish attempt ...</button>
+            <br><br>
+            <a href="index.html" style="text-decoration:none; color:var(--text-light); font-size: 0.9rem;">&larr; Back to Hub</a>
+        </aside>
+
+        <main class="content" id="questions-container">
+            <!-- Questions will be injected here -->
+        </main>
+    </div>
+
+    <!-- Evaluation Modal -->
+    <div id="evaluation-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Exam Evaluation</h2>
+            <div class="score-display">
+                <span id="final-score" class="score-number">0</span> / 20
+            </div>
+            <div class="score-details" id="score-details">
+                <!-- Details injected here -->
+            </div>
+            <button id="close-modal-btn" class="submit-btn">Review Answers</button>
+        </div>
+    </div>
+
+    <script src="js/engine.js"></script>
+</body>
+</html>

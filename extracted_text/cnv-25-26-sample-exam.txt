@@ -1,0 +1,414 @@
+# CNV-25-26 Sample Exam
+
+---
+
+## Question 1 — Identification and Rules
+
+Please fill in your identification in the draft sheet you were provided. Return it at the end of the exam after completely closing your submission.
+
+In the draft sheet and in this question you must insert your exam code given to you by the person watching the exam. You exam is not valid without the exam code.
+
+The exam is without consultation (no other windows or apps beside the one where the exam is being done). Otherwise, exam is annulled.
+
+The exam has a time limit of 80 minutes. You can only leave after submitting your exam and only after 45 minutes. We take the best grade of the two exams.
+
+There will be no further information about the exam questions (*dúvidas acerca do enunciado*) provided during the exam, besides the question text itself.
+
+Answer the questions given the context in the question.
+
+There are 24 actual questions in total in the exam, all graded with the same weight except the Map-Reduce problem that has a weight twice a normal (all others) question (1 mark -> 0.8 in 1-20 scale).
+
+E.g. for a final grade of 8/20 ("valores") you need to sum up 10 marks, for a final grade of 15/20 ("valores") you need to sum up 18.75 marks. For a grade of 20/20 ("valores"), you need to sum up the 25 complete marks.
+
+*(Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments).*
+
+Good work.
+
+LV.
+
+**Note:**
+- Questions are presented in randomized order. Make sure you visit all of them. They cover different difficulty levels.
+- In all questions where a wrong choice may lead to penalty there is an option, e.g. *"No response (no penalty if only option answered)"*.
+- When you must select only one option, an incorrect choice leads to a penalty (1/number-of-incorrect-or-not-fully-correct-choices), e.g., ~33% in question with 4 options.
+- In questions where you can select multiple options, the correct and incorrect options are graded in a way that selecting all of them leads to zero score, there is never a penalty (in the special case of 1 right and 1 wrong selected, I will manually assign half the score of one correct option).
+
+---
+
+## Question 2
+
+In the context of Cloud Computing, identify the available deployment models for a cloud.
+
+*(select all the correct options)*
+
+- a. Public cloud.
+- b. Software cloud.
+- c. Hybrid cloud.
+- d. Physical cloud.
+
+**Correct answers: Public cloud., Hybrid cloud.**
+
+---
+
+## Question 3
+
+In the context of binary translation, during emulation, the Emulation Manager (EM) performs look-ups using a Map Table to determine what code to emulate or execute next.
+
+Identify the values that are involved in this look-up.
+
+*(select all the correct options)*
+
+- a. Source Program Counter (SPC).
+- b. Target Program Counter (TPC).
+- c. Stack Pointer.
+- d. Register context block.
+
+**Correct answers: Source Program Counter (SPC)., Target Program Counter (TPC).**
+
+---
+
+## Question 4
+
+In processor virtualization (System VMs), Theorem 1 addresses ( \_\_\_\_ ) VMM construction.
+
+From that theorem we can conclude the following:
+
+- the set of privileged instructions for that computer needs to be \_\_\_\_ the set of sensitive instructions.
+- there can be any number of \_\_\_\_ instructions.
+- there must not be any \_\_\_\_ instructions.
+
+*(no penalty for wrong answers)*
+
+**Correct answer:**
+In processor virtualization (System VMs), Theorem 1 addresses ([efficient]) VMM construction.
+- the set of privileged instructions for that computer needs to be [equal to or a superset of] the set of sensitive instructions.
+- there can be any number of [innocuous] instructions.
+- there must not be any [critical] instructions.
+
+---
+
+## Question 5
+
+What mappings of page addresses are employed in Memory Virtualization carried out by system VMs?
+
+*(select all the correct options)*
+
+- a. guest addresses to virtual addresses.
+- b. virtual addresses to real addresses.
+- c. real addresses to physical addresses.
+- d. physical addresses to OS addresses.
+
+**Correct answers: virtual addresses to real addresses., real addresses to physical addresses.**
+
+---
+
+## Question 6
+
+When deploying instances in Amazon Web Services (AWS), the user can make selections based on geographical and fault-tolerance criteria.
+
+What are they?
+
+*(select the option that best fits the question)*
+
+- a. No response (no penalty if only option answered).
+- b. Types and Availability Zones.
+- c. Regions and Availability Zones.
+- d. Domains and Regions.
+- e. Areas and Locations.
+
+**Correct answer: Regions and Availability Zones.**
+
+---
+
+## Question 7
+
+When deploying workloads in the cloud, there is a sharing of responsibilities between the user and the cloud service provider (CSP), in the context of a service-level agreement (SLA).
+
+What is the correct assessment, when a given problem arises, considering the sharing of responsibilities is used to determine who (user, CSP) should correct the situation?
+
+*(select the option that best fits the question)*
+
+- a. In IaaS and PaaS, when there is a security problem in application code, the CSP is responsible for correcting the situation.
+- b. In IaaS and PaaS, when there is a hardware failure, the CSP is responsible for correcting the situation.
+- c. In PaaS and FaaS, when there is a problem with the execution environment, the user is responsible for correcting the situation.
+- d. No response (no penalty if only option answered).
+- e. In IaaS and SaaS, when there is a large scale bug in application software, the CSP is responsible for correcting the situation.
+
+**Correct answer: In IaaS and PaaS, when there is a hardware failure, the CSP is responsible for correcting the situation.**
+
+---
+
+## Question 8
+
+Nova Scheduler is the component in OpenStack that is responsible for launching instances (virtual servers) and deciding in what physical machines (hosts, nodes) they should be launched.
+
+The built-in scheduler is the Filter Scheduler. It is parametrizable and operates in phases: i) gathering state of all compute nodes; ii) finding suitable hosts; iii) choosing the best nodes.
+
+Consider a scenario where the developer wants to launch a VM instance that requires:
+- 4 VCPUs and
+- 4 GB of memory
+
+Furthermore, he/she wants to:
+- employ a balancing policy (i.e. attempt at making the new VM instance to run on one of the least loaded nodes, so as to balance the load overall).
+- give priority to free memory over available CPU when selecting hosts.
+
+How can the custom filters and weights of this algorithm be parametrized/configured in order to achieve these goals?
+
+*(select the option that best fits the question)*
+
+- a. Use filters (vcpus_total >= 4; free_ram_mb >= 4096), use weights (RAMWeigher = 2; CPUWeigher= 1).
+- b. Use filters (vcpus_total >= 4; free_ram_mb >= 4096), use weights (RAMWeigher = 1; CPUWeigher= -2).
+- c. Use filters (vcpus_total >= 4; free_ram_mb >= 8192), use weights (RAMWeigher = 1; CPUWeigher= 1).
+- d. No response (no penalty).
+- e. Use filters (vcpus_total >= 4; free_ram_mb >= 4096), use weights (RAMWeigher = -2; CPUWeigher= -1).
+
+**Correct answer: Use filters (vcpus_total >= 4; free_ram_mb >= 4096), use weights (RAMWeigher = 2; CPUWeigher= 1).**
+
+---
+
+## Question 9
+
+The interaction of AWS instances with other AWS instances and with the outside world needs to be monitored and allowed only when that is intended by the application developers/administrators.
+
+How is this carried out in AWS?
+
+*(select all the correct options)*
+
+- a. DNS can be set up to enforce access control to AWS instances.
+- b. Developers/administrators can use IP rules to specify protocol and destination port of accepted traffic.
+- c. Security groups are paid per rule.
+- d. Security groups can be added to or removed from each AWS instance.
+
+**Correct answers: Security groups can be added to or removed from each AWS instance., Developers/administrators can use IP rules to specify protocol and destination port of accepted traffic.**
+
+---
+
+## Question 10
+
+What sequence of byte-code could illustrate the invocation of an instance method (receiving two integer arguments) on the current object's context?
+
+*(select the option that best fits the question)*
+
+- a. iload_1 / iload_2 / aload_0 / invokevirtual #4
+- b. No response (no penalty if only option answered).
+- c. iload_1 / iload_2 / invokevirtual #1
+- d. aload_0 / dup / iload_2 / iload_1 / invokespecial #7
+- e. aload_0 / ldc #3 / iload_1 / invokevirtual #1
+
+**Correct answer:**
+aload_0
+ldc #3
+iload_1
+invokevirtual #1
+
+---
+
+## Question 11
+
+Consider the typical deployment of the algorithm Generational GC in how it organizes the heap, how it identifies and preserves reachable (live) objects, and detects and reclaims garbage objects to free up memory for the application.
+
+What are the key specific feature(s) of this GC algorithm when compared to other algorithms?
+
+*(select the option that best fits the question)*
+
+- a. It divides the heap in two zones and never performs multiple passes in most of the heap space.
+- b. It carries out garbage collection with an average longer collection time.
+- c. It divides the heap in two zones and wastes half of memory in one of these zones.
+- d. It employs a copying GC in the mature space to handle long-lived objects and to prevent fragmentation.
+- e. No response (no penalty if only option answered).
+
+**Correct answer: It divides the heap in two zones and wastes half of memory in one of these zones.**
+*(partial correct: option a — although less frequent, compaction of the tenured space, which occupies most of the heap space, must be carried out when there is no free memory)*
+
+---
+
+## Question 14
+
+When deploying an application on the Google App Engine (GAE) PaaS, how does the GAE achieve scalability, i.e. by adhering to what specific behavior?
+
+*(select the option that best fits the question)*
+
+- a. Web apps are permanently kept in memory.
+- b. No response (no penalty if only option answered).
+- c. Requests are sent to the servers where the application is already running.
+- d. Internal application data is managed using a LRU (least recently used) policy.
+- e. Application state in static variables is automatically managed.
+
+**Correct answer: Requests are sent to the servers where the application is already running.**
+*(partial correct: option a — kept in memory but, not permanently)*
+
+---
+
+## Question 15
+
+Function-as-a-Service (FaaS) aims to improve on the delivery model provided by Infrastructure-as-a-Service (IaaS).
+
+One such example is AWS Lambda that follows a specific pricing model.
+
+Identify the specific aspects that are considered when charging the user for the actual resource utilization of a function over a given period of time, when compared to AWS EC2.
+
+*(select all the correct options)*
+
+- a. Hard disk sized reserved for the function.
+- b. Total Input/Output bandwidth consumed by the function.
+- c. Memory reserved for the function.
+- d. Number of function invocations.
+
+**Correct answers: Number of function invocations., Memory reserved for the function.**
+
+---
+
+## Question 16
+
+Function-as-a-Service (FaaS) brings to programmers significant advantages.
+
+Nonetheless, cold starts resulting from VM/container and runtime startup introduce significant latency penalties in short invocations.
+
+What approaches can the providers implement to address cold starts and make them less frequent?
+
+*(select all the correct options)*
+
+- a. Functions could reuse already started execution environments.
+- b. Providers could execute concurrently several lambdas in the same runtime.
+- c. Functions execution could be triggered based on events triggered or new or updated data.
+- d. Functions could be compiled and initialized ahead of time.
+
+**Correct answers: Functions could reuse already started execution environments., Functions could be compiled and initialized ahead of time., Providers could execute concurrently several lambdas in the same runtime.**
+
+---
+
+## Question 17
+
+The architecture of the Google File System/Hadoop File System (GFS/HDFS) is tuned/optimized for specific operation scenarios.
+
+From the following, what is the type of operation that GFS/HDFS was specially designed to support?
+
+*(select the option that best fits the question)*
+
+- a. Sequential overwrite access to very large files.
+- b. No response (no penalty if only option answered).
+- c. Random/direct read access to very large files.
+- d. Sequential read access to very large files.
+- e. Random/direct read access to small files.
+
+**Correct answer: Sequential read access to very large files.**
+*(partial correct: option a — not overwrite, creation of new files or appending existing files)*
+
+---
+
+## Question 18
+
+In BigTable, the master is a single process that performs top-level coordination for the entire cluster.
+
+Although this may potentially incur in a bottleneck, BigTable frees the master from substantial coordination effort because of an important design decision.
+
+Which one is the most relevant?
+
+*(select the option that best fits the question)*
+
+- a. BigTable uses metadata tablets to organize partitioning.
+- b. No response (no penalty if only option answered).
+- c. BigTable allows sequential scanning of entities (rows) based on key-prefixes.
+- d. BigTable performs compaction of memtables into SSTables to reduce log and memory occupation.
+- e. In BigTable, tablet servers keep written data in a temporary memory table.
+
+**Correct answer: BigTable uses metadata tablets to organize partitioning.**
+
+---
+
+## Question 19
+
+Considering the cloud storage Dynamo from Amazon, identify a specific key design decision, adopted by Dynamo creators.
+
+*(select the option that best fits the question)*
+
+- a. Membership information is managed using Merkle trees.
+- b. No response (no penalty if only option answered).
+- c. Availability is ensured using vector-clocks with sizes adapted to update rates.
+- d. Permanent faults are handled asynchronously with anti-entropy.
+- e. Partitioning of data is decided using relaxed quorums for eventual consistency.
+
+**Correct answer: Permanent faults are handled asynchronously with anti-entropy.**
+
+---
+
+## Question 20
+
+In the context of a MapReduce deployment in Hadoop, what is the default size of a *split* (the unit of input data given to a Mapper process)?
+
+*(select the option that best fits the question)*
+
+- a. Size of HDFS blocks.
+- b. Total input size divided by number of workers.
+- c. Size of local file system blocks.
+- d. Average size of files in the input.
+- e. No response (no penalty if only option answered).
+
+**Correct answer: Size of HDFS blocks.**
+
+---
+
+## Question 21
+
+During the execution of a MapReduce job, what stage/phase performs sorting before providing results to following stages/phases?
+
+*(select the option that best fits the question)*
+
+- a. Shuffling.
+- b. Splitting.
+- c. Map.
+- d. Reduce.
+- e. No response (no penalty).
+
+**Correct answer: Shuffling.**
+
+---
+
+## Question 23
+
+When comparing Spark against MapReduce, identify Spark's features that are specifically advantageous when compared to MapReduce?
+
+*(select all the correct options)*
+
+- a. Spark allows processing large amounts of input, while Map Reduce does not.
+- b. Spark has special support for the reuse (e.g., iterative, interactive) of working sets, while Map Reduce does not.
+- c. Spark provides automatic fault-tolerance, while Map Reduce does not.
+- d. Spark allows in-memory processing, while Map Reduce does not.
+
+**Correct answers: Spark has special support for the reuse (e.g., iterative, interactive) of working sets, while Map Reduce does not., Spark allows in-memory processing, while Map Reduce does not.**
+
+---
+
+## Question 24
+
+Consider a stream processing scenario where messages published in a forum (e.g. tweets, posts) are continuously monitored in order to detect the topics that are trending (e.g., Top-100 ranking of references in messages), considering the number of times they are referenced across messages over time.
+
+Analyze how the window and event handling of Flink and Spark Streaming may contribute to detect the potentially trending topics in a timely manner (so that users may be advised quickly of a potential emerging trending topic, and increase their chances of publishing a message on it as soon as it starts trending).
+
+How could developers detect potentially trending topics in a timely manner as they emerge?
+
+*(select all the correct options)*
+
+- a. Spark Streaming can be set up to manage a sliding window with 200 seconds of length and 5 second of sliding interval.
+- b. Flink can be set up to manage a sliding window of 200 seconds of length and 1 second of sliding interval, and that is event-time based, i.e., to take into account the exact time each message was published.
+- c. Flink can be set up to manage a sliding window with 25 seconds of length and 1 second of sliding interval.
+- d. Spark Streaming can be set up to manage a tumbling window of 10 seconds of length.
+
+**Correct answers: Spark Streaming can be set up to manage a tumbling window of 10 seconds of length., Flink can be set up to manage a sliding window with 25 seconds of length and 1 second of sliding interval.**
+
+---
+
+## Question 25
+
+In a cloud data center facility the total energy consumption is 2400 kW and the energy delivered to computing equipment is 1200 kW.
+
+What is the PUE (power usage effectiveness) of this facility?
+
+*(select the option that best fits the question)*
+
+- a. 24.0
+- b. No response (no penalty if only option answered).
+- c. 2.00
+- d. 1.20
+- e. 0.20
+
+**Correct answer: 2.00**

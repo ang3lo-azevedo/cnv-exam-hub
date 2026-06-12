@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNV Exam Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .hub-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+        .hub-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+        .exam-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        .exam-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exam-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+        .exam-info h2 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .exam-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        .exam-arrow {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="hub-container">
+        <h1 class="hub-title">CNV Exam Hub</h1>
+        
+        <div class="exam-list">
+            <!-- Link to the sample exam. The engine.js reads ?id=sample_exam and loads data/sample_exam.js -->
+            <a href="exam.html?id=sample_exam" class="exam-card">
+                <div class="exam-info">
+                    <h2>25-26 Sample Exam</h2>
+                    <p>80 minutes • 24 questions (estimated)</p>
+                </div>
+                <div class="exam-arrow">&rarr;</div>
+            </a>
+            
+            <!-- Newly Added Exam -->
+            <a href="exam.html?id=cnv_20_21_exam_1" class="exam-card">
+                <div class="exam-info">
+                    <h2>CNV-20-21 Exam 1</h2>
+                    <p>80 minutes • 24 questions (estimated)</p>
+                </div>
+                <div class="exam-arrow">&rarr;</div>
+            </a>
+            
+            <a href="#" class="exam-card" style="opacity: 0.6; pointer-events: none;">
+                <div class="exam-info">
+                    <h2>Exame Tipo 2020/2021 (Coming Soon)</h2>
+                    <p>To be parsed</p>
+                </div>
+                <div class="exam-arrow">&rarr;</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
