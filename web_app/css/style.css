@@ -138,52 +138,73 @@ body {
 }
 
 .info {
-    width: 110px;
+    width: 140px;
     flex-shrink: 0;
-    background-color: var(--moodle-gray);
-    border: 1px solid var(--moodle-border);
-    padding: 10px;
-    font-size: 0.8rem;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 15px;
+    font-size: 0.85rem;
     color: #495057;
 }
 
-.info .question-number {
-    font-size: 0.9rem;
+.info h3.question-number {
+    font-size: 1rem;
     font-weight: normal;
-    color: var(--moodle-dark-blue);
-    margin-bottom: 5px;
+    color: var(--moodle-text);
+    margin-bottom: 12px;
 }
 
-.info .question-number strong {
-    font-size: 1.1rem;
+.info h3.question-number strong {
+    font-size: 1.4rem;
 }
 
 .info .state {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .info .grade {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .info .flag {
     color: var(--moodle-blue);
     cursor: pointer;
+    margin-top: 15px;
+}
+
+.version-badge-container {
+    margin-bottom: 10px;
+}
+
+.version-badge {
+    background-color: var(--moodle-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
 }
 
 .content {
     flex: 1;
-    background-color: var(--moodle-light-blue);
-    border: 1px solid var(--moodle-light-blue-border);
-    border-radius: 6px;
-    padding: 20px;
+    background-color: #eaf1f4;
+    border-radius: 8px;
+    padding: 20px 25px;
 }
 
 .formulation {
     font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
     white-space: pre-wrap;
+    color: #212529;
+}
+
+.select-prompt {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    color: #212529;
 }
 
 .answer {
@@ -192,12 +213,14 @@ body {
 
 .option-row {
     display: flex;
-    align-items: baseline;
-    margin-bottom: 8px;
+    align-items: flex-start;
+    margin-bottom: 12px;
 }
 
 .option-row input {
-    margin-right: 10px;
+    margin-top: 4px;
+    margin-right: 12px;
+    transform: scale(1.1);
 }
 
 .option-label {

@@ -93,13 +93,14 @@ function initExam() {
         let statusText = isSubmitted ? 'Reviewed' : 'Not yet answered';
         const qMarks = q.marks !== undefined ? q.marks : (q.is_open_text ? 0 : 1.0);
         const marksText = q.marks_text || (q.is_open_text ? 'Not graded' : `Marked out of ${qMarks.toFixed(2)}`);
-        const versionHtml = q.version ? `<div style="margin-bottom: 10px;">${q.version} (latest)</div>` : '';
+        const versionHtml = q.version ? `<div class="version-badge-container"><span class="version-badge">${q.version} (latest)</span></div>` : '';
         
         let contentHtml = '';
+        let formattedText = q.text.replace(/<strong>\((.*?)\)<\/strong>/g, '<strong><em>($1)</em></strong>');
 
         if (q.is_open_text) {
             contentHtml = `
-                <div class="formulation">${q.text}</div>
+                <div class="formulation">${formattedText}</div>
                 <div class="answer">
                     <textarea class="open-text-area" id="text-${q.number}" placeholder="Enter your answer here..." oninput="handleOpenText(${q.number}, this.value)"></textarea>
                 </div>
@@ -111,7 +112,7 @@ function initExam() {
                 </div>
             `;
         } else if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
-            let htmlText = q.text;
+            let htmlText = formattedText;
             let blankIndex = 0;
             let allOptions = [...new Set([...q.fill_in_blanks, ...(q.distractors || [])])].sort();
             let selectOptionsHtml = `<option value="">-- Select --</option>`;
@@ -135,30 +136,27 @@ function initExam() {
         } else {
             const isMulti = q.is_multi;
             const inputType = isMulti ? 'checkbox' : 'radio';
-            let optionsHtml = q.options.map(opt => `
-                <label class="option-row" id="row-${q.number}-${opt.id}">
-                    <input type="${inputType}" name="q-${q.number}" value="${opt.id}" onchange="handleSelection(${q.number}, '${opt.id}', ${isMulti})">
-                    <div class="option-label"><strong>${opt.id}.</strong> ${opt.text}</div>
-                </label>
-            `).join('');
-
+            const selectPrompt = isMulti ? 'Select one or more:' : 'Select one:';
+            
             contentHtml = `
-                <div class="formulation">${q.text}</div>
+                <div class="formulation">${formattedText}</div>
+                <div class="select-prompt">${selectPrompt}</div>
                 <div class="answer">
-                    ${optionsHtml}
-                </div>
-                <div class="explanation-box" id="exp-${q.number}" style="display:none; margin-top: 15px; padding: 10px; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 4px;">
-                    <strong>Correct Answer(s):</strong> ${q.explanation || q.correct_ids.join(', ')}
-                    ${q.note ? `<br><br><strong>Note:</strong> ${q.note}` : ''}
+                    ${q.options.map(opt => `
+                        <label class="option-row" id="row-${q.number}-${opt.id}">
+                            <input type="${inputType}" name="q-${q.number}" value="${opt.id}" onchange="handleSelection(${q.number}, '${opt.id}', ${isMulti})">
+                            <div class="option-label"><strong>${opt.id}.</strong> ${opt.text}</div>
+                        </label>
+                    `).join('')}
                 </div>
             `;
         }
 
         card.innerHTML = `
-            <div class="info" style="background-color: var(--moodle-gray); border: 1px solid var(--moodle-border); padding: 15px; border-radius: 4px; width: 150px; flex-shrink: 0;">
-                <h3 style="color: var(--moodle-text); margin-top: 0; font-size: 1.1rem; font-weight: normal;">Question <strong style="font-size: 1.25rem;">${q.number}</strong></h3>
-                <div id="state-${q.number}" style="margin-bottom: 10px;">${statusText}</div>
-                <div style="margin-bottom: 10px;">${marksText}</div>
+            <div class="info">
+                <h3 class="question-number">Question <strong>${q.number}</strong></h3>
+                <div id="state-${q.number}" class="state">${statusText}</div>
+                <div class="grade">${marksText}</div>
                 ${versionHtml}
                 <div class="flag" id="flag-${q.number}" onclick="toggleFlag(${q.number})">
                     <span id="flag-icon-${q.number}" style="color:var(--moodle-blue)">&#9873;</span>
@@ -167,6 +165,11 @@ function initExam() {
             </div>
             <div class="content">
                 ${contentHtml}
+                <div id="exp-${q.number}" class="explanation-box" style="display:none; background-color: #FFFBEB; padding: 15px; border-left: 4px solid #FDE68A; margin-top: 15px;">
+                    <strong>Correct answer:</strong><br>
+                    ${q.explanation || q.correct_ids.join(', ')}
+                    ${q.note ? `<br><br><strong>Note:</strong> ${q.note}` : ''}
+                </div>
             </div>
         `;
         questionsContainer.appendChild(card);
