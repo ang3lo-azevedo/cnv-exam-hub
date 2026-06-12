@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     script.onload = () => {
         if (window.examData && window.examConfig) {
             document.getElementById('exam-title').textContent = window.examConfig.title;
+            const breadcrumb = document.getElementById('breadcrumb-title');
+            if (breadcrumb) breadcrumb.textContent = window.examConfig.title;
             document.title = window.examConfig.title;
             timeLeft = window.examConfig.timeLimit * 60;
             initExam();
@@ -137,7 +139,7 @@ function initExam() {
 
         card.innerHTML = `
             <div class="info">
-                <div class="question-number">Question ${q.number}</div>
+                <div class="question-number">Question <strong>${q.number}</strong></div>
                 <div class="state" id="state-${q.number}">${statusText}</div>
                 <div class="grade">Marked out of ${marksPerQ}</div>
                 <div class="flag">&#9873; Flag question</div>

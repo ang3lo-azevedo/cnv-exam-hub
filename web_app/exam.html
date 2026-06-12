@@ -8,28 +8,31 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="navbar">
-        <div class="logo">
-            <h1 id="exam-title">Loading Exam...</h1>
-        </div>
-        <div class="timer-container">
-            Time left: <span id="timer">00:00</span>
-        </div>
-    </header>
-
     <div class="layout">
-        <main class="main-content" id="questions-container">
-            <!-- Questions will be injected here -->
+        <main class="main-content">
+            <div class="breadcrumbs" style="color:var(--moodle-blue); margin-bottom: 15px; font-size: 0.9rem;">
+                CNV Hub / Exam / <span id="breadcrumb-title"></span>
+            </div>
+            <div style="display:flex; align-items:center; gap: 10px; margin-bottom: 20px;">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#e01a76" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 11l3 3L22 4"></path>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+                <h1 id="exam-title" style="color:var(--moodle-dark-blue); font-size: 1.8rem; font-weight: 600;">Loading...</h1>
+            </div>
+            <button class="back-btn" onclick="window.location.href='index.html'">Back</button>
+
+            <div id="questions-container">
+                <!-- Questions will be injected here -->
+            </div>
         </main>
 
         <aside class="sidebar">
-            <h3>Quiz navigation</h3>
+            <h3 style="color:var(--moodle-dark-blue); font-size:1.1rem; font-weight:normal;">Quiz navigation</h3>
             <div id="nav-grid" class="nav-grid">
                 <!-- Navigation buttons will be injected here -->
             </div>
-            <button id="submit-btn" class="submit-btn">Finish attempt ...</button>
-            <br><br>
-            <a href="index.html" style="text-decoration:none; color:var(--moodle-blue); font-size: 0.9rem;">&larr; Back to Hub</a>
+            <a href="#" id="submit-btn" style="text-decoration:none; color:var(--moodle-blue); font-size: 0.9rem; margin-top:10px; display:inline-block;">Finish attempt ...</a>
         </aside>
     </div>
 

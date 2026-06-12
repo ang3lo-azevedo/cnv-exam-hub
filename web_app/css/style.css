@@ -1,10 +1,12 @@
 :root {
-    --moodle-body-bg: #f2f2f2;
+    --moodle-body-bg: #ffffff;
     --moodle-gray: #f8f9fa;
-    --moodle-border: #ced4da;
+    --moodle-border: #dee2e6;
     --moodle-text: #212529;
     --moodle-blue: #0f6cbf;
-    --moodle-light-blue: #eef3f5;
+    --moodle-dark-blue: #2a2a5a;
+    --moodle-light-blue: #e8f2f3;
+    --moodle-light-blue-border: #d4e5e8;
     --success: #10B981;
     --danger: #EF4444;
 }
@@ -24,36 +26,13 @@ body {
     min-height: 100vh;
 }
 
-.navbar {
-    background-color: white;
-    border-bottom: 1px solid var(--moodle-border);
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar h1 {
-    font-size: 1.25rem;
-    font-weight: 400;
-}
-
-.timer-container {
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--danger);
-    border: 1px solid var(--danger);
-    padding: 5px 10px;
-    background: #fff;
-}
-
 .layout {
     display: flex;
     flex: 1;
     max-width: 1400px;
     margin: 20px auto;
     width: 100%;
-    gap: 20px;
+    gap: 30px;
     padding: 0 20px;
 }
 
@@ -63,14 +42,12 @@ body {
     padding: 15px;
     border: 1px solid var(--moodle-border);
     align-self: flex-start;
+    border-radius: 6px;
 }
 
 .sidebar h3 {
-    font-size: 1rem;
     margin-bottom: 15px;
-    border-bottom: 1px solid var(--moodle-border);
     padding-bottom: 10px;
-    font-weight: bold;
 }
 
 .nav-grid {
@@ -81,20 +58,19 @@ body {
 }
 
 .nav-item {
-    width: 30px;
-    height: 40px;
+    width: 28px;
+    height: 35px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding-top: 5px;
     background: white;
-    border: 1px solid var(--moodle-border);
-    border-bottom: 15px solid var(--moodle-border);
-    font-size: 0.8rem;
-    font-weight: bold;
+    border: 2px solid var(--moodle-dark-blue);
+    font-size: 0.85rem;
+    font-weight: normal;
     cursor: pointer;
     text-decoration: none;
     color: var(--moodle-text);
+    border-radius: 2px;
 }
 
 .nav-item:hover {
@@ -102,33 +78,38 @@ body {
 }
 
 .nav-item.answered {
-    border-bottom-color: var(--moodle-text);
+    background: #e6e6e6; /* Gray inside */
 }
 
 .nav-item.correct {
-    border-bottom-color: var(--success);
+    background: var(--success);
+    color: white;
 }
 
 .nav-item.incorrect {
-    border-bottom-color: var(--danger);
+    background: var(--danger);
+    color: white;
 }
 
 .nav-item.partial {
-    border-bottom-color: #F59E0B;
+    background: #F59E0B;
+    color: white;
 }
 
-.submit-btn {
-    width: 100%;
-    padding: 8px;
-    background: var(--moodle-gray);
-    color: var(--moodle-text);
-    border: 1px solid var(--moodle-border);
-    font-size: 0.9rem;
+.back-btn {
+    background-color: #ced4da;
+    color: #212529;
+    padding: 6px 15px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    display: inline-block;
 }
 
-.submit-btn:hover {
-    background: #e2e6ea;
+.back-btn:hover {
+    background-color: #adb5bd;
 }
 
 .main-content {
@@ -147,15 +128,19 @@ body {
     background-color: var(--moodle-gray);
     border: 1px solid var(--moodle-border);
     padding: 10px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #495057;
 }
 
 .info .question-number {
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--danger);
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: var(--moodle-dark-blue);
     margin-bottom: 5px;
+}
+
+.info .question-number strong {
+    font-size: 1.1rem;
 }
 
 .info .state {
@@ -174,7 +159,9 @@ body {
 .content {
     flex: 1;
     background-color: var(--moodle-light-blue);
-    padding: 15px;
+    border: 1px solid var(--moodle-light-blue-border);
+    border-radius: 6px;
+    padding: 20px;
 }
 
 .formulation {
