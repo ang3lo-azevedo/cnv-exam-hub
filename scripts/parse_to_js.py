@@ -193,7 +193,10 @@ def parse_moodle(content, input_file):
         # Open text (Solution sketch)
         sol_match = re.search(r'Solution sketch:(.*)', q_body, flags=re.DOTALL)
         if sol_match:
-            solution_sketch = sol_match.group(1).strip()
+            raw_sketch = sol_match.group(1).strip().replace('***', '').strip()
+            if raw_sketch.startswith('**'):
+                raw_sketch = raw_sketch[2:].strip()
+            solution_sketch = raw_sketch
             q_body = q_body[:sol_match.start()]
             is_open_text = True
             
