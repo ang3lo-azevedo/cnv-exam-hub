@@ -95,13 +95,13 @@ function initExam() {
             let htmlText = q.text;
             let blankIndex = 0;
             let allOptions = [...new Set([...q.fill_in_blanks, ...(q.distractors || [])])].sort();
-            let selectOptionsHtml = \`<option value="">-- Select --</option>\`;
+            let selectOptionsHtml = `<option value="">-- Select --</option>`;
             allOptions.forEach(opt => {
-                selectOptionsHtml += \`<option value="\${opt.replace(/"/g, '&quot;')}">\${opt}</option>\`;
+                selectOptionsHtml += `<option value="${opt.replace(/"/g, '&quot;')}">${opt}</option>`;
             });
 
             while(htmlText.includes('\\_\\_\\_\\_')) {
-                let selectElement = \`<select class="blank-input" onchange="handleBlankInput(\${q.number}, \${blankIndex}, this.value)">\${selectOptionsHtml}</select>\`;
+                let selectElement = `<select class="blank-input" onchange="handleBlankInput(${q.number}, ${blankIndex}, this.value)">${selectOptionsHtml}</select>`;
                 htmlText = htmlText.replace('\\_\\_\\_\\_', selectElement);
                 blankIndex++;
             }
