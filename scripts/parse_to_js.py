@@ -179,9 +179,9 @@ def parse_moodle(content, input_file):
         solution_sketch = None
         
         # Check for correct answers
-        correct_match = re.search(r'Your answer is incorrect\.\s*(partial correct:.*?\.\s*(?:\(.*?\))?\s*)?(?:The correct answers? (?:is|are):|The correct answer is:)(.*?)(?=\nQuestion \d+ Not answered|\Z)', q_body, flags=re.DOTALL | re.IGNORECASE)
+        correct_match = re.search(r'Your answer is incorrect\.\s*(.*?)(?:The correct answers? (?:is|are):|The correct answer is:)(.*?)(?=\nQuestion \d+ Not answered|\Z)', q_body, flags=re.DOTALL | re.IGNORECASE)
         if correct_match:
-            note_text = correct_match.group(1).strip() if correct_match.group(1) else None
+            note_text = correct_match.group(1).strip().replace('\n', '<br>') if correct_match.group(1) else None
             correct_text = correct_match.group(2).strip()
             q_body = q_body[:correct_match.start()]
         else:
@@ -209,13 +209,13 @@ def parse_moodle(content, input_file):
                 if current_text:
                     current_text = re.sub(r'(No response \(no penalty.*?\)\.?)', r'<strong>\1</strong>', current_text, flags=re.IGNORECASE)
                     current_text = re.sub(r'(No response \(no penalty.*?\))', r'<strong>\1</strong>', current_text, flags=re.IGNORECASE)
-                    options.append({'id': current_id, 'text': current_text.replace('\n', ' ')})
+                    options.append({'id': current_id, 'text': current_text.replace('\n', '<br>')})
                 current_id = parts[j][0]
                 current_text = parts[j+1].strip()
             if current_text:
                 current_text = re.sub(r'(No response \(no penalty.*?\)\.?)', r'<strong>\1</strong>', current_text, flags=re.IGNORECASE)
                 current_text = re.sub(r'(No response \(no penalty.*?\))', r'<strong>\1</strong>', current_text, flags=re.IGNORECASE)
-                options.append({'id': current_id, 'text': current_text.replace('\n', ' ')})
+                options.append({'id': current_id, 'text': current_text.replace('\n', '<br>')})
                 
         is_multi = 'select all the correct options' in q_body.lower() or 'select one or more' in q_body.lower()
         if q_num == 1:

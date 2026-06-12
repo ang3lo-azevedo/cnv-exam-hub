@@ -95,12 +95,12 @@ window.examData = [
       "critical"
     ],
     "distractors": [
-      "dangerous",
-      "non-critical",
-      "user-level",
+      "virtual",
       "inefficient",
+      "non-critical",
       "equal to or a subset of",
-      "virtual"
+      "user-level",
+      "dangerous"
     ],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00",
@@ -281,7 +281,7 @@ window.examData = [
     "options": [
       {
         "id": "a",
-        "text": "iload_1 iload_2 aload_0 invokevirtual #4"
+        "text": "iload_1<br>iload_2<br>aload_0<br>invokevirtual #4"
       },
       {
         "id": "b",
@@ -289,15 +289,15 @@ window.examData = [
       },
       {
         "id": "c",
-        "text": "iload_1 iload_2 invokevirtual #1"
+        "text": "iload_1<br>iload_2<br>invokevirtual #1"
       },
       {
         "id": "d",
-        "text": "aload_0 dup iload_2 iload_1 invokespecial #7"
+        "text": "aload_0<br>dup<br>iload_2<br>iload_1<br>invokespecial #7"
       },
       {
         "id": "e",
-        "text": "aload_0 ldc #3 iload_1 invokevirtual #1  Your answer is incorrect. partially correct (using relevant byte-codes but in wrong order): iload_1 iload_2 aload_0 invokevirtual #4 --------------------"
+        "text": "aload_0<br>ldc #3<br>iload_1<br>invokevirtual #1"
       }
     ],
     "is_multi": false,
@@ -306,7 +306,8 @@ window.examData = [
     "distractors": [],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00",
-    "version": "v3"
+    "version": "v3",
+    "note": "partially correct (using relevant byte-codes but in wrong order):<br>iload_1<br>iload_2<br>aload_0<br>invokevirtual #4<br>--------------------"
   },
   {
     "number": 11,
@@ -330,7 +331,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>  Your answer is incorrect. partial correct: It divides the heap in two zones and never performs multiple passes in most of the heap space. <strong><em>(although less frequent, compaction of the tenured space, which occupies most of the heap space, must be carried out when there is no free memory).</em></strong>"
+        "text": "<strong><strong><strong>No response (no penalty if only option answered)</strong>.</strong></strong>"
       }
     ],
     "is_multi": false,
@@ -341,7 +342,8 @@ window.examData = [
     "distractors": [],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00",
-    "version": "v3"
+    "version": "v3",
+    "note": "partial correct: It divides the heap in two zones and never performs multiple passes in most of the heap space.<br>*(although less frequent, compaction of the tenured space, which occupies most of the heap space, must be carried out when there is no free memory).*"
   },
   {
     "number": 12,
@@ -359,7 +361,7 @@ window.examData = [
   },
   {
     "number": 13,
-    "text": "In the context of the message life-cycle in Google Pub/Sub, what is the sequence of steps that best reflects what stakes place for all messages?\n<strong><em>(Drag-and-Drop the small sentences to their appropriate place)</em></strong>\n\nAction 1: [ ]\nAction 2: [ ]\nAction 3: [ ]\nAction 4: [ ]\nAction 5: [ ]\n\nYour answer is incorrect.\n1 correct -> 25%\n2 correct -> 50%\n3 correct -> 75%\n5 correct -> 100%\n(it is impossible to have 4 correct and 1 incorrect in this scheme, hence the adjustment).",
+    "text": "In the context of the message life-cycle in Google Pub/Sub, what is the sequence of steps that best reflects what stakes place for all messages?\n<strong><em>(Drag-and-Drop the small sentences to their appropriate place)</em></strong>\n\nAction 1: [ ]\nAction 2: [ ]\nAction 3: [ ]\nAction 4: [ ]\nAction 5: [ ]",
     "options": [],
     "is_multi": false,
     "correct_ids": [],
@@ -373,7 +375,8 @@ window.examData = [
     "distractors": [],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00",
-    "version": "v2"
+    "version": "v2",
+    "note": "1 correct -> 25%<br>2 correct -> 50%<br>3 correct -> 75%<br>5 correct -> 100%<br>(it is impossible to have 4 correct and 1 incorrect in this scheme, hence the adjustment)."
   },
   {
     "number": 14,
@@ -397,7 +400,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "Application state in static variables is automatically managed.  Your answer is incorrect. partial correct: Web apps are permanently kept in memory. <strong><em>(kept in memory but, not not permanently)</em></strong>"
+        "text": "Application state in static variables is automatically managed."
       }
     ],
     "is_multi": false,
@@ -408,7 +411,8 @@ window.examData = [
     "distractors": [],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00",
-    "version": "v4"
+    "version": "v4",
+    "note": "partial correct: Web apps are permanently kept in memory.<br>*(kept in memory but, not not permanently)*"
   },
   {
     "number": 15,
@@ -497,7 +501,7 @@ window.examData = [
       },
       {
         "id": "e",
-        "text": "Random/direct read access to small files.  Your answer is incorrect. partial correct: Sequential overwrite access to very large files. <strong><em>(not overwrite, creation of new files or appending existing files)</em></strong>"
+        "text": "Random/direct read access to small files."
       }
     ],
     "is_multi": false,
@@ -508,7 +512,8 @@ window.examData = [
     "distractors": [],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00",
-    "version": "v5"
+    "version": "v5",
+    "note": "partial correct: Sequential overwrite access to very large files.<br>*(not overwrite, creation of new files or appending existing files)*"
   },
   {
     "number": 18,
