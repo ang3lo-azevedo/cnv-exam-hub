@@ -499,6 +499,37 @@ function submitExam(isAutoRestore = false) {
             else if (score > 0) navBtn.classList.add('partial');
             else navBtn.classList.add('incorrect');
         }
+
+        if (expBox && q.number !== 1) {
+            expBox.style.display = 'block';
+            let isCorrect = navBtn.classList.contains('correct');
+            let isPartial = navBtn.classList.contains('partial');
+            
+            expBox.style.backgroundColor = isCorrect ? '#dff0d8' : (isPartial ? '#fcf8e3' : '#fcefdc');
+            expBox.style.color = isCorrect ? '#3c763d' : '#8a6d3b';
+            
+            let statusPhrase = isCorrect ? 'Your answer is correct.' : (isPartial ? 'Your answer is partially correct.' : 'Your answer is incorrect.');
+            
+            let correctText = '';
+            if (q.is_open_text) {
+                correctText = `The correct answer is: ${q.solution_sketch || ''}`;
+            } else if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
+                correctText = `The correct answers are: ${q.fill_in_blanks.join(', ')}`;
+            } else {
+                let actualTexts = q.correct_ids.map(id => {
+                    let opt = q.options.find(o => o.id === id);
+                    return opt ? opt.text.replace(/<[^>]*>?/gm, '') : id;
+                });
+                let prefix = actualTexts.length > 1 ? 'The correct answers are:' : 'The correct answer is:';
+                correctText = `${prefix} ${actualTexts.join(', ')}`;
+            }
+
+            expBox.innerHTML = `
+                ${statusPhrase}<br><br>
+                ${correctText}
+                ${q.note ? `<br><br><strong>Note:</strong> ${q.note}` : ''}
+            `;
+        }
     });
 
     partialObjectiveMarks = totalMarks;
