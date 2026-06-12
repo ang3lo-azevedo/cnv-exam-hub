@@ -92,6 +92,26 @@ def parse_markdown(content, input_file):
                         distractors.extend(["ResourceGroup", "log", "average", "value", "InstanceID", "dimension"])
                 distractors = list(set(distractors))
 
+        if int(q_num) == 1:
+            lines_to_underline = [
+                "Please fill in your identification in the draft sheet you were provided. Return it at the end of the exam after completely closing your submission.",
+                "In the draft sheet and in this question you must insert your exam code given to you by the person watching the exam. You exam is not valid without the exam code.",
+                "The exam is without consultation (no other windows or apps beside the one where the exam is being done). Otherwise, exam is annulled.",
+                "The exam has a time limit of 80 minutes. You can only leave after submitting your exam and only after 45 minutes. We take the best grade of the two exams.",
+                "There will be no further information about the exam questions (*dúvidas acerca do enunciado*) provided during the exam, besides the question text itself.",
+                "Answer the questions given the context in the question."
+            ]
+            for line in lines_to_underline:
+                # Re-add ** if they were bolded, but wrap the inside in <u>
+                # Actually just doing a plain replace on the text string works.
+                # If the string has ** around it, replace the inner string.
+                q_text = q_text.replace(line, f"<u>{line}</u>")
+            
+            q_text = q_text.replace(
+                "Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments",
+                "<em>Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments</em>"
+            )
+
         q_obj = {
             'number': q_num,
             'text': q_text,
@@ -210,6 +230,23 @@ def parse_moodle(content, input_file):
                     if "autoscalinggroup" in fb.lower():
                         distractors.extend(["ResourceGroup", "log", "average", "value", "InstanceID", "dimension"])
                 distractors = list(set(distractors))
+
+        if int(q_num) == 1:
+            lines_to_underline = [
+                "Please fill in your identification in the draft sheet you were provided. Return it at the end of the exam after completely closing your submission.",
+                "In the draft sheet and in this question you must insert your exam code given to you by the person watching the exam. You exam is not valid without the exam code.",
+                "The exam is without consultation (no other windows or apps beside the one where the exam is being done). Otherwise, exam is annulled.",
+                "The exam has a time limit of 80 minutes. You can only leave after submitting your exam and only after 45 minutes. We take the best grade of the two exams.",
+                "There will be no further information about the exam questions (*dúvidas acerca do enunciado*) provided during the exam, besides the question text itself.",
+                "Answer the questions given the context in the question."
+            ]
+            for line in lines_to_underline:
+                q_text = q_text.replace(line, f"<u>{line}</u>")
+            
+            q_text = q_text.replace(
+                "Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments",
+                "<em>Only if strictly needed, you can also insert here any other notes regarding the answering of some question(s) in the exam clearly identifying them in your comments</em>"
+            )
 
         q_obj = {
             'number': q_num,
