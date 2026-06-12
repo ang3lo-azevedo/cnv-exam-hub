@@ -114,6 +114,9 @@ def parse_markdown(content, input_file):
         
         def convert_md(txt):
             txt = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', txt, flags=re.DOTALL)
+            # Make instructional text (starting with parenthesis) bold and italic
+            txt = re.sub(r'\*(\(.*?\)\.?)\*', r'<strong><em>\1</em></strong>', txt, flags=re.DOTALL)
+            # Convert other markdown italics to just HTML italics
             txt = re.sub(r'\*(.*?)\*', r'<em>\1</em>', txt, flags=re.DOTALL)
             return txt
             
@@ -262,6 +265,9 @@ def parse_moodle(content, input_file):
         
         def convert_md(txt):
             txt = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', txt, flags=re.DOTALL)
+            # Make instructional text (starting with parenthesis) bold and italic
+            txt = re.sub(r'\*(\(.*?\)\.?)\*', r'<strong><em>\1</em></strong>', txt, flags=re.DOTALL)
+            # Convert other markdown italics to just HTML italics
             txt = re.sub(r'\*(.*?)\*', r'<em>\1</em>', txt, flags=re.DOTALL)
             return txt
             
