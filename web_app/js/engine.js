@@ -7,6 +7,41 @@ let timeLeft = 0;
 let isSubmitted = false;
 let isSelfGradingPhase = false;
 let partialObjectiveMarks = 0;
+let currentQuestionIndex = 0;
+
+function showQuestion(index) {
+    const totalQuestions = window.examData.length;
+    if (index < 0 || index >= totalQuestions) return;
+
+    document.querySelectorAll('.que').forEach(q => q.style.display = 'none');
+    
+    const q = window.examData[index];
+    const card = document.getElementById(`q-${q.number}`);
+    if (card) card.style.display = 'flex';
+
+    document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.style.borderWidth = '2px';
+        btn.style.fontWeight = 'normal';
+    });
+    const activeNav = document.getElementById(`nav-${q.number}`);
+    if (activeNav) {
+        activeNav.style.borderWidth = '3px';
+        activeNav.style.fontWeight = 'bold';
+    }
+
+    currentQuestionIndex = index;
+    
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    if (prevBtn) prevBtn.style.visibility = index === 0 ? 'hidden' : 'visible';
+    if (nextBtn) nextBtn.style.visibility = index === totalQuestions - 1 ? 'hidden' : 'visible';
+    
+    window.scrollTo(0, 0);
+}
+
+function prevQuestion() { showQuestion(currentQuestionIndex - 1); }
+function nextQuestion() { showQuestion(currentQuestionIndex + 1); }
 
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -66,7 +101,7 @@ function initExam() {
     const validQuestions = window.examData.filter(q => q.is_open_text || (q.options && q.options.length > 0) || (q.fill_in_blanks && q.fill_in_blanks.length > 0));
     const marksPerQ = (20 / validQuestions.length).toFixed(2);
 
-    window.examData.forEach((q) => {
+    window.examData.forEach((q, idx) => {
         if(!q.is_open_text && (!q.options || q.options.length === 0) && (!q.fill_in_blanks || q.fill_in_blanks.length === 0)) return;
 
         if (q.fill_in_blanks && q.fill_in_blanks.length > 0) {
@@ -79,7 +114,8 @@ function initExam() {
 
         // Nav Item
         const navBtn = document.createElement('a');
-        navBtn.href = `#q-${q.number}`;
+        navBtn.href = '#';
+        navBtn.onclick = (e) => { e.preventDefault(); showQuestion(idx); };
         navBtn.className = 'nav-item';
         navBtn.id = `nav-${q.number}`;
         navBtn.textContent = q.number;
@@ -176,6 +212,7 @@ function initExam() {
     });
 
     restoreState();
+    showQuestion(0);
 }
 
 function saveState() {

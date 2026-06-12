@@ -1,5 +1,3 @@
-Here is the extracted text from the provided PDF screenshots:
-
 ***
 
 **CNV-25-26 Sample Exam**
