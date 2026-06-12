@@ -263,13 +263,20 @@ body {
 }
 
 .solution-sketch {
-    background: white;
+    margin-top: 20px;
     padding: 15px;
+    background-color: #fff3cd;
     border: 1px solid #ffeeba;
+    border-radius: 4px;
     margin-bottom: 15px;
-    white-space: pre-wrap;
-    font-family: monospace;
     font-size: 0.95rem;
+    white-space: pre-wrap;
+}
+
+.solution-sketch strong {
+    color: #856404;
+    display: block;
+    margin-bottom: 10px;
 }
 
 .grade-input {
