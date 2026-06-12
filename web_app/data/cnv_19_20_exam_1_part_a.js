@@ -327,7 +327,7 @@ window.examData = [
   },
   {
     "number": 11,
-    "text": "Considering the following excerpt of Java code:\n```java\nMyObject o = new MyObject();\nSystem.out.println(o.process(\"cde\", \"123\", \"abc\"));\n```\nKnowing that method <em>process</em> declares no variables, what byte-code instruction should be used in the byte-code inside the method in order to access the second argument passed in the method invocation (illustrated in the previous excerpt)?",
+    "text": "Considering the following excerpt of Java code:\n<pre><code>MyObject o = new MyObject();\nSystem.out.println(o.process(\"cde\", \"123\", \"abc\"));</code></pre>\nKnowing that method <em>process</em> declares no variables, what byte-code instruction should be used in the byte-code inside the method in order to access the second argument passed in the method invocation (illustrated in the previous excerpt)?",
     "options": [
       {
         "id": "a",
@@ -395,7 +395,7 @@ window.examData = [
   },
   {
     "number": 13,
-    "text": "Checking array bounds in array accesses must be performed dynamically by the Java VM when executing bytecodes. This is a source of significant overhead as it requires checking array index against array length/size in every access. Check the following excerpt of Java code receiving an array <em>buffer</em> of size/length 1000:\n\n```java\nint calc (int buffer [] ){\n  int total = 0;\n  for (int i=0;i<100;i++) {\n    total += buffer[i];\n  }\n  return total;\n}\n```\n\nConsider that array bound checking optimizations were enabled.\nState how many (an integer number) of these checks the Java VM would be able to avoid/bypass?\n\n<em>(No penalty for wrong answer.)</em>\n\n<strong>Answer:</strong> 100 (no element access inside the loop needs to be checked against array bounds since the array is found to be greater that 100 elements).\n\n\u25c4 CNV-19-20-Exam-1-Part-A (hidden)",
+    "text": "Checking array bounds in array accesses must be performed dynamically by the Java VM when executing bytecodes. This is a source of significant overhead as it requires checking array index against array length/size in every access. Check the following excerpt of Java code receiving an array <em>buffer</em> of size/length 1000:\n\n<pre><code>int calc (int buffer [] ){\n  int total = 0;\n  for (int i=0;i<100;i++) {\n    total += buffer[i];\n  }\n  return total;\n}</code></pre>\n\nConsider that array bound checking optimizations were enabled.\nState how many (an integer number) of these checks the Java VM would be able to avoid/bypass?\n\n<em>(No penalty for wrong answer.)</em>\n\n<strong>Answer:</strong> 100 (no element access inside the loop needs to be checked against array bounds since the array is found to be greater that 100 elements).\n\n\u25c4 CNV-19-20-Exam-1-Part-A (hidden)",
     "options": [],
     "is_multi": false,
     "correct_ids": [],

@@ -258,7 +258,7 @@ window.examData = [
     "distractors": [],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00",
-    "note": "Note:<br>partially correct - It divides the heap in two zones and avoids multiple passes in most of the heap.<br>*(the heap is divided in two zones. most of the heap (~90%) is the mature space and is garbage collected with compacting GC that needs multiple passes over the heap when it compacts the mature space.)*"
+    "note": "Note:<br>partially correct - It divides the heap in two zones and avoids multiple passes in most of the heap.<br><em>(the heap is divided in two zones. most of the heap (~90%) is the mature space and is garbage collected with compacting GC that needs multiple passes over the heap when it compacts the mature space.)</em>"
   },
   {
     "number": 9,
@@ -394,12 +394,12 @@ window.examData = [
       "unit"
     ],
     "distractors": [
-      "dimension",
       "InstanceID",
       "log",
+      "dimension",
       "average",
-      "value",
-      "ResourceGroup"
+      "ResourceGroup",
+      "value"
     ],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00"
@@ -642,7 +642,7 @@ window.examData = [
     "distractors": [],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00",
-    "note": "Note:<br>partially correct - aload_1; iconst_2; iaload <br>*(loads array reference in operand stack and element index but accesses another element - the second element in an array is position 1).*"
+    "note": "Note:<br>partially correct - aload_1; iconst_2; iaload <br><em>(loads array reference in operand stack and element index but accesses another element - the second element in an array is position 1).</em>"
   },
   {
     "number": 22,

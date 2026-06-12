@@ -2,6 +2,15 @@ import sys
 import re
 import json
 
+def convert_md(txt):
+    if not txt: return txt
+    # Code blocks
+    txt = re.sub(r'```(?:[a-zA-Z]*)\n?(.*?)\n?```', r'<pre><code>\1</code></pre>', txt, flags=re.DOTALL)
+    # Bold (no spaces inside the asterisks)
+    txt = re.sub(r'\*\*(?!\s)(.*?)(?<!\s)\*\*', r'<strong>\1</strong>', txt, flags=re.DOTALL)
+    # Convert other markdown italics to just HTML italics (no spaces inside the asterisks)
+    txt = re.sub(r'\*(?!\s)(.*?)(?<!\s)\*', r'<em>\1</em>', txt, flags=re.DOTALL)
+    return txt
 def parse_markdown(content, input_file):
     sections = content.split('---')
     questions = []
@@ -112,13 +121,7 @@ def parse_markdown(content, input_file):
         # Remove *** separators
         q_text = q_text.replace('***', '').strip()
         
-        def convert_md(txt):
-            # Bold (no spaces inside the asterisks)
-            txt = re.sub(r'\*\*(?!\s)(.*?)(?<!\s)\*\*', r'<strong>\1</strong>', txt, flags=re.DOTALL)
-            # Convert other markdown italics to just HTML italics (no spaces inside the asterisks)
-            txt = re.sub(r'\*(?!\s)(.*?)(?<!\s)\*', r'<em>\1</em>', txt, flags=re.DOTALL)
-            return txt
-            
+
         q_text = convert_md(q_text)
         for opt in options:
             opt['text'] = convert_md(opt['text'])
@@ -182,7 +185,10 @@ def parse_moodle(content, input_file):
         # Check for correct answers
         correct_match = re.search(r'Your answer is incorrect\.\s*(.*?)(?:The correct answers? (?:is|are):|The correct answer is:)(.*?)(?=\nQuestion \d+ Not answered|\Z)', q_body, flags=re.DOTALL | re.IGNORECASE)
         if correct_match:
-            note_text = correct_match.group(1).strip().replace('\n', '<br>') if correct_match.group(1) else None
+            raw_note = correct_match.group(1).strip()
+            # Remove the partially correct block ending in dashes
+            raw_note = re.sub(r'partially correct.*?--------------------\s*', '', raw_note, flags=re.IGNORECASE | re.DOTALL).strip()
+            note_text = raw_note if raw_note else None
             correct_text = correct_match.group(2).strip()
             q_body = q_body[:correct_match.start()]
         else:
@@ -279,13 +285,7 @@ def parse_moodle(content, input_file):
         # Remove *** separators
         q_text = q_text.replace('***', '').strip()
         
-        def convert_md(txt):
-            # Bold (no spaces inside the asterisks)
-            txt = re.sub(r'\*\*(?!\s)(.*?)(?<!\s)\*\*', r'<strong>\1</strong>', txt, flags=re.DOTALL)
-            # Convert other markdown italics to just HTML italics (no spaces inside the asterisks)
-            txt = re.sub(r'\*(?!\s)(.*?)(?<!\s)\*', r'<em>\1</em>', txt, flags=re.DOTALL)
-            return txt
-            
+
         q_text = convert_md(q_text)
         for opt in options:
             opt['text'] = convert_md(opt['text'])
@@ -306,7 +306,7 @@ def parse_moodle(content, input_file):
         if version:
             q_obj['version'] = version
         if note_text:
-            q_obj['note'] = note_text
+            q_obj['note'] = convert_md(note_text).replace('\n', '<br>')
         if is_open_text:
             q_obj['is_open_text'] = True
             q_obj['solution_sketch'] = solution_sketch
