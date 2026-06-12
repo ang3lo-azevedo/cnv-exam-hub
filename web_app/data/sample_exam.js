@@ -95,12 +95,12 @@ window.examData = [
       "critical"
     ],
     "distractors": [
-      "virtual",
-      "inefficient",
-      "non-critical",
-      "equal to or a subset of",
       "user-level",
-      "dangerous"
+      "inefficient",
+      "dangerous",
+      "virtual",
+      "equal to or a subset of",
+      "non-critical"
     ],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00",
@@ -301,7 +301,9 @@ window.examData = [
       }
     ],
     "is_multi": false,
-    "correct_ids": [],
+    "correct_ids": [
+      "e"
+    ],
     "fill_in_blanks": [],
     "distractors": [],
     "marks": 1.0,

@@ -226,8 +226,8 @@ def parse_moodle(content, input_file):
         
         correct_ids = []
         for opt in options:
-            clean_opt = opt['text'].replace('.', '').strip()
-            if clean_opt in correct_text.replace('\n', ' ').replace('.', ''):
+            clean_opt = opt['text'].replace('.', '').replace('<br>', ' ').strip()
+            if clean_opt and clean_opt in correct_text.replace('\n', ' ').replace('.', ''):
                 correct_ids.append(opt['id'])
                 
         fill_in_blanks = []
