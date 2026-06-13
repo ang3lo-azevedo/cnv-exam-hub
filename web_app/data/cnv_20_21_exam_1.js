@@ -394,12 +394,12 @@ window.examData = [
       "unit"
     ],
     "distractors": [
-      "InstanceID",
-      "log",
       "dimension",
-      "average",
+      "value",
+      "log",
       "ResourceGroup",
-      "value"
+      "average",
+      "InstanceID"
     ],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00"

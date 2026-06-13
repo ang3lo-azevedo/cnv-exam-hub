@@ -207,8 +207,7 @@ def parse_moodle(content, input_file):
             raw_sketch = raw_sketch.replace('\n- ', '\n• ')
             if raw_sketch.startswith('- '):
                 raw_sketch = '• ' + raw_sketch[2:]
-            raw_sketch = re.sub(r'\*\((.*?)\)\*', r'<em>(\1)</em>', raw_sketch, flags=re.DOTALL)
-            raw_sketch = re.sub(r'\*-(.*?)\*', r'<em>-\1</em>', raw_sketch, flags=re.DOTALL)
+
             solution_sketch = raw_sketch
             q_body = q_body[:sol_match.start()]
             is_open_text = True
