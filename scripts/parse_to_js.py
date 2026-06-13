@@ -4,6 +4,17 @@ import json
 
 def convert_md(txt):
     if not txt: return txt
+    
+    # Escape generic `<` and `>` that are not known HTML tags
+    def escape_unknown(match):
+        content = match.group(1)
+        # Check if tag is in whitelist
+        tag_name = content.split()[0].lower().replace('/', '')
+        if tag_name in ['u', 'strong', 'br']:
+            return match.group(0)
+        return f"&lt;{content}&gt;"
+    txt = re.sub(r'<([^>]+)>', escape_unknown, txt)
+    
     # Code blocks
     txt = re.sub(r'```(?:[a-zA-Z]*)\n?(.*?)\n?```', r'<pre><code>\1</code></pre>', txt, flags=re.DOTALL)
     # Bold (no spaces inside the asterisks)

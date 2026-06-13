@@ -394,12 +394,12 @@ window.examData = [
       "unit"
     ],
     "distractors": [
-      "dimension",
-      "value",
-      "log",
-      "ResourceGroup",
       "average",
-      "InstanceID"
+      "InstanceID",
+      "value",
+      "ResourceGroup",
+      "log",
+      "dimension"
     ],
     "marks": 1.0,
     "marks_text": "Marked out of 1.00"
@@ -527,7 +527,7 @@ window.examData = [
   },
   {
     "number": 18,
-    "text": "The Superfriend social network wants to email <em>all users with more than 25 friends</em> telling them <em>how many other Superfriend users have the same number of friends (rank) as them</em> (e.g. \u201cCongratulations Joe, 200 other Superfriend users have 56 friends just like you.\u201d). \nThe email messages will be produced by a MapReduce application that will be input a text list of all users and their respective friends\u2019 contact info. \nEach line in that input file has the following format and that you can iterate and access as a list or array in the pseudocode: \n<username>, <name>, <age>, <user_email>, <friend_1>, <friend_1_email>, <friend_2>, <friend_2_email>,..., <friend_n>,<friend_n_email> \nAssume the standard signature for the <strong>mapper</strong>: List<k2,v2> map(int, string) and <strong>reducer</strong>:  List<k3, v3> reduce(k2, List<v2>) functions, where map has the default MapReduce input (cursor/line number and text line content) and k2, v2, k3 and v3 can all be replaced with types of your choice.  \n\nWrite the pseudocode for a MapReduce application, with a single map and a single reduce method.\n\nThe final output of the reduce function shoud produce the required information for each case when appropriate:\n- the email address of Superfriend user that should be e-mailed, and \n- the number of friends with the same rank.\n<em>(if you need, you can briefly state any assumptions at the end of the answer after the pseudocode)</em>",
+    "text": "The Superfriend social network wants to email <em>all users with more than 25 friends</em> telling them <em>how many other Superfriend users have the same number of friends (rank) as them</em> (e.g. \u201cCongratulations Joe, 200 other Superfriend users have 56 friends just like you.\u201d). \nThe email messages will be produced by a MapReduce application that will be input a text list of all users and their respective friends\u2019 contact info. \nEach line in that input file has the following format and that you can iterate and access as a list or array in the pseudocode: \n&lt;username&gt;, &lt;name&gt;, &lt;age&gt;, &lt;user_email&gt;, &lt;friend_1&gt;, &lt;friend_1_email&gt;, &lt;friend_2&gt;, &lt;friend_2_email&gt;,..., &lt;friend_n&gt;,&lt;friend_n_email&gt; \nAssume the standard signature for the <strong>mapper</strong>: List&lt;k2,v2&gt; map(int, string) and <strong>reducer</strong>:  List&lt;k3, v3&gt; reduce(k2, List&lt;v2&gt;) functions, where map has the default MapReduce input (cursor/line number and text line content) and k2, v2, k3 and v3 can all be replaced with types of your choice.  \n\nWrite the pseudocode for a MapReduce application, with a single map and a single reduce method.\n\nThe final output of the reduce function shoud produce the required information for each case when appropriate:\n- the email address of Superfriend user that should be e-mailed, and \n- the number of friends with the same rank.\n<em>(if you need, you can briefly state any assumptions at the end of the answer after the pseudocode)</em>",
     "options": [],
     "is_multi": false,
     "correct_ids": [],
