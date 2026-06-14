@@ -584,29 +584,42 @@ function submitExam(isAutoRestore = false) {
             let hasIncorrect = false;
 
             if (isMulti) {
+                let noResponseCount = q.options.filter(o => o.text.toLowerCase().includes('no response')).length;
+                let incorrectOptionsCount = q.options.length - q.correct_ids.length - noResponseCount;
+
                 uAns.forEach(ansId => {
+                    let opt = q.options.find(o => o.id === ansId);
+                    let isNoResponse = opt && opt.text.toLowerCase().includes('no response');
+
                     if (q.correct_ids.includes(ansId)) {
                         score += (1.0 / q.correct_ids.length) * maxPoints;
                         correctCount++;
-                    } else {
+                    } else if (!isNoResponse) {
                         hasIncorrect = true;
-                        score -= (1.0 / q.correct_ids.length) * maxPoints;
+                        if (incorrectOptionsCount > 0) {
+                            score -= (1.0 / incorrectOptionsCount) * maxPoints;
+                        }
                     }
                 });
             } else {
+                let selectedOpt = q.options.find(o => o.id === uAns[0]);
+                let isNoResponse = selectedOpt && selectedOpt.text.toLowerCase().includes('no response');
+
                 if (q.correct_ids.includes(uAns[0])) {
                     score += maxPoints;
                     correctCount = 1;
-                } else if (uAns.length > 0 && uAns[0] !== '') {
+                } else if (uAns.length > 0 && uAns[0] !== '' && !isNoResponse) {
                     hasIncorrect = true;
-                    if (q.options.length > 1) {
-                        score -= (1.0 / (q.options.length - 1)) * maxPoints;
+                    let noResponseCount = q.options.filter(o => o.text.toLowerCase().includes('no response')).length;
+                    let penalizingOptionsCount = q.options.length - q.correct_ids.length - noResponseCount;
+                    if (penalizingOptionsCount > 0) {
+                        score -= (1.0 / penalizingOptionsCount) * maxPoints;
                     }
                 }
             }
             score = Math.max(0, score);
             totalMarks += score;
-            if (correctCount === q.correct_ids.length && !hasIncorrect) navBtn.classList.add('correct');
+            if (correctCount === q.correct_ids.length && !hasIncorrect && correctCount > 0) navBtn.classList.add('correct');
             else if (score > 0) navBtn.classList.add('partial');
             else navBtn.classList.add('incorrect');
         }
